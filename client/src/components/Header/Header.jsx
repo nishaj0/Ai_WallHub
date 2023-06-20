@@ -1,12 +1,12 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Header.css";
-import logoImg from "../../assets/main-logo.png";
+import logoImg from "../../assets/main-logo.svg";
 
 function Header() {
    return (
       <div className="wallHub__header">
-         <Link to="/" className="wallHub__logo">
+         <Link to="/" className="wallHub__header__logo">
             <img src={logoImg} alt="" />
          </Link>
 
@@ -28,20 +28,20 @@ function Header() {
                Catagories
             </NavLink>
             <NavLink
-               to="/about"
-               className={({ isActive }) =>
-                  isActive ? "wallHub__nav-active" : null
-               }
-            >
-               About
-            </NavLink>
-            <NavLink
                to="/contact"
                className={({ isActive }) =>
                   isActive ? "wallHub__nav-active" : null
                }
             >
                Contact
+            </NavLink>
+            <NavLink
+               to="/about"
+               className={({ isActive }) =>
+                  isActive ? "wallHub__nav-active" : null
+               }
+            >
+               About
             </NavLink>
 
             <Link to="/login" className="wallHub__nav-login">

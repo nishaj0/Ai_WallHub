@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { About, Home } from "./pages";
+import { About, Home, Catagories,Contact } from "./pages";
 import { Layout } from "./components";
 
 import "./App.css";
@@ -11,6 +11,8 @@ function App() {
          <Routes>
             <Route path="/" element={<Layout />}>
                <Route index element={<Home />} />
+               <Route path="catagories" element={<Catagories/>} />
+               <Route path="contact" element={<Contact/>} />
                <Route path="about" element={<About/>} />
             </Route>
          </Routes>
