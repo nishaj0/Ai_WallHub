@@ -2,6 +2,9 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { About, Home } from "./pages";
 import { Layout } from "./components";
+
+import "./App.css";
+
 function App() {
    return (
       <BrowserRouter>

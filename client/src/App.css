@@ -1,0 +1,42 @@
+*{
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   scroll-behavior: smooth;
+}
+
+body{
+   font-family: var(--font-family);
+}
+
+a{
+   text-decoration: none;
+   color: inherit;
+}
+
+.section__padding {
+   padding: 4rem 6rem;
+}
+
+.section__margin {
+   margin: 4rem 6rem;
+}
+
+@media screen and (max-width: 768px) {
+   .section__padding {
+       padding: 4rem;
+   }
+   .section__margin {
+       margin: 4rem;
+   }
+}
+
+@media screen and (max-width: 480px) {
+   .section__padding {
+       padding: 4rem 2rem;
+   }
+   .section__margin {
+       margin: 4rem 2rem;
+   }
+}
+   
