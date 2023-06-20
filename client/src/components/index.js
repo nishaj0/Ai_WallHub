@@ -1,9 +1,5 @@
-import Footer from "./Footer";
-import Header from "./Header";
-import Layout from "./Layout";
+import Footer from "./Footer/Footer";
+import Header from "./Header/Header";
+import Layout from "./Layout/Layout";
 
-export{
-   Footer,
-   Header,
-   Layout
-}
+export { Footer, Header, Layout };
