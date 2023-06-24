@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import { RiMenuLine, RiCloseLine } from "react-icons/ri";
-import "./Header.css";
+import "./header.css";
 import logoImg from "../../assets/images/logo/main-logo.svg";
 
 function Header() {

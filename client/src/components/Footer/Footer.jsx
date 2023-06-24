@@ -10,7 +10,7 @@ import {
 
 import logoImg from "../../assets/images/logo/main-logo_light.svg";
 
-import "./Footer.css";
+import "./footer.css";
 
 function Footer() {
    return (
