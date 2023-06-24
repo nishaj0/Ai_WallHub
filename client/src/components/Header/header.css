@@ -12,6 +12,7 @@
    border-bottom: 1px solid #ccc;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
    padding: .25rem 6rem;
+   background-color: var(--bg-color-light);
 }
 
 .wallHub__header__logo img {
@@ -30,7 +31,7 @@
    margin: 0 1rem;
    font-size: 1.2rem;
    font-weight: 500;
-   color: var(--text-color);
+   color: var(--text-color-dark);
 }
 
 .wallHub__nav a:hover {
@@ -50,13 +51,13 @@ a.wallHub__nav-active {
    border: none;
    border-radius: 5px;
    background-color: var(--sky-blue);
-   color: var(--bg-color);
+   color: var(--bg-color-light);
    font-size: 1.2rem;
    font-weight: 500;
    cursor: pointer;
 }
 
-.wallHub__header-menu_login{
+.wallHub__header-menu_login {
    display: none;
 }
 
@@ -70,8 +71,8 @@ a.wallHub__nav-active {
    justify-content: space-between;
    align-self: start;
    flex-direction: column;
-   background-color: var(--medium-gray);
-   color: var(--bg-color);
+   background-color: var(--text-color-dark);
+   color: var(--bg-color-light);
 }
 
 .wallHub__header-menu_links-link,
@@ -83,60 +84,72 @@ a.wallHub__nav-active {
 }
 
 @media screen and (max-width:1050px) {
-   .wallHub__nav-toggler{
+   .wallHub__nav-toggler {
       display: block;
    }
-   .wallHub__header-menu_links{
+
+   .wallHub__header-menu_links {
       display: flex;
    }
-   .wallHub__nav-links{
+
+   .wallHub__nav-links {
       display: none;
    }
 }
 
 @media screen and (max-width: 700px) {
-   .wallHub__header-main{
+   .wallHub__header-main {
       padding: .25rem 4rem;
    }
-   .wallHub__header__logo img{
+
+   .wallHub__header__logo img {
       width: 150px;
    }
-   .wallHub__nav a{
+
+   .wallHub__nav a {
       font-size: 1rem;
    }
+
    .wallHub__nav-login button,
-   .wallHub__header-menu_login button{
+   .wallHub__header-menu_login button {
       font-size: 1rem;
    }
+
    .wallHub__header-menu_links-link,
-   .wallHub__header-menu_login{
+   .wallHub__header-menu_login {
       font-size: 1rem;
       padding: 1rem 4rem;
    }
 }
 
 @media screen and (max-width:550px) {
-   .wallHub__header-main{
+   .wallHub__header-main {
       padding: .25rem 2rem;
    }
-   .wallHub__header__logo img{
+
+   .wallHub__header__logo img {
       width: 120px;
    }
-   .wallHub__nav a{
+
+   .wallHub__nav a {
       font-size: .8rem;
    }
+
    .wallHub__nav-login button,
-   .wallHub__header-menu_login button{
+   .wallHub__header-menu_login button {
       font-size: .8rem;
    }
-   .wallHub__nav-login{
+
+   .wallHub__nav-login {
       display: none;
    }
-   .wallHub__header-menu_login{
+
+   .wallHub__header-menu_login {
       display: block;
    }
+
    .wallHub__header-menu_links-link,
-   .wallHub__header-menu_login{
+   .wallHub__header-menu_login {
       font-size: .8rem;
       padding: 1rem 2rem;
    }

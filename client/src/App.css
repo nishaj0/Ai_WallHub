@@ -1,19 +1,24 @@
-*{
+* {
    box-sizing: border-box;
    margin: 0;
    padding: 0;
    scroll-behavior: smooth;
 }
 
-body{
+body {
    font-family: var(--font-family);
    background-color: var(--bg-color);
 }
 
-a{
+li{
+   list-style: none;
+}
+
+a {
    text-decoration: none;
    color: inherit;
 }
+
 
 .section__padding {
    padding: 4rem 6rem;
@@ -25,18 +30,20 @@ a{
 
 @media screen and (max-width: 700px) {
    .section__padding {
-       padding: 4rem;
+      padding: 4rem;
    }
+
    .section__margin {
-       margin: 4rem;
+      margin: 4rem;
    }
 }
 
 @media screen and (max-width: 550px) {
    .section__padding {
-       padding: 4rem 2rem;
+      padding: 4rem 2rem;
    }
+
    .section__margin {
-       margin: 4rem 2rem;
+      margin: 4rem 2rem;
    }
 }

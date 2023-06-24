@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap');
-:root{
-   --font-family: 'Inter', sans-serif;
 
-   --bg-color:#f8f8f8;
-   --text-color:#333333;
-   --medium-gray:#3a3a3a;
-   --sky-blue:#33a1de;
-   --light-sky-blue:#66c7f4;
+:root {
+   /* -------------Colors-------------- */
+   --bg-color-light: #f8f8f8;
+   --text-color-dark: #333333;
+   --text-color-footer: #acacac;
+   --medium-gray: #3a3a3a;
+   --sky-blue: #33a1de;
+   --light-sky-blue: #66c7f4;
+   /* --------fonts and typography------- */
+   --font-family: 'Inter', sans-serif;
 }
