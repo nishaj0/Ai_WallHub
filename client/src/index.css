@@ -1,15 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap');
 
 :root {
+   /* --------------lengths----------- */
+   --header-height: 4.3rem;
+   --margin-x: 6rem;
+   --margin-y: 4rem;
    /* -------------Colors-------------- */
    --bg-color-light: #f8f8f8;
    --text-color-dark: #333333;
-   --text-color-footer: #acacac;
+   --footer-text-color: #acacac;
    --medium-gray: #3a3a3a;
    --sky-blue: #33a1de;
    --light-sky-blue: #66c7f4;
    /* --------fonts and typography------- */
-   --font-family: 'Inter', sans-serif;
+   --primary-font-family: 'Inter', sans-serif;
+   --a-font-size: 1.2rem;
+   --h4-font-size: 1.2rem;
+   --footer-a-font-size: 1rem;
+   --font-weight-a: 500;
+   --font-weight-a-active: 600;
+}
+
+/*
+--header-height: 4.3rem;
+--margin-x: 6rem;
+--margin-y: 4rem;
+
+--bg-color-light: #f8f8f8;
+--text-color-dark: #333333;
+--footer-text-color: #acacac;
+--medium-gray: #3a3a3a;
+--sky-blue: #33a1de;
+--light-sky-blue: #66c7f4;
+
+--primary-font-family: 'Inter', sans-serif;
+--a-font-size: 1.2rem;
+--h4-font-size: 1.2rem;
+--footer-a-font-size: 1rem;
+--font-weight-a: 500;
+--font-weight-a-active: 600;*/
+
+@media screen and (max-width: 768px) {
+   :root {
+      --margin-x: 4rem;
+      --margin-y: 4rem;
+   }
+}
+
+@media screen and (max-width: 550px) {
+   :root {
+      --margin-x: 2rem;
+      --margin-y: 4rem;
+      --a-font-size: 1.1rem;
+      --h4-font-size: 1.1rem;
+      --footer-a-font-size: .9rem;
+   }
 }
 
 /* Hide the default scrollbar */

@@ -6,12 +6,12 @@
 }
 
 body {
-   font-family: var(--font-family);
+   font-family: var(--primary-font-family);
    background-color: var(--bg-color);
-   margin-top: 4.3rem;
+   margin-top: var(--header-height);
 }
 
-li{
+li {
    list-style: none;
 }
 
@@ -22,40 +22,14 @@ a {
 
 
 .section__padding {
-   padding: 4rem 6rem;
+   padding: var(--margin-y) var(--margin-x);
 }
 
 .section__margin {
-   margin: 4rem 6rem;
+   margin: var(--margin-y) var(--margin-x);
 }
 
-.container{
+.container {
    max-width: 1440px;
    margin: 0 auto;
-}
-
-@media screen and (max-width: 700px) {
-   .section__padding {
-      padding: 4rem;
-   }
-
-   .section__margin {
-      margin: 4rem;
-   }
-}
-
-@media screen and (max-width: 550px) {
-   .section__padding {
-      padding: 4rem 2rem;
-   }
-
-   .section__margin {
-      margin: 4rem 2rem;
-   }
-}
-
-@media screen and (min-width: 1440px) {
-   .container {
-      padding: 0 auto;
-   
 }
