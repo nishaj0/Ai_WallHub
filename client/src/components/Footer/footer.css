@@ -54,12 +54,12 @@
 @media screen and (max-width: 550px) {
    .wallHub__footer a,
    .wallHub__footer p {
-      font-size: 1rem;
+      font-size: .9rem;
    }
    .wallHub__footer-link h4 {
       font-size: 1.1rem;
    }
    .wallHub__footer-link li{
-      font-size: 1rem;
+      font-size: .9rem;
    }
 }
