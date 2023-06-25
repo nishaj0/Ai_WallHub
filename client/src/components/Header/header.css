@@ -1,18 +1,20 @@
-/* .wallHub__header{
+.header__container{
    position: fixed;
    top: 0;
    left: 0;
    right: 0;
    z-index: 100;
-} */
+   width: 100%;
+   background-color: var(--bg-color-light);
+   border-bottom: 1px solid #ccc;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 .wallHub__header-main {
    display: flex;
    justify-content: space-between;
    align-items: center;
-   border-bottom: 1px solid #ccc;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
    padding: .25rem 6rem;
-   background-color: var(--bg-color-light);
+   height: 4.3rem;
 }
 
 .wallHub__header__logo img {

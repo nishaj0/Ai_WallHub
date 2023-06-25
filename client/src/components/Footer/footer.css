@@ -1,8 +1,11 @@
+.footer__container{
+   background-color: var(--text-color-dark);
+}
+
 .wallHub__footer {
    display: flex;
    flex-direction: column;
    justify-content: center;
-   background-color: var(--text-color-dark);
 }
 
 .wallHub__footer a,
