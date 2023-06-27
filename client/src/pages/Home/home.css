@@ -1,0 +1,70 @@
+.wallHub__home {
+   background: url(../../assets/images/landscape_tokyo_night_1_1536x512px.webp);
+   background-position: bottom;
+   background-size: cover;
+   height: var(--home-bg-height);
+}
+
+.wallHub__home-search_container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+   height: 100%;
+   max-width: var(--home-search-bar-width);
+   margin: 0 auto;
+}
+
+.wallHub__home-search_container h1 {
+   font-size: 3rem;
+   font-weight: 600;
+   color: #fff;
+}
+
+.wallHub__home-search_container h2 {
+   font-size: 1.5rem;
+   font-weight: 500;
+   color: #fff;
+   margin-top: 1rem;
+}
+
+.wallHub__home-search_bar {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 3rem;
+   margin-top: 2rem;
+   background-color: #fff;
+   border-radius: 5px;
+}
+
+.wallHub__home-search_bar form{
+   width: 100%;
+   height: 100%;
+   padding:0 1rem ;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.wallHub__home-search_bar input {
+   height: 100%;
+   /* 27px is the size of icon*/
+   width: calc(100% - 27px);
+   border: none;
+   outline: none;
+   font-size: 1.2rem;
+   font-weight: 500;
+   color: var(--text-color-dark);
+}
+
+.wallHub__home-search_bar button{
+   /* button */
+   width: 27px;
+   height: 27px;
+   border: none;
+   outline: none;
+   background-color: transparent;
+   cursor: pointer;
+}
