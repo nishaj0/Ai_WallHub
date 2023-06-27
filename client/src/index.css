@@ -2,9 +2,12 @@
 
 :root {
    /* --------------lengths----------- */
-   --header-height: 4.3rem;
    --margin-x: 6rem;
    --margin-y: 4rem;
+   --max-width: 1440px;
+   --header-height: 4.3rem;
+   --home-bg-height:440px;
+   --home-search-bar-width: 840px;
    /* -------------Colors-------------- */
    --bg-color-light: #f8f8f8;
    --text-color-dark: #333333;
