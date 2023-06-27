@@ -6,8 +6,9 @@
    --margin-y: 4rem;
    --max-width: 1440px;
    --header-height: 4.3rem;
-   --home-bg-height:440px;
+   --home-bg-height: 440px;
    --home-search-bar-width: 840px;
+   --home-search-bar-height: 3rem;
    /* -------------Colors-------------- */
    --bg-color-light: #f8f8f8;
    --text-color-dark: #333333;
@@ -17,31 +18,19 @@
    --light-sky-blue: #66c7f4;
    /* --------fonts and typography------- */
    --primary-font-family: 'Inter', sans-serif;
+   --h1-font-size: 2.5rem;
+   --h2-font-size: 1.5rem;
    --a-font-size: 1.2rem;
    --h4-font-size: 1.2rem;
    --footer-a-font-size: 1rem;
-   --font-weight-a: 500;
-   --font-weight-a-active: 600;
+   --font-weight-low: 400;
+   --font-weight-mid: 500;
+   --font-weight-high: 600;
+   /* ------------other values---------- */
+   --default-icon-size: 27px;
+   --default-transition: all 0.3s ease-in-out;
 }
 
-/*
---header-height: 4.3rem;
---margin-x: 6rem;
---margin-y: 4rem;
-
---bg-color-light: #f8f8f8;
---text-color-dark: #333333;
---footer-text-color: #acacac;
---medium-gray: #3a3a3a;
---sky-blue: #33a1de;
---light-sky-blue: #66c7f4;
-
---primary-font-family: 'Inter', sans-serif;
---a-font-size: 1.2rem;
---h4-font-size: 1.2rem;
---footer-a-font-size: 1rem;
---font-weight-a: 500;
---font-weight-a-active: 600;*/
 
 @media screen and (max-width: 768px) {
    :root {
@@ -54,6 +43,8 @@
    :root {
       --margin-x: 2rem;
       --margin-y: 4rem;
+      --h1-font-size: 2rem;
+      --h2-font-size: 1.3rem;
       --a-font-size: 1.1rem;
       --h4-font-size: 1.1rem;
       --footer-a-font-size: .9rem;

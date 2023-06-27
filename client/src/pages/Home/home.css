@@ -16,15 +16,15 @@
 }
 
 .wallHub__home-search_container h1 {
-   font-size: 3rem;
-   font-weight: 600;
-   color: #fff;
+   font-size: var(--h1-font-size);
+   font-weight: var(--font-weight-high);
+   color: var(--bg-color-light);
 }
 
 .wallHub__home-search_container h2 {
-   font-size: 1.5rem;
-   font-weight: 500;
-   color: #fff;
+   font-size: var(--h2-font-size);
+   font-weight: var(--font-weight-mid);
+   color: var(--bg-color-light);
    margin-top: 1rem;
 }
 
@@ -33,9 +33,9 @@
    justify-content: center;
    align-items: center;
    width: 100%;
-   height: 3rem;
+   height: var(--home-search-bar-height);
    margin-top: 2rem;
-   background-color: #fff;
+   background-color: var(--bg-color-light);
    border-radius: 5px;
 }
 
@@ -54,17 +54,17 @@
    width: calc(100% - 27px);
    border: none;
    outline: none;
-   font-size: 1.2rem;
-   font-weight: 500;
+   font-size: var(--a-font-size);
+   font-weight: var(--font-weight-mid);
    color: var(--text-color-dark);
 }
 
 .wallHub__home-search_bar button{
    /* button */
-   width: 27px;
-   height: 27px;
+   size: var(----default-icon-size);
    border: none;
    outline: none;
    background-color: transparent;
    cursor: pointer;
 }
+

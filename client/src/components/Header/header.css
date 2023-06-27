@@ -33,19 +33,19 @@
 .wallHub__nav a {
    margin: 0 1rem;
    font-size: var(--a-font-size);
-   font-weight: var(--font-weight-a);
+   font-weight: var(--font-weight-mid);
    color: var(--text-color-dark);
 }
 
 .wallHub__nav a:hover {
    color: var(--sky-blue);
-   font-weight: var(--font-weight-a-active);
-   transition: all 0.3s ease-in-out;
+   font-weight: var(--font-weight-high);
+   transition: var(--default-transition);
 }
 
 a.wallHub__nav-active {
    color: var(--sky-blue);
-   font-weight: var(--font-weight-a-active);
+   font-weight: var(--font-weight-high);
 }
 
 .wallHub__nav-login button,
