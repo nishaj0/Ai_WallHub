@@ -5,9 +5,35 @@
    right: 0;
    z-index: 100;
    width: 100%;
+   transition: var(--default-transition);
+}
+
+.wallHub__header-transparent {
+   background-color: transparent;
+}
+
+.wallHub__header-transparent a {
+   color: var(--bg-color-light);
+}
+
+.wallHub__header-default {
    background-color: var(--bg-color-light);
    border-bottom: 1px solid #ccc;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wallHub__header-default a {
+   color: var(--text-color-dark);
+}
+
+/* this class name used in navbar menu */
+a.wallHub__header-menu_links-link {
+   color: var(--bg-color-light);
+}
+
+a.wallHub__nav-active {
+   color: var(--sky-blue);
+   font-weight: var(--font-weight-high);
 }
 
 .wallHub__header-main {
@@ -19,7 +45,7 @@
 }
 
 .wallHub__header__logo img {
-   margin-top: 1rem;
+   margin-top: .75rem;
    width: 170px;
 }
 
@@ -34,7 +60,6 @@
    margin: 0 1rem;
    font-size: var(--a-font-size);
    font-weight: var(--font-weight-mid);
-   color: var(--text-color-dark);
 }
 
 .wallHub__nav a:hover {
@@ -43,10 +68,7 @@
    transition: var(--default-transition);
 }
 
-a.wallHub__nav-active {
-   color: var(--sky-blue);
-   font-weight: var(--font-weight-high);
-}
+/* colors are specified at top */
 
 .wallHub__nav-login button,
 .wallHub__header-menu_login button {
@@ -59,6 +81,8 @@ a.wallHub__nav-active {
    font-weight: 500;
    cursor: pointer;
 }
+
+/* -----------mobile menu------------ */
 
 .wallHub__header-menu_login {
    display: none;
@@ -75,8 +99,8 @@ a.wallHub__nav-active {
    align-self: start;
    flex-direction: column;
    background-color: var(--text-color-dark);
-   color: var(--bg-color-light);
 }
+
 
 .wallHub__header-menu_links-link,
 .wallHub__header-menu_login {

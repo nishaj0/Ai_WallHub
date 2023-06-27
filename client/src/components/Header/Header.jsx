@@ -1,22 +1,52 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RiMenuLine, RiCloseLine } from "react-icons/ri";
 import "./header.css";
-import logoImg from "../../assets/images/logo/main-logo.svg";
+import logoImgDark from "../../assets/images/logo/main-logo_dark.svg";
+import logoImgLight from "../../assets/images/logo/main-logo_light.svg";
 
 function Header() {
    const [toggleMenu, setToggleMenu] = useState(false);
+   const [isNavAtTop, setIsNavAtTop] = useState(true);
 
    const activeLinkClass = "wallHub__nav-active";
    const menuLinkClass = "wallHub__header-menu_links-link";
+   const transparentNavClass = "wallHub__header-transparent";
+   const defaultNavClass = "wallHub__header-default";
+
+   useEffect(() => {
+      const handleScroll = () => {
+         const scrollTop = window.scrollY;
+
+         if (scrollTop > 60) {
+            setIsNavAtTop(false);
+         } else {
+            setIsNavAtTop(true);
+         }
+      };
+
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+         window.removeEventListener("scroll", handleScroll);
+      };
+   }, [isNavAtTop]);
 
    return (
-      <div className="header__container">
+      <div
+         className={
+            "header__container" +
+            " " +
+            (isNavAtTop ? transparentNavClass : defaultNavClass)
+         }
+      >
          <div className="wallHub__header container">
             <div className="wallHub__header-main">
                <Link to="/" className="wallHub__header__logo">
-                  <img src={logoImg} alt="" />
+                  <img
+                     src={isNavAtTop ? logoImgLight : logoImgDark}
+                     alt="Logo Image"
+                  />
                </Link>
 
                <nav className="wallHub__nav">
@@ -60,15 +90,19 @@ function Header() {
                   <div className="wallHub__nav-toggler">
                      {toggleMenu ? (
                         <RiCloseLine
-                           color="#333333"
+                           color={isNavAtTop ? "#f8f8f8" : "#333"}
                            size={30}
-                           onClick={() => setToggleMenu(false)}
+                           onClick={() =>
+                              setToggleMenu(false) + setIsNavAtTop(true)
+                           }
                         />
                      ) : (
                         <RiMenuLine
-                           color="#333333"
+                           color={isNavAtTop ? "#f8f8f8" : "#333"}
                            size={27}
-                           onClick={() => setToggleMenu(true)}
+                           onClick={() =>
+                              setToggleMenu(true) + setIsNavAtTop(false)
+                           }
                         />
                      )}
                   </div>
@@ -82,7 +116,7 @@ function Header() {
                         className={({ isActive }) =>
                            //? here "wallHub__nav-active" class used to give active routes a different color
                            isActive
-                              ? activeLinkClass + " " + menuLinkClass
+                              ? menuLinkClass + " " + activeLinkClass
                               : menuLinkClass
                         }
                      >
@@ -92,7 +126,7 @@ function Header() {
                         to="/catagories"
                         className={({ isActive }) =>
                            isActive
-                              ? activeLinkClass + " " + menuLinkClass
+                              ? menuLinkClass + " " + activeLinkClass
                               : menuLinkClass
                         }
                      >
@@ -102,7 +136,7 @@ function Header() {
                         to="/contact"
                         className={({ isActive }) =>
                            isActive
-                              ? activeLinkClass + " " + menuLinkClass
+                              ? menuLinkClass + " " + activeLinkClass
                               : menuLinkClass
                         }
                      >
@@ -112,7 +146,7 @@ function Header() {
                         to="/about"
                         className={({ isActive }) =>
                            isActive
-                              ? activeLinkClass + " " + menuLinkClass
+                              ? menuLinkClass + " " + activeLinkClass
                               : menuLinkClass
                         }
                      >

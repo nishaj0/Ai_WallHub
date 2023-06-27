@@ -6,6 +6,8 @@ import "./home.css";
 
 function Home() {
    return (
+      <>
+      
       <div className="wallHub__home section__padding">
          <div className="wallHub__home-search_container ">
             <h1>Discover the Future of Wallpapers</h1>
@@ -23,6 +25,24 @@ function Home() {
             </div>
          </div>
       </div>
+      <div className="wallHub__home section__padding">
+         <div className="wallHub__home-search_container ">
+            <h1>Discover the Future of Wallpapers</h1>
+            <h2> Embrace the Beauty of AI-Generated Wallpapers</h2>
+            <div className="wallHub__home-search_bar">
+               <form action="get">
+                  <input
+                     type="text"
+                     placeholder="Search AI-Generated Wallpapers"
+                  />
+                  <button type="submit">
+                     <RiSearchLine color="#333333" size={27} />
+                  </button>
+               </form>
+            </div>
+         </div>
+      </div>
+      </>
    );
 }
 
