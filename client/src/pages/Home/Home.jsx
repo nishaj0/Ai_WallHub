@@ -10,11 +10,9 @@ function Home() {
    useEffect(() => {
       const handleResize = () => {
          setIsSmallScreen(window.innerWidth < 550);
+         console.log(window.innerWidth)
       };
-      window.addEventListener("resize", handleResize);
-      return () => {
-         window.removeEventListener("resize", handleResize);
-      };
+      handleResize()
    }, []);
    return (
       <div className="wallHub__home section__padding">
