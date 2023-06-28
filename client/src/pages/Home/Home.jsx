@@ -10,7 +10,6 @@ function Home() {
    useEffect(() => {
       const handleResize = () => {
          setIsSmallScreen(window.innerWidth < 550);
-         console.log(window.innerWidth)
       };
       handleResize()
    }, []);

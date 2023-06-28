@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { About, Home, Catagories,Contact } from "./pages";
-import { Layout } from "./components";
+import { Layout } from "./containers";
 
 import "./App.css";
 
