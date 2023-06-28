@@ -1,10 +1,21 @@
 import React from "react";
-import BackgroundImg from "../../assets/images/landscape_mountain_view_1536 x512px.webp";
+import { useEffect, useState } from "react";
 import { RiSearchLine } from "react-icons/ri";
 
 import "./home.css";
 
 function Home() {
+   const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+   useEffect(() => {
+      const handleResize = () => {
+         setIsSmallScreen(window.innerWidth < 550);
+      };
+      window.addEventListener("resize", handleResize);
+      return () => {
+         window.removeEventListener("resize", handleResize);
+      };
+   }, []);
    return (
       <div className="wallHub__home section__padding">
          <div className="wallHub__home-search_container ">
@@ -14,7 +25,11 @@ function Home() {
                <form action="get">
                   <input
                      type="text"
-                     placeholder="Search AI-Generated Wallpapers"
+                     placeholder={
+                        isSmallScreen
+                           ? "Search Wallpaper"
+                           : "Search AI-Generated Wallpapers"
+                     }
                   />
                   <button type="submit">
                      <RiSearchLine color="#333333" size={27} />
