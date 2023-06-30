@@ -9,6 +9,7 @@ import logoImgLight from "../../assets/images/logo/main-logo_light.svg";
 function Header() {
    const [toggleMenu, setToggleMenu] = useState(false);
    const [isNavAtTop, setIsNavAtTop] = useState(true);
+   const [isTransparent, setIsTransparent] = useState(true);
 
    const activeLinkClass = "wallHub__nav-active";
    const menuLinkClass = "wallHub__header-menu_links-link";
@@ -18,11 +19,12 @@ function Header() {
    useEffect(() => {
       const handleScroll = () => {
          const scrollTop = window.scrollY;
-
          if (scrollTop > 60) {
             setIsNavAtTop(false);
+            setIsTransparent(false);
          } else {
             setIsNavAtTop(true);
+            toggleMenu ? setIsTransparent(false) : setIsTransparent(true);
          }
       };
 
@@ -37,14 +39,14 @@ function Header() {
          className={
             "header__container" +
             " " +
-            (isNavAtTop ? transparentNavClass : defaultNavClass)
+            (isTransparent ? transparentNavClass : defaultNavClass)
          }
       >
          <div className="wallHub__header container">
             <div className="wallHub__header-main">
                <Link to="/" className="wallHub__header__logo">
                   <img
-                     src={isNavAtTop ? logoImgLight : logoImgDark}
+                     src={isTransparent ? logoImgLight : logoImgDark}
                      alt="Logo Image"
                   />
                </Link>
@@ -90,19 +92,23 @@ function Header() {
                   <div className="wallHub__nav-toggler">
                      {toggleMenu ? (
                         <RiCloseLine
-                           color={isNavAtTop ? "#f8f8f8" : "#333"}
+                           color={isTransparent ? "#f8f8f8" : "#333"}
                            size={30}
-                           onClick={() =>
-                              setToggleMenu(false) + setIsNavAtTop(true)
-                           }
+                           onClick={() => {
+                              setToggleMenu(false);
+                              isNavAtTop
+                                 ? setIsTransparent(true)
+                                 : setIsTransparent(false);
+                           }}
                         />
                      ) : (
                         <RiMenuLine
-                           color={isNavAtTop ? "#f8f8f8" : "#333"}
+                           color={isTransparent ? "#f8f8f8" : "#333"}
                            size={27}
-                           onClick={() =>
-                              setToggleMenu(true) + setIsNavAtTop(false)
-                           }
+                           onClick={() => {
+                              setToggleMenu(true);
+                              setIsTransparent(false);
+                           }}
                         />
                      )}
                   </div>
