@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { RiSearchLine } from "react-icons/ri";
 
 import "./home.css";
@@ -7,7 +8,6 @@ import "./home.css";
 function Home() {
    const [isSmallScreen, setIsSmallScreen] = useState(false);
    const [searchData, setSearchData] = useState({ search: "" });
-   console.log(searchData);
 
    useEffect(() => {
       const handleResize = () => {
@@ -27,7 +27,6 @@ function Home() {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      console.log("searched");
    };
    return (
       <div className="wallHub__home">
@@ -58,8 +57,37 @@ function Home() {
          <div className="wallHub__home-wallpapers section__padding">
             <div className="wallHub__home-wallpapers_filter-container">
                <div className="wallHub__home-wallpapers_filter">
-                  <a href=""></a>
+                  <Link to="search?searchText=anime">Anime</Link>
                </div>
+               <div className="wallHub__home-wallpapers_filter">
+                  <Link to="search?searchText=pc">PC</Link>
+               </div>
+               <div className="wallHub__home-wallpapers_filter">
+                  <Link to="search?searchText=phone">Phone</Link>
+               </div>
+               <div className="wallHub__home-wallpapers_filter">
+                  <Link to="search?searchText=landscape">Landscape</Link>
+               </div>
+               <div className="wallHub__home-wallpapers_filter">
+                  <Link to="search?searchText=mountain">Mountain</Link>
+               </div>
+               <div className="wallHub__home-wallpapers_filter">
+                  <Link to="search?searchText=forest">Forest</Link>
+               </div>
+               <div className="wallHub__home-wallpapers_filter">
+                  <Link to="search?searchText=japan">Japan</Link>
+               </div>
+               <div className="wallHub__home-wallpapers_filter">
+                  <Link to="search?searchText=character">Character</Link>
+               </div>
+               <div className="wallHub__home-wallpapers_filter">
+                  <Link to="search?searchText=realistic">Realistic</Link>
+               </div>
+               <div className="wallHub__home-wallpapers_filter">
+                  <Link to="search?searchText=dark">Dark</Link>
+               </div>
+            </div>
+            <div className="wallHub__home-wallpapers_img-container">
             </div>
          </div>
       </div>

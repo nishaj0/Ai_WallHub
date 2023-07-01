@@ -20,8 +20,9 @@
    --primary-font-family: 'Inter', sans-serif;
    --h1-font-size: 2.5rem;
    --h2-font-size: 1.5rem;
-   --a-font-size: 1.2rem;
    --h4-font-size: 1.2rem;
+   --a-font-size: 1.2rem;
+   --p-font-size: .9rem;
    --footer-a-font-size: 1rem;
    --font-weight-low: 400;
    --font-weight-mid: 500;
@@ -48,6 +49,7 @@
       --h2-font-size: 1.3rem;
       --a-font-size: 1.1rem;
       --h4-font-size: 1.1rem;
+      --p-font-size: 1rem;
       --footer-a-font-size: .9rem;
    }
 }
