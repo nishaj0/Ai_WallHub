@@ -7,8 +7,11 @@ import "./home.css";
 
 function Home() {
    const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+   // ? this state is used to store the search data
    const [searchData, setSearchData] = useState({ search: "" });
 
+   // ? this useEffect is used to check if the screen is small or not
    useEffect(() => {
       const handleResize = () => {
          setIsSmallScreen(window.innerWidth < 550);
@@ -16,6 +19,7 @@ function Home() {
       handleResize();
    }, []);
 
+   // ? this function is used to handle the search data
    const handleSearch = (e) => {
       setSearchData((prevFormData) => {
          return {
@@ -30,6 +34,7 @@ function Home() {
    };
    return (
       <div className="wallHub__home">
+         {/* ? this div have background image */}
          <div className="wallHub__home-search_div section__padding">
             <div className="wallHub__home-search_container ">
                <h1>Discover the Future of Wallpapers</h1>

@@ -8,29 +8,34 @@
    transition: var(--default-transition);
 }
 
+/* ? this class name will assign when header is at top */
 .wallHub__header-transparent {
    background-color: transparent;
 }
 
+/* ? font color will change when its transparent */
 .wallHub__header-transparent a {
    color: var(--bg-color-light);
 }
 
+/* ? this is the default class name of header */
 .wallHub__header-default {
    background-color: var(--bg-color-light);
    border-bottom: 1px solid #ccc;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* ? this is the default color of the text */
 .wallHub__header-default a {
    color: var(--text-color-dark);
 }
 
-/* this class name used in navbar menu */
+/* ? this class name used in navbar menu (menu used in small devices) */
 a.wallHub__header-menu_links-link {
    color: var(--bg-color-light);
 }
 
+/* ?this class name used to give active routes a different color */
 a.wallHub__nav-active {
    color: var(--sky-blue);
    font-weight: var(--font-weight-high);
@@ -68,8 +73,7 @@ a.wallHub__nav-active {
    transition: var(--default-transition);
 }
 
-/* colors are specified at top */
-
+/*! colors are specified at top */
 .wallHub__nav-login button,
 .wallHub__header-menu_login button {
    padding: 0.5rem 1rem;

@@ -50,7 +50,7 @@
 
 .wallHub__home-search_bar input {
    height: 100%;
-   /* 27px is the size of icon*/
+   /* ! 27px is the size of search icon*/
    width: calc(100% - 27px);
    border: none;
    outline: none;

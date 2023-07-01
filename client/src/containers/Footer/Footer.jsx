@@ -5,7 +5,6 @@ import {
    RiDiscordFill,
    RiTwitterFill,
    RiGithubFill,
-   RiCopyrightLine,
 } from "react-icons/ri";
 
 import logoImg from "../../assets/images/logo/main-logo_light.svg";

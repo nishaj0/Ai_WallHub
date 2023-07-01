@@ -11,12 +11,15 @@ function Header() {
    const [isNavAtTop, setIsNavAtTop] = useState(true);
    const [isTransparent, setIsTransparent] = useState(true);
 
+   // ? here "wallHub__nav-active" class used to give active routes a different color
    const activeLinkClass = "wallHub__nav-active";
    const menuLinkClass = "wallHub__header-menu_links-link";
+   // ? here "wallHub__header-transparent" class used to give transparent background to the header when it is at the top
    const transparentNavClass = "wallHub__header-transparent";
    const defaultNavClass = "wallHub__header-default";
 
    useEffect(() => {
+      // ? this function used to check if the header is at the top or not
       const handleScroll = () => {
          const scrollTop = window.scrollY;
          if (scrollTop > 60) {
@@ -24,6 +27,8 @@ function Header() {
             setIsTransparent(false);
          } else {
             setIsNavAtTop(true);
+            
+            // ? when the header is at the top and the menu is not open then it will be transparent otherwise it will be default
             toggleMenu ? setIsTransparent(false) : setIsTransparent(true);
          }
       };
@@ -55,6 +60,7 @@ function Header() {
                   <div className="wallHub__nav-links">
                      <NavLink
                         to="/"
+                        // ? isActive is a in-built property of NavLink which returns true if the route is active
                         className={({ isActive }) =>
                            isActive ? activeLinkClass : null
                         }
@@ -96,6 +102,7 @@ function Header() {
                            size={30}
                            onClick={() => {
                               setToggleMenu(false);
+                              // ? if the header is at the top then it will be transparent otherwise it will be default
                               isNavAtTop
                                  ? setIsTransparent(true)
                                  : setIsTransparent(false);
@@ -120,7 +127,7 @@ function Header() {
                      <NavLink
                         to="/"
                         className={({ isActive }) =>
-                           //? here "wallHub__nav-active" class used to give active routes a different color
+                           //? here "activeLinkClass" class used to give active Link a different color
                            isActive
                               ? menuLinkClass + " " + activeLinkClass
                               : menuLinkClass
