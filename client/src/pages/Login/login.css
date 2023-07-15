@@ -4,7 +4,7 @@
    align-items: center;
    justify-content: center;
    min-height: 100vh;
-   background-color: var(--bg-color-light);
+   background-color: var(--main-color-light);
    position: relative;
 }
 
@@ -26,7 +26,7 @@
 .wallHub__login-head h2 {
    font-size: var(--h2-font-size);
    font-weight: var(--font-weight-extreme);
-   color: var(--text-color-dark);
+   color: var(--main-color-dark);
 }
 
 .wallHub__login-container {
@@ -38,7 +38,7 @@
    padding: 2.5rem;
    border-radius: 5px;
    background-color: #fff;
-   border:solid 1px #cfdfe7;
+   border: solid 1px #cfdfe7;
 }
 
 
@@ -55,9 +55,9 @@
    margin-top: .5rem;
    padding: .75rem;
    line-height: 20px;
-   font-size: var(--footer-a-font-size);
+   font-size: var(--small-font-size);
    font-weight: var(--font-weight-mid);
-   color: var(--text-color-dark);
+   color: var(--main-color-dark);
    background-color: transparent;
    border-radius: 5px;
    width: var(--login-input-x);
@@ -65,11 +65,11 @@
 }
 
 .wallHub__login-container form input:focus {
-   outline: solid 1px var(--sky-blue);
+   outline: solid 1px var(--main-sky-blue);
 }
 
 .wallHub__login-container form input:hover {
-   border: solid 1px var(--sky-blue);
+   border: solid 1px var(--main-sky-blue);
 }
 
 .wallHub__login-password_container {
@@ -93,11 +93,11 @@
 }
 
 .wallHub__login-label_container {
-   font-size: var(--footer-a-font-size);
+   font-size: var(--small-font-size);
    font-weight: var(--font-weight-mid);
    color: var(--medium-gray);
    margin-top: 1.5rem;
-   width:100%;
+   width: 100%;
    text-align: left;
    display: flex;
    justify-content: space-between;
@@ -115,10 +115,10 @@
    height: var(--login-input-y);
    margin-top: 1.75rem;
    line-height: 20px;
-   font-size: var(--footer-a-font-size);
+   font-size: var(--small-font-size);
    font-weight: var(--font-weight-mid);
-   color: var(--bg-color-light);
-   background-color: var(--sky-blue);
+   color: var(--main-color-light);
+   background-color: var(--main-sky-blue);
    border-radius: 5px;
    cursor: pointer;
 }
@@ -131,7 +131,7 @@
    border-bottom: solid 1px #cfdfe7;
 }
 
-.wallHub__login-google_button{
+.wallHub__login-google_button {
    display: flex;
    align-items: center;
    justify-content: center;
@@ -139,45 +139,50 @@
    height: var(--login-input-y);
    margin-top: .75rem;
    line-height: 20px;
-   font-size: var(--footer-a-font-size);
+   font-size: var(--small-font-size);
    font-weight: var(--font-weight-mid);
-   color: var(--text-color-dark);
+   color: var(--main-color-dark);
    background-color: var(--google-blue);
    border-radius: 5px;
-   border: 1px solid var(--text-color-dark);
+   border: 1px solid var(--main-color-dark);
    cursor: pointer;
 }
 
-.wallHub__login-google_button svg{
+.wallHub__login-google_button svg {
    margin-right: .5rem;
 }
 
-.wallHub__login-link_signup{
-   font-size: var(--footer-a-font-size);
+.wallHub__login-link_signup {
+   font-size: var(--small-font-size);
    font-weight: var(--font-weight-mid);
-   color: var(--text-color-dark);
+   color: var(--main-color-dark);
    margin-top: 1.5rem;
    text-decoration: none;
 }
 
-@media screen and (max-width:550px){
+@media screen and (max-width:550px) {
    .wallHub__login-logo {
       width: 120px;
    }
+
    .wallHub__login-container {
       padding: 1.5rem;
    }
+
    .wallHub__login-container form>button {
       margin-top: 1.25rem;
    }
+
    .wallHub__login-hr {
       margin-top: 1.25rem;
       margin-bottom: 1.25rem;
    }
-   .wallHub__login-google_button{
+
+   .wallHub__login-google_button {
       margin-top: .5rem;
    }
-   .wallHub__login-link_signup{
+
+   .wallHub__login-link_signup {
       margin-top: 1rem;
    }
 }

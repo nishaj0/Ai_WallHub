@@ -18,13 +18,13 @@
 .wallHub__home-search_container h1 {
    font-size: var(--h1-font-size);
    font-weight: var(--font-weight-high);
-   color: var(--bg-color-light);
+   color: var(--main-color-light);
 }
 
 .wallHub__home-search_container h3 {
    font-size: var(--h3-font-size);
    font-weight: var(--font-weight-mid);
-   color: var(--bg-color-light);
+   color: var(--main-color-light);
    margin-top: 1rem;
 }
 
@@ -35,7 +35,7 @@
    width: 100%;
    height: var(--home-search-bar-height);
    margin-top: 2rem;
-   background-color: var(--bg-color-light);
+   background-color: var(--main-color-light);
    border-radius: 5px;
 }
 
@@ -56,7 +56,7 @@
    outline: none;
    font-size: var(--a-font-size);
    font-weight: var(--font-weight-mid);
-   color: var(--text-color-dark);
+   color: var(--main-color-dark);
    background-color: transparent;
 }
 
@@ -89,7 +89,7 @@
    align-items: center;
    padding: 0.5rem 1rem;
    margin-right: 1rem;
-   border: 1px solid var(--footer-text-color);
+   border: 1px solid var(--light-color-gray);
    border-radius: 5px;
    cursor: pointer;
 }
@@ -100,5 +100,5 @@
 
 .wallHub__home-wallpapers_filter a {
    font-size: var(--p-font-size);
-   color: var(--text-color-dark);
+   color: var(--main-color-dark);
 }
