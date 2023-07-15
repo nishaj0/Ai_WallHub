@@ -9,6 +9,8 @@
    --home-bg-height: 440px;
    --home-search-bar-width: 840px;
    --home-search-bar-height: 3rem;
+   --login-input-x:350px;
+   --login-input-y:40px;
    /* -------------Colors-------------- */
    --bg-color-light: #f8f8f8;
    --text-color-dark: #333333;
@@ -16,10 +18,12 @@
    --medium-gray: #3a3a3a;
    --sky-blue: #33a1de;
    --light-sky-blue: #66c7f4;
+   --input-bg-color:#eff3f7;
    /* --------fonts and typography------- */
    --primary-font-family: 'Inter', sans-serif;
    --h1-font-size: 2.5rem;
-   --h2-font-size: 1.5rem;
+   --h2-font-size:2rem;
+   --h3-font-size: 1.5rem;
    --h4-font-size: 1.2rem;
    --a-font-size: 1.2rem;
    --p-font-size: .9rem;
@@ -27,6 +31,7 @@
    --font-weight-low: 400;
    --font-weight-mid: 500;
    --font-weight-high: 600;
+   --font-weight-extreme:700;
    /* ------------other values---------- */
    --default-icon-size: 27px;
    --default-transition: all 0.3s ease-in-out;
@@ -45,8 +50,9 @@
       --margin-x: 2rem;
       --margin-y: 4rem;
       --header-height: 3.5rem;
+      --login-input-x:300px;
       --h1-font-size: 2rem;
-      --h2-font-size: 1.3rem;
+      --h3-font-size: 1.3rem;
       --a-font-size: 1.1rem;
       --h4-font-size: 1.1rem;
       --p-font-size: 1rem;

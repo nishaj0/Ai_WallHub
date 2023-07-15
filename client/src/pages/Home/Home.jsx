@@ -38,7 +38,7 @@ function Home() {
          <div className="wallHub__home-search_div section__padding">
             <div className="wallHub__home-search_container ">
                <h1>Discover the Future of Wallpapers</h1>
-               <h2> Embrace the Beauty of AI-Generated Wallpapers</h2>
+               <h3> Embrace the Beauty of AI-Generated Wallpapers</h3>
                <div className="wallHub__home-search_bar">
                   <form onSubmit={handleSubmit}>
                      <input

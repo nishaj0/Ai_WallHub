@@ -21,8 +21,8 @@
    color: var(--bg-color-light);
 }
 
-.wallHub__home-search_container h2 {
-   font-size: var(--h2-font-size);
+.wallHub__home-search_container h3 {
+   font-size: var(--h3-font-size);
    font-weight: var(--font-weight-mid);
    color: var(--bg-color-light);
    margin-top: 1rem;
