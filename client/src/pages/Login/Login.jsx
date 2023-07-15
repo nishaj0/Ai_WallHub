@@ -9,7 +9,6 @@ import { RiEyeLine, RiEyeOffLine, RiGoogleFill } from "react-icons/ri";
 
 function Login() {
    const [isEyeToggle, setIsEyeToggle] = useState(true);
-   const [isSmallScreen, setIsSmallScreen] = useState(false);
    const [loginData, setLoginData] = useState({ email: "", password: "" });
 
    const handleLogin = (e) => {
@@ -27,27 +26,8 @@ function Login() {
       e.preventDefault();
    }
 
-   useEffect(() => {
-      // ? check screen is small or not
-      const handleResize = () => {
-         setIsSmallScreen(window.innerWidth < 600);
-      };
-      handleResize();
-   }, []);
-
    return (
       <div className="wallHub__login">
-         {isSmallScreen ? (
-            ""
-         ) : (
-            <Link to="/">
-               <img
-                  src={logoImg}
-                  className="wallHub__login-logo"
-                  alt="logo image"
-               />
-            </Link>
-         )}
          <div className="wallHub__login-head">
             <h2>Welcome back</h2>
          </div>

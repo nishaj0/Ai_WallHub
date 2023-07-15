@@ -7,7 +7,6 @@ import { RiEyeLine, RiEyeOffLine, RiGoogleFill } from "react-icons/ri";
 
 function Signup() {
   const [isEyeToggle, setIsEyeToggle] = useState(true);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [signupData, setSignupData] = useState({ name:"", email: "",tempPassword:"" , password: "" });
 
   const handleSignup = (e) => {
@@ -22,15 +21,6 @@ function Signup() {
   const handleSubmit = (e) => {
      e.preventDefault();
   }
-
-  useEffect(() => {
-     // ? check screen is small or not
-     const handleResize = () => {
-        setIsSmallScreen(window.innerWidth < 600);
-     };
-     handleResize();
-  }, []);
-
   return (
      <div className="wallHub__signup">
         <div className="wallHub__signup-head">
