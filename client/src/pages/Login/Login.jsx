@@ -95,10 +95,10 @@ function Login() {
                <RiGoogleFill color="#333" size={24} />
                Sign in with Google
             </button>
-         </div>
-         <Link className="wallHub__login-link_signup" to={"/sign-up"}>
+            <Link className="wallHub__login-link_signup" to={"/signup"}>
             Don't have an account?
          </Link>
+         </div>
       </div>
    );
 }
