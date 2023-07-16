@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes,Outlet } from "react-router-dom";
 import {
    About,
    Home,
@@ -24,8 +24,8 @@ function App() {
                <Route path="about" element={<About />} />
                <Route path="search" element={<Search />} />
             </Route>
-               <Route path="/signup" element={<Signup />} />
-               <Route path="/login" element={<Login />} />
+               <Route path="signup" element={<Signup />} />
+               <Route path="login" element={<Login />} />
          </Routes>
       </BrowserRouter>
    );
