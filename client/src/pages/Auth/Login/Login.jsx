@@ -1,8 +1,6 @@
 import React from "react";
 import "./login.css";
 
-import logoImg from "../../assets/images/logo/main-logo_dark.svg";
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { RiEyeLine, RiEyeOffLine, RiGoogleFill } from "react-icons/ri";
