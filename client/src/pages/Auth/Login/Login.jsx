@@ -1,7 +1,7 @@
 import React from "react";
 import "./login.css";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { RiEyeLine, RiEyeOffLine, RiGoogleFill } from "react-icons/ri";
 

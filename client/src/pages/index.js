@@ -5,5 +5,6 @@ import Contact from "./Contact/Contact";
 import Search from "./Search/Search";
 import Signup from "./Auth/Signup/Signup";
 import Login from "./Auth/Login/Login";
+import LoginOtp from "./Auth/LoginOtp/LoginOtp";
 
-export { Home, About, Contact, Catagories, Search, Login, Signup };
+export { Home, About, Contact, Catagories, Search, Login, Signup, LoginOtp };

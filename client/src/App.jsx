@@ -8,6 +8,7 @@ import {
    Search,
    Signup,
    Login,
+   LoginOtp
 } from "./pages";
 import { Layout } from "./containers";
 
@@ -26,6 +27,7 @@ function App() {
             </Route>
                <Route path="signup" element={<Signup />} />
                <Route path="login" element={<Login />} />
+               <Route path="login-otp" element={<LoginOtp />} />
          </Routes>
       </BrowserRouter>
    );
