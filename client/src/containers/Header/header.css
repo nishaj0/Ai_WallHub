@@ -128,6 +128,12 @@ a.wallHub__nav-active {
    }
 }
 
+@media screen and (max-width: 1050px) {
+   .wallHub__nav a {
+      margin: 0 1rem 0 0;
+   }
+}
+
 @media screen and (max-width: 768px) {
 
    .wallHub__header__logo img {

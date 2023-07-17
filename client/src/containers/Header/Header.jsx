@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { RiMenuLine, RiCloseLine } from "react-icons/ri";
 import "./header.css";
@@ -10,6 +10,8 @@ function Header() {
    const [toggleMenu, setToggleMenu] = useState(false);
    const [isNavAtTop, setIsNavAtTop] = useState(true);
    const [isTransparent, setIsTransparent] = useState(true);
+   const location = useLocation();
+   const currentPath = location.pathname;
 
    // ? here "wallHub__nav-active" class used to give active routes a different color
    const activeLinkClass = "wallHub__nav-active";
@@ -32,11 +34,15 @@ function Header() {
             toggleMenu ? setIsTransparent(false) : setIsTransparent(true);
          }
       };
-
-      window.addEventListener("scroll", handleScroll);
-      return () => {
-         window.removeEventListener("scroll", handleScroll);
-      };
+      // ? if the current path is "/" then it will add the event listener otherwise it will not
+      if (currentPath === "/") {
+         window.addEventListener("scroll", handleScroll);
+         return () => {
+            window.removeEventListener("scroll", handleScroll);
+         };
+      } else {
+         setIsTransparent(false);
+      }
    }, [isNavAtTop]);
 
    function NavLinkTag({ to, content }) {
@@ -100,10 +106,13 @@ function Header() {
                            size={30}
                            onClick={() => {
                               setToggleMenu(false);
-                              // ? if the header is at the top then it will be transparent otherwise it will be default
-                              isNavAtTop
-                                 ? setIsTransparent(true)
-                                 : setIsTransparent(false);
+                              // ? if the current path is not "/" then we don't care about the header background
+                              if (currentPath === "/") {
+                                 // ? if the header is at the top then it will be transparent otherwise it will be default
+                                 isNavAtTop
+                                    ? setIsTransparent(true)
+                                    : setIsTransparent(false);
+                              }
                            }}
                         />
                      ) : (
@@ -112,7 +121,10 @@ function Header() {
                            size={27}
                            onClick={() => {
                               setToggleMenu(true);
-                              setIsTransparent(false);
+                              // ? if the current path is not "/" then we don't care about the header background
+                              if (currentPath === "/") {
+                                 setIsTransparent(false);
+                              }
                            }}
                         />
                      )}
