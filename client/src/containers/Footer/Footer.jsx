@@ -57,28 +57,28 @@ function Footer() {
                   <h4>Connect with Us</h4>
                   <a href="">
                      <RiInstagramFill
-                        color="#000"
+                        color="#acacac"
                         size={27}
                         className="wallHub__footer-link_social"
                      />
                   </a>
                   <a href="">
                      <RiDiscordFill
-                        color="#000"
+                        color="#acacac"
                         size={27}
                         className="wallHub__footer-link_social"
                      />
                   </a>
                   <a href="">
                      <RiTwitterFill
-                        color="#000"
+                        color="#acacac"
                         size={27}
                         className="wallHub__footer-link_social"
                      />
                   </a>
                   <a href="">
                      <RiGithubFill
-                        color="#000"
+                        color="#acacac"
                         size={27}
                         className="wallHub__footer-link_social"
                      />
