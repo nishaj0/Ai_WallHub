@@ -27,7 +27,7 @@ function Header() {
             setIsTransparent(false);
          } else {
             setIsNavAtTop(true);
-            
+
             // ? when the header is at the top and the menu is not open then it will be transparent otherwise it will be default
             toggleMenu ? setIsTransparent(false) : setIsTransparent(true);
          }
@@ -38,6 +38,32 @@ function Header() {
          window.removeEventListener("scroll", handleScroll);
       };
    }, [isNavAtTop]);
+
+   function NavLinkTag({ to, content }) {
+      return (
+         <NavLink
+            to={to}
+            // ? isActive is a in-built property of NavLink which returns true if the route is active
+            className={({ isActive }) => (isActive ? activeLinkClass : null)}
+         >
+            {content}
+         </NavLink>
+      );
+   }
+
+   function MenuLinkTag({ to, content }) {
+      return (
+         <NavLink
+            to={to}
+            className={({ isActive }) =>
+               //? here "activeLinkClass" class used to give active Link a different color
+               isActive ? menuLinkClass + " " + activeLinkClass : menuLinkClass
+            }
+         >
+            {content}
+         </NavLink>
+      );
+   }
 
    return (
       <div
@@ -58,47 +84,11 @@ function Header() {
 
                <nav className="wallHub__nav">
                   <div className="wallHub__nav-links">
-                     <NavLink
-                        to="/"
-                        // ? isActive is a in-built property of NavLink which returns true if the route is active
-                        className={({ isActive }) =>
-                           isActive ? activeLinkClass : null
-                        }
-                     >
-                        Home
-                     </NavLink>
-                     <NavLink
-                        to="/catagories"
-                        className={({ isActive }) =>
-                           isActive ? activeLinkClass : null
-                        }
-                     >
-                        Catagories
-                     </NavLink>
-                     <NavLink
-                        to="/contact"
-                        className={({ isActive }) =>
-                           isActive ? activeLinkClass : null
-                        }
-                     >
-                        Contact
-                     </NavLink>
-                     <NavLink
-                        to="/about"
-                        className={({ isActive }) =>
-                           isActive ? activeLinkClass : null
-                        }
-                     >
-                        About
-                     </NavLink>
-                     <NavLink
-                        to="/login"
-                        className={({ isActive }) =>
-                           isActive ? activeLinkClass : null
-                        }
-                     >
-                        Login
-                     </NavLink>
+                     <NavLinkTag to="/" content="Home" />
+                     <NavLinkTag to="/catagories" content="Catagories" />
+                     <NavLinkTag to="/contact" content="Contact" />
+                     <NavLinkTag to="/about" content="About" />
+                     <NavLinkTag to="/login" content="Login" />
                   </div>
                   <Link to="/signup" className="wallHub__nav-login">
                      <button>Sign up</button>
@@ -132,57 +122,11 @@ function Header() {
             <div className="wallHub__header-menu_container">
                {toggleMenu && (
                   <div className="wallHub__header-menu_links">
-                     <NavLink
-                        to="/"
-                        className={({ isActive }) =>
-                           //? here "activeLinkClass" class used to give active Link a different color
-                           isActive
-                              ? menuLinkClass + " " + activeLinkClass
-                              : menuLinkClass
-                        }
-                     >
-                        Home
-                     </NavLink>
-                     <NavLink
-                        to="/catagories"
-                        className={({ isActive }) =>
-                           isActive
-                              ? menuLinkClass + " " + activeLinkClass
-                              : menuLinkClass
-                        }
-                     >
-                        Catagories
-                     </NavLink>
-                     <NavLink
-                        to="/contact"
-                        className={({ isActive }) =>
-                           isActive
-                              ? menuLinkClass + " " + activeLinkClass
-                              : menuLinkClass
-                        }
-                     >
-                        Contact
-                     </NavLink>
-                     <NavLink
-                        to="/about"
-                        className={({ isActive }) =>
-                           isActive
-                              ? menuLinkClass + " " + activeLinkClass
-                              : menuLinkClass
-                        }
-                     >
-                        About
-                     </NavLink>
-                     <NavLink
-                        to="/login"
-                        className={({ isActive }) =>
-                           isActive
-                              ? menuLinkClass + " " + activeLinkClass
-                              : menuLinkClass
-                        }
-                     >
-                        Login
-                     </NavLink>
+                     <MenuLinkTag to="/" content="Home" />
+                     <MenuLinkTag to="/catagories" content="Catagories" />
+                     <MenuLinkTag to="/contact" content="Contact" />
+                     <MenuLinkTag to="/about" content="About" />
+                     <MenuLinkTag to="/login" content="Login" />
                      <div className="wallHub__header-menu_login">
                         <Link to="/signup">
                            <button>Sign up</button>

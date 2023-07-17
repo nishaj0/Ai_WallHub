@@ -62,7 +62,7 @@ a.wallHub__nav-active {
 
 
 .wallHub__nav a {
-   margin: 0 1rem;
+   margin: 0 0 0 2rem;
    font-size: var(--a-font-size);
    font-weight: var(--font-weight-mid);
 }

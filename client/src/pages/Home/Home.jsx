@@ -32,6 +32,15 @@ function Home() {
    const handleSubmit = (e) => {
       e.preventDefault();
    };
+
+   function FilterLink({ searchText, content }) {
+      return (
+         <div className="wallHub__home-wallpapers_filter">
+            <Link to={`search?searchText=${searchText}`}>{content}</Link>
+         </div>
+      );
+   }
+
    return (
       <div className="wallHub__home">
          {/* ? this div have background image */}
@@ -61,39 +70,22 @@ function Home() {
          </div>
          <div className="wallHub__home-wallpapers section__padding">
             <div className="wallHub__home-wallpapers_filter-container">
-               <div className="wallHub__home-wallpapers_filter">
-                  <Link to="search?searchText=anime">Anime</Link>
-               </div>
-               <div className="wallHub__home-wallpapers_filter">
-                  <Link to="search?searchText=pc">PC</Link>
-               </div>
-               <div className="wallHub__home-wallpapers_filter">
-                  <Link to="search?searchText=phone">Phone</Link>
-               </div>
-               <div className="wallHub__home-wallpapers_filter">
-                  <Link to="search?searchText=landscape">Landscape</Link>
-               </div>
-               <div className="wallHub__home-wallpapers_filter">
-                  <Link to="search?searchText=mountain">Mountain</Link>
-               </div>
-               <div className="wallHub__home-wallpapers_filter">
-                  <Link to="search?searchText=forest">Forest</Link>
-               </div>
-               <div className="wallHub__home-wallpapers_filter">
-                  <Link to="search?searchText=japan">Japan</Link>
-               </div>
-               <div className="wallHub__home-wallpapers_filter">
-                  <Link to="search?searchText=character">Character</Link>
-               </div>
-               <div className="wallHub__home-wallpapers_filter">
-                  <Link to="search?searchText=realistic">Realistic</Link>
-               </div>
-               <div className="wallHub__home-wallpapers_filter">
-                  <Link to="search?searchText=dark">Dark</Link>
-               </div>
+               <FilterLink searchText={"anime"} content={"Anime"} />
+               <FilterLink searchText={"nature"} content={"Nature"} />
+               <FilterLink searchText={"landscape"} content={"Landscape"} />
+               <FilterLink searchText={"mountain"} content={"Mountain"} />
+               <FilterLink searchText={"forest"} content={"Forest"} />
+               <FilterLink searchText={"japan"} content={"Japan"} />
+               <FilterLink searchText={"character"} content={"Character"} />
+               <FilterLink searchText={"realistic"} content={"Realistic"} />
+               <FilterLink searchText={"city"} content={"City"} />
+               <FilterLink searchText={"space"} content={"Space"} />
+               <FilterLink searchText={"minimal"} content={"Minimal"} />
+               <FilterLink searchText={"dark"} content={"Dark"} />
+               <FilterLink searchText={"light"} content={"Light"} />
+               <FilterLink searchText={"4k"} content={"4K"} />
             </div>
-            <div className="wallHub__home-wallpapers_img-container">
-            </div>
+            <div className="wallHub__home-wallpapers_img-container"></div>
          </div>
       </div>
    );
