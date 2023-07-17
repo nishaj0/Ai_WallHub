@@ -91,9 +91,17 @@ function Header() {
                      >
                         About
                      </NavLink>
+                     <NavLink
+                        to="/login"
+                        className={({ isActive }) =>
+                           isActive ? activeLinkClass : null
+                        }
+                     >
+                        Login
+                     </NavLink>
                   </div>
-                  <Link to="/login" className="wallHub__nav-login">
-                     <button>Login</button>
+                  <Link to="/signup" className="wallHub__nav-login">
+                     <button>Sign up</button>
                   </Link>
                   <div className="wallHub__nav-toggler">
                      {toggleMenu ? (
@@ -165,9 +173,19 @@ function Header() {
                      >
                         About
                      </NavLink>
+                     <NavLink
+                        to="/login"
+                        className={({ isActive }) =>
+                           isActive
+                              ? menuLinkClass + " " + activeLinkClass
+                              : menuLinkClass
+                        }
+                     >
+                        Login
+                     </NavLink>
                      <div className="wallHub__header-menu_login">
-                        <Link to="/login">
-                           <button>Login</button>
+                        <Link to="/signup">
+                           <button>Sign up</button>
                         </Link>
                      </div>
                   </div>
