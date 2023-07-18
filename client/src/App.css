@@ -8,7 +8,6 @@
 body {
    font-family: var(--primary-font-family);
    background-color: var(--main-color-light);
-   /* margin-top: var(--header-height); */
 }
 
 li {

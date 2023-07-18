@@ -36,7 +36,7 @@ function Home() {
    function FilterLink({ searchText, content }) {
       return (
          <div className="wallHub__home-wallpapers_filter">
-            <Link to={`search?searchText=${searchText}`}>{content}</Link>
+            <Link to={`search?search-text=${searchText}`}>{content}</Link>
          </div>
       );
    }
@@ -61,7 +61,7 @@ function Home() {
                         name="search"
                         value={searchData.search}
                      />
-                     <Link to={`search?searchText=${searchData.search}`}>
+                     <Link to={`search?search-text=${searchData.search}`}>
                         <button type="submit">
                            <RiSearchLine color="#333333" size={27} />
                         </button>
