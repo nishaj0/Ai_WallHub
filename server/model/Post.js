@@ -18,7 +18,7 @@ const postSchema = new Schema({
       type: String,
    },
    hashTags: {
-      type: Array,
+      type: [String],
    },
    // this will store the username of the user who posted the post
    username: {

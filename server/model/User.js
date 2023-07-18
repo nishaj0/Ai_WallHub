@@ -15,6 +15,7 @@ const userSchema = new Schema({
    email: {
       type: String,
       required: true,
+      unique: true
    },
    password: {
       type: String,
@@ -27,7 +28,8 @@ const userSchema = new Schema({
    },
    // this will store the post id of the posts that the user has posted
    posts: {
-      type: string,
+      type:[string],
+      required: true,
    },
 });
 
