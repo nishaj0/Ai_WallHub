@@ -32,13 +32,13 @@ function Search() {
                <div className="wallHub__searchBar-input_container">
                   <form onSubmit={handleSubmit}>
                      <input
-                        type="text"
+                        type="search"
                         placeholder={"Search Wallpaper"}
                         onChange={handleSearch}
                         name="search"
                         value={searchData.search}
                      />
-                     <Link to={`?search-text=${searchData.search}`}>
+                     <Link to={`?keyword=${searchData.search}`}>
                         <button type="submit">
                            <RiSearchLine color="#333333" size={27} />
                         </button>

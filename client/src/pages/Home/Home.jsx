@@ -36,7 +36,7 @@ function Home() {
    function FilterLink({ searchText, content }) {
       return (
          <div className="wallHub__home-wallpapers_filter">
-            <Link to={`search?search-text=${searchText}`}>{content}</Link>
+            <Link to={`search?keyword=${searchText}`}>{content}</Link>
          </div>
       );
    }
@@ -51,7 +51,7 @@ function Home() {
                <div className="wallHub__home-search_bar">
                   <form onSubmit={handleSubmit}>
                      <input
-                        type="text"
+                        type="search"
                         placeholder={
                            isSmallScreen
                               ? "Search Wallpaper"
@@ -61,7 +61,7 @@ function Home() {
                         name="search"
                         value={searchData.search}
                      />
-                     <Link to={`search?search-text=${searchData.search}`}>
+                     <Link to={`search?keyword=${searchData.search}`}>
                         <button type="submit">
                            <RiSearchLine color="#333333" size={27} />
                         </button>
