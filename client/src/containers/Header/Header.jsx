@@ -43,7 +43,7 @@ function Header() {
       } else {
          setIsTransparent(false);
       }
-   }, [isNavAtTop]);
+   }, [isNavAtTop, location]);
 
    function NavLinkTag({ to, content }) {
       return (
