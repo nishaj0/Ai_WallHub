@@ -61,9 +61,11 @@ function Home() {
                         name="search"
                         value={searchData.search}
                      />
-                     <button type="submit">
-                        <RiSearchLine color="#333333" size={27} />
-                     </button>
+                     <Link to={`search?searchText=${searchData.search}`}>
+                        <button type="submit">
+                           <RiSearchLine color="#333333" size={27} />
+                        </button>
+                     </Link>
                   </form>
                </div>
             </div>
