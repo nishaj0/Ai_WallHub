@@ -25,9 +25,10 @@
    --h2-font-size: 2rem;
    --h3-font-size: 1.5rem;
    --h4-font-size: 1.2rem;
-   --a-font-size: 1.2rem;
-   --p-font-size: .9rem;
-   --small-font-size: 1rem;
+   --a-font-size: 1.075rem;
+   --p-font-size: 1rem;
+   --mid-font-size: .95rem;
+   --small-font-size: .9rem;
    --font-weight-low: 400;
    --font-weight-mid: 500;
    --font-weight-high: 600;
@@ -55,8 +56,6 @@
       --h3-font-size: 1.3rem;
       --a-font-size: 1.1rem;
       --h4-font-size: 1.1rem;
-      --p-font-size: 1rem;
-      --small-font-size: .9rem;
    }
 }
 
