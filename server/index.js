@@ -7,7 +7,7 @@ const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 
 // middleware for json
-app.use(express.json());
+app.use(express.json()); 
 
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
