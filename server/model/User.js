@@ -29,7 +29,6 @@ const userSchema = new Schema({
    // this will store the post id of the posts that the user has posted
    posts: {
       type:[string],
-      required: true,
    },
 });
 
