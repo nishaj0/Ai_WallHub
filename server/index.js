@@ -13,6 +13,7 @@ app.use(express.json());
 
 //routers
 app.use("/register", require("./routes/register"))
+app.use("/login", require("./routes/login"))
 
 mongoose.connection.once("open", () => {
    console.log("connected to DB");
