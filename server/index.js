@@ -3,15 +3,16 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
-
 const connectDB = require("./config/dbConn");
+const PORT = process.env.PORT || 5000;
 
 connectDB();
 
 // middleware for json
 app.use(express.json());
 
-const PORT = process.env.PORT || 5000;
+//routers
+app.use("/register", require("./routes/register"))
 
 mongoose.connection.once("open", () => {
    console.log("connected to DB");

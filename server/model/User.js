@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-   username: {
+   name: {
       type: String,
       required: true,
    },
@@ -15,7 +15,7 @@ const userSchema = new Schema({
    email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
    },
    password: {
       type: String,
@@ -28,8 +28,11 @@ const userSchema = new Schema({
    },
    // this will store the post id of the posts that the user has posted
    posts: {
-      type:[string],
+      type: [String],
    },
-});
+}); // ? add { collection: 'collectionName' } as second parameter of Schema
+// ? if you want to specify a collection name
+// ? (by default mongoose will create a collection based on the model name)
+// ? e.g. mongoose.model("User", userSchema, { collection: "users" });
 
 module.exports = mongoose.model("User", userSchema);
