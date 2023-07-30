@@ -1,24 +1,40 @@
 import React from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { RiMenuLine, RiCloseLine } from "react-icons/ri";
-import "./header.css";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { RiMenuLine, RiCloseLine, RiSearchLine } from "react-icons/ri";
 import logoImgDark from "../../assets/images/logo/main-logo_dark.svg";
 import logoImgLight from "../../assets/images/logo/main-logo_light.svg";
+import miniLogo from "../../assets/images/logo/mini-logo.png";
+import { isSmallScreen as checkIsSmallScreen } from "../../utils";
+import "./header.css";
 
 function Header() {
    const [toggleMenu, setToggleMenu] = useState(false);
    const [isNavAtTop, setIsNavAtTop] = useState(true);
    const [isTransparent, setIsTransparent] = useState(true);
+   const [isSmallScreen, setIsSmallScreen] = useState(checkIsSmallScreen());
+
+   // ? this state is used to store the search data
+   const [searchData, setSearchData] = useState({ search: "" });
+
    const location = useLocation();
    const currentPath = location.pathname;
 
-   // ? here "wallHub__nav-active" class used to give active routes a different color
-   const activeLinkClass = "wallHub__nav-active";
-   const menuLinkClass = "wallHub__header-menu_links-link";
    // ? here "wallHub__header-transparent" class used to give transparent background to the header when it is at the top
    const transparentNavClass = "wallHub__header-transparent";
    const defaultNavClass = "wallHub__header-default";
+
+   useEffect(() => {
+      // adding event lister for check isSmallScreen
+      const handleResize = () => {
+         setIsSmallScreen(window.innerWidth < 550);
+      };
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => {
+         window.removeEventListener("resize", handleResize);
+      };
+   }, []);
 
    useEffect(() => {
       // ? this function used to check if the header is at the top or not
@@ -45,27 +61,29 @@ function Header() {
       }
    }, [isNavAtTop, location]);
 
+   // ? this function is used to handle the search data
+   const handleSearch = (e) => {
+      setSearchData((prevFormData) => {
+         return {
+            ...prevFormData,
+            [e.target.name]: e.target.value,
+         };
+      });
+   };
+
+   const handleSubmit = (e) => {
+      e.preventDefault();
+   };
+
+   // ? component for NavLink used in the header
    function NavLinkTag({ to, content }) {
-      return (
-         <NavLink
-            to={to}
-            // ? isActive is a in-built property of NavLink which returns true if the route is active
-            className={({ isActive }) => (isActive ? activeLinkClass : null)}
-         >
-            {content}
-         </NavLink>
-      );
+      return <NavLink to={to}>{content}</NavLink>;
    }
 
+   // ? component for NavLink used in the header menu
    function MenuLinkTag({ to, content }) {
       return (
-         <NavLink
-            to={to}
-            className={({ isActive }) =>
-               //? here "activeLinkClass" class used to give active Link a different color
-               isActive ? menuLinkClass + " " + activeLinkClass : menuLinkClass
-            }
-         >
+         <NavLink to={to} className={"wallHub__header-menu_links-link"}>
             {content}
          </NavLink>
       );
@@ -83,17 +101,38 @@ function Header() {
             <div className="wallHub__header-main">
                <Link to="/" className="wallHub__header__logo">
                   <img
-                     src={isTransparent ? logoImgLight : logoImgDark}
+                     src={
+                        isSmallScreen
+                           ? miniLogo
+                           : isTransparent
+                           ? logoImgLight
+                           : logoImgDark
+                     }
                      alt="Logo Image"
                   />
                </Link>
-
+               {!isTransparent && (
+                  <div className="wallHub__header-search">
+                     <form onSubmit={handleSubmit}>
+                        <input
+                           type="search"
+                           name="search"
+                           placeholder={
+                              isSmallScreen ? "Search" : "Search Wallpaper"
+                           }
+                           onChange={handleSearch}
+                           value={searchData.search}
+                        />
+                        <Link to={`search?keyword=${searchData.search}`}>
+                           <button type="submit">
+                              <RiSearchLine color="#333333" size={27} />
+                           </button>
+                        </Link>
+                     </form>
+                  </div>
+               )}
                <nav className="wallHub__nav">
                   <div className="wallHub__nav-links">
-                     <NavLinkTag to="/" content="Home" />
-                     <NavLinkTag to="/catagories" content="Catagories" />
-                     <NavLinkTag to="/contact" content="Contact" />
-                     <NavLinkTag to="/about" content="About" />
                      <NavLinkTag to="/login" content="Login" />
                   </div>
                   <Link to="/signup" className="wallHub__nav-login">
@@ -106,6 +145,7 @@ function Header() {
                            size={30}
                            onClick={() => {
                               setToggleMenu(false);
+                              setIsTransparent(false);
                               // ? if the current path is not "/" then we don't care about the header background
                               if (currentPath === "/") {
                                  // ? if the header is at the top then it will be transparent otherwise it will be default

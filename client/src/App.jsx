@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter, Route, Routes,Outlet } from "react-router-dom";
+import {
+   Route,
+   RouterProvider,
+   createBrowserRouter,
+   createRoutesFromElements,
+} from "react-router-dom";
 import {
    About,
    Home,
@@ -8,16 +13,16 @@ import {
    Search,
    Signup,
    Login,
-   LoginOtp
+   LoginOtp,
 } from "./pages";
 import { Layout } from "./containers";
 
 import "./App.css";
 
 function App() {
-   return (
-      <BrowserRouter>
-         <Routes>
+   const router = createBrowserRouter(
+      createRoutesFromElements(
+         <>
             <Route path="/" element={<Layout />}>
                <Route index element={<Home />} />
                <Route path="catagories" element={<Catagories />} />
@@ -25,12 +30,14 @@ function App() {
                <Route path="about" element={<About />} />
                <Route path="search" element={<Search />} />
             </Route>
-               <Route path="signup" element={<Signup />} />
-               <Route path="login" element={<Login />} />
-               <Route path="login-otp" element={<LoginOtp />} />
-         </Routes>
-      </BrowserRouter>
+            <Route path="signup" element={<Signup />} />
+            <Route path="login" element={<Login />} />
+            <Route path="login-otp" element={<LoginOtp />} />
+         </>
+      )
    );
+
+   return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -35,12 +35,6 @@ a.wallHub__header-menu_links-link {
    color: var(--main-color-light);
 }
 
-/* ?this class name used to give active routes a different color */
-a.wallHub__nav-active {
-   color: var(--main-sky-blue);
-   font-weight: var(--font-weight-high);
-}
-
 .wallHub__header-main {
    display: flex;
    justify-content: space-between;
@@ -85,6 +79,45 @@ a.wallHub__nav-active {
    font-weight: 500;
    cursor: pointer;
 }
+
+.wallHub__header-search {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 0 .5rem;
+   height: 2.5rem;
+   width: 50%;
+   border-radius: 5px;
+   background-color: var(--main-color-light);
+   border: 1px solid var(--main-color-dark);
+}
+.wallHub__header-search form {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.wallHub__header-search input {
+   height: 100%;
+   /* ! 27px is the size of search icon*/
+   width: calc(100% - 27px);
+   border: none;
+   outline: none;
+   font-size: var(--a-font-size);
+   font-weight: var(--font-weight-mid);
+   color: var(--main-color-dark);
+   background-color: transparent;
+}
+
+.wallHub__header-search button {
+   size: var(----default-icon-size);
+   border: none;
+   outline: none;
+   background-color: transparent;
+   cursor: pointer;
+}
+
 
 /* -----------mobile menu------------ */
 
@@ -139,13 +172,6 @@ a.wallHub__nav-active {
    .wallHub__header__logo img {
       width: 150px;
    }
-}
-
-@media screen and (max-width:550px) {
-
-   .wallHub__header__logo img {
-      width: 130px;
-   }
 
    .wallHub__nav-login {
       display: none;
@@ -154,5 +180,12 @@ a.wallHub__nav-active {
    .wallHub__header-menu_login {
       display: block;
    }
+}
 
+@media screen and (max-width:550px) {
+
+   .wallHub__header__logo img {
+      margin-top: 0;
+      width: 30px;
+   }
 }
