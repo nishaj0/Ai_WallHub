@@ -1,3 +1,9 @@
 export const isSmallScreen = () => {
-   return window.innerWidth < 550;
- };
+   if (window.innerWidth <= 550) {
+      return "small";
+   } else if (window.innerWidth <= 768) {
+      return "medium";
+   } else {
+      return "large";
+   }
+};

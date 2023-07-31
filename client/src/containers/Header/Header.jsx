@@ -5,14 +5,14 @@ import { RiMenuLine, RiCloseLine, RiSearchLine } from "react-icons/ri";
 import logoImgDark from "../../assets/images/logo/main-logo_dark.svg";
 import logoImgLight from "../../assets/images/logo/main-logo_light.svg";
 import miniLogo from "../../assets/images/logo/mini-logo.png";
-import { isSmallScreen as checkIsSmallScreen } from "../../utils";
+import { isSmallScreen as checkScreenSize } from "../../utils";
 import "./header.css";
 
 function Header() {
    const [toggleMenu, setToggleMenu] = useState(false);
    const [isNavAtTop, setIsNavAtTop] = useState(true);
    const [isTransparent, setIsTransparent] = useState(true);
-   const [isSmallScreen, setIsSmallScreen] = useState(checkIsSmallScreen());
+   const [screenSize, setScreenSize] = useState(checkScreenSize());
 
    // ? this state is used to store the search data
    const [searchData, setSearchData] = useState({ search: "" });
@@ -25,10 +25,17 @@ function Header() {
    const defaultNavClass = "wallHub__header-default";
 
    useEffect(() => {
-      // adding event lister for check isSmallScreen
+      // adding event lister for check screen size
       const handleResize = () => {
-         setIsSmallScreen(window.innerWidth < 550);
+         if (window.innerWidth <= 550) {
+            setScreenSize("small");
+         } else if (window.innerWidth <= 768) {
+            setScreenSize("medium");
+         } else {
+            setScreenSize("large");
+         }
       };
+
       handleResize();
       window.addEventListener("resize", handleResize);
       return () => {
@@ -102,7 +109,7 @@ function Header() {
                <Link to="/" className="wallHub__header__logo">
                   <img
                      src={
-                        isSmallScreen
+                        screenSize === "small"
                            ? miniLogo
                            : isTransparent
                            ? logoImgLight
@@ -118,14 +125,19 @@ function Header() {
                            type="search"
                            name="search"
                            placeholder={
-                              isSmallScreen ? "Search" : "Search Wallpaper"
+                              screenSize === "small"
+                                 ? "Search"
+                                 : "Search Wallpaper"
                            }
                            onChange={handleSearch}
                            value={searchData.search}
                         />
                         <Link to={`search?keyword=${searchData.search}`}>
                            <button type="submit">
-                              <RiSearchLine color="#333333" size={27} />
+                              <RiSearchLine
+                                 color="#333333"
+                                 size={screenSize === "small" ? 20 : 27}
+                              />
                            </button>
                         </Link>
                      </form>
@@ -135,14 +147,19 @@ function Header() {
                   <div className="wallHub__nav-links">
                      <NavLinkTag to="/login" content="Login" />
                   </div>
-                  <Link to="/signup" className="wallHub__nav-login">
+                  <Link to="/signup" className="wallHub__nav-signup">
                      <button>Sign up</button>
                   </Link>
-                  <div className="wallHub__nav-toggler">
+                  {(screenSize === "medium" || screenSize === "small") && (
+                     <Link to="/login" className="wallHub__nav-login">
+                        <button>Login</button>
+                     </Link>
+                  )}
+                  {/* <div className="wallHub__nav-toggler">
                      {toggleMenu ? (
                         <RiCloseLine
                            color={isTransparent ? "#f8f8f8" : "#333"}
-                           size={30}
+                           size={23}
                            onClick={() => {
                               setToggleMenu(false);
                               setIsTransparent(false);
@@ -158,7 +175,7 @@ function Header() {
                      ) : (
                         <RiMenuLine
                            color={isTransparent ? "#f8f8f8" : "#333"}
-                           size={27}
+                           size={20}
                            onClick={() => {
                               setToggleMenu(true);
                               // ? if the current path is not "/" then we don't care about the header background
@@ -168,10 +185,13 @@ function Header() {
                            }}
                         />
                      )}
-                  </div>
+                  </div> */}
                </nav>
             </div>
-            <div className="wallHub__header-menu_container">
+
+            <div className="wallHub__header-menu"></div>
+
+            {/* <div className="wallHub__header-menu_container">
                {toggleMenu && (
                   <div className="wallHub__header-menu_links">
                      <MenuLinkTag to="/" content="Home" />
@@ -186,7 +206,7 @@ function Header() {
                      </div>
                   </div>
                )}
-            </div>
+            </div> */}
          </div>
       </div>
    );

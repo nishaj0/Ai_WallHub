@@ -18,7 +18,7 @@
    --medium-gray: #3a3a3a;
    --main-sky-blue: #33a1de;
    --light-sky-blue: #66c7f4;
-   --input-bg-colo: #eff3f7;
+   --input-bg-color: #e0e5eb;
    /* --------fonts and typography------- */
    --primary-font-family: 'Inter', sans-serif;
    --h1-font-size: 2.5rem;
@@ -54,7 +54,7 @@
       --h1-font-size: 2rem;
       --h2-font-size: 1.5rem;
       --h3-font-size: 1.3rem;
-      --a-font-size: 1.1rem;
+      --a-font-size: .9rem;
       --h4-font-size: 1.1rem;
    }
 }

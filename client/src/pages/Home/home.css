@@ -55,7 +55,7 @@
    width: calc(100% - 27px);
    border: none;
    outline: none;
-   font-size: var(--a-font-size);
+   font-size: var(--p-font-size);
    font-weight: var(--font-weight-mid);
    color: var(--main-color-dark);
    background-color: transparent;
