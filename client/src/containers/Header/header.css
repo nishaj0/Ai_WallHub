@@ -22,11 +22,6 @@
 }
 
 
-/* ? this class name used in navbar menu (menu used in small devices)
-a.wallHub__header-menu_links-link {
-   color: var(--main-color-light);
-} */
-
 .wallHub__header-main {
    display: flex;
    justify-content: space-between;
@@ -175,7 +170,7 @@ a.wallHub__header-menu_links-link {
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
    /* transition: transform 200ms cubic-bezier(0.24, 0.22, 0.015, 1.56) 0s, opacity 100ms ease-in-out 0s; */
 }
- 
+
 .wallHub__header-menu::before {
    content: '';
    position: absolute;
@@ -185,8 +180,9 @@ a.wallHub__header-menu_links-link {
    height: 0;
    border-left: 20px solid transparent;
    border-right: 20px solid transparent;
-   border-bottom: 20px solid #fff; /* Adjust color as needed */
- }
+   border-bottom: 20px solid #fff;
+   /* Adjust color as needed */
+}
 
 .wallHub__header-menu h4 {
    font-size: var(--h4-font-size);
@@ -239,39 +235,7 @@ a.wallHub__header-menu_links-link {
    margin-right: .5rem;
 }
 
-/* -----------mobile menu------------ */
-
-
-/* .wallHub__nav-toggler {
-   cursor: pointer;
-   display: none;
-} */
-
-/* .wallHub__header-menu_links {
-   display: none;
-   justify-content: space-between;
-   align-self: start;
-   flex-direction: column;
-   background-color: var(--main-color-dark);
-}
-
-
-.wallHub__header-menu_links-link,
-.wallHub__header-menu_login {
-   font-size: var(--a-font-size);
-   font-weight: var(--nav-font-weight);
-   padding: 1rem var(--margin-x);
-   border: 1px solid rgba(0, 0, 0, 0.1);
-} */
-
 @media screen and (max-width:1050px) {
-   /* .wallHub__nav-toggler {
-      display: block;
-   } */
-
-   /* .wallHub__header-menu_links {
-      display: flex;
-   } */
 
    .wallHub__nav-signup,
    .wallHub__nav-links {
@@ -281,11 +245,6 @@ a.wallHub__header-menu_links-link {
    .wallHub__nav-login {
       display: block;
    }
-
-   /* 
-   .wallHub__nav-links {
-      display: none;
-   } */
 }
 
 @media screen and (max-width: 1050px) {

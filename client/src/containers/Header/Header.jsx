@@ -2,8 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import {
-   RiMenuLine,
-   RiCloseLine,
    RiSearchLine,
    RiAccountCircleFill,
    RiLogoutBoxLine,
@@ -60,8 +58,6 @@ function Header() {
             setIsTransparent(false);
          } else {
             setIsNavAtTop(true);
-            // // ? when the header is at the top and the menu is not open then it will be transparent otherwise it will be default
-            // toggleMenu ? setIsTransparent(false) : setIsTransparent(true);
             setIsTransparent(true);
          }
       };
@@ -209,37 +205,6 @@ function Header() {
                         </Link>
                      </div>
                   )}
-                  {/* <div className="wallHub__nav-toggler">
-                     {toggleMenu ? (
-                        <RiCloseLine
-                           color={isTransparent ? "#f8f8f8" : "#333"}
-                           size={23}
-                           onClick={() => {
-                              setToggleMenu(false);
-                              setIsTransparent(false);
-                              // ? if the current path is not "/" then we don't care about the header background
-                              if (currentPath === "/") {
-                                 // ? if the header is at the top then it will be transparent otherwise it will be default
-                                 isNavAtTop
-                                    ? setIsTransparent(true)
-                                    : setIsTransparent(false);
-                              }
-                           }}
-                        />
-                     ) : (
-                        <RiMenuLine
-                           color={isTransparent ? "#f8f8f8" : "#333"}
-                           size={20}
-                           onClick={() => {
-                              setToggleMenu(true);
-                              // ? if the current path is not "/" then we don't care about the header background
-                              if (currentPath === "/") {
-                                 setIsTransparent(false);
-                              }
-                           }}
-                        />
-                     )}
-                  </div> */}
                </nav>
             </div>
          </div>
