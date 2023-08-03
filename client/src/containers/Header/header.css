@@ -13,10 +13,6 @@
    background-color: transparent;
 }
 
-/* ? font color will change when its transparent */
-.wallHub__header-transparent a {
-   color: var(--main-color-light);
-}
 
 /* ? this is the default class name of header */
 .wallHub__header-default {
@@ -25,15 +21,11 @@
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* ? this is the default color of the text */
-.wallHub__header-default a {
-   color: var(--main-color-dark);
-}
 
-/* ? this class name used in navbar menu (menu used in small devices) */
+/* ? this class name used in navbar menu (menu used in small devices)
 a.wallHub__header-menu_links-link {
    color: var(--main-color-light);
-}
+} */
 
 .wallHub__header-main {
    display: flex;
@@ -48,38 +40,7 @@ a.wallHub__header-menu_links-link {
    width: 140px;
 }
 
-.wallHub__nav {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-}
-
-
-.wallHub__nav a {
-   margin: 0 0 0 2rem;
-   font-size: var(--a-font-size);
-   font-weight: var(--font-weight-mid);
-}
-
-.wallHub__nav a:hover {
-   color: var(--main-sky-blue);
-   font-weight: var(--font-weight-high);
-   transition: var(--default-transition);
-}
-
-/*! colors are specified at top */
-.wallHub__nav-signup button,
-.wallHub__nav-login button,
-.wallHub__header-menu_login button {
-   padding: 0.5rem 1rem;
-   border: none;
-   border-radius: 5px;
-   background-color: var(--main-sky-blue);
-   color: var(--main-color-light);
-   font-size: var(--a-font-size);
-   font-weight: 500;
-   cursor: pointer;
-}
+/** ---------------search-------------- */
 
 .wallHub__header-search {
    display: flex;
@@ -91,6 +52,7 @@ a.wallHub__header-menu_links-link {
    border-radius: 5px;
    background-color: var(--input-bg-color);
 }
+
 .wallHub__header-search form {
    width: 100%;
    height: 100%;
@@ -98,6 +60,7 @@ a.wallHub__header-menu_links-link {
    justify-content: center;
    align-items: center;
 }
+
 .wallHub__header-search input {
    height: 100%;
    /* ! 27px is the size of search icon*/
@@ -110,26 +73,181 @@ a.wallHub__header-menu_links-link {
    background-color: transparent;
 }
 
+.wallHub__header-search a {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
 .wallHub__header-search button {
    border: none;
    outline: none;
    background-color: transparent;
    cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
-
-/* -----------mobile menu------------ */
-
-.wallHub__header-menu_login {
-   display: none;
+.wallHub__nav-button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
-.wallHub__nav-toggler {
+/** ---------------nav links---------------  */
+
+.wallHub__nav {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+/* ? font color will change when its transparent class name */
+.wallHub__header-transparent .wallHub__nav-button a {
+   color: var(--main-color-light);
+}
+
+/* ? font color will change when its default class name */
+.wallHub__header-default .wallHub__nav-button a {
+   color: var(--main-color-dark);
+}
+
+/*! font colors are specified at top */
+.wallHub__nav-button a {
+   margin: 0 0 0 2rem;
+   font-size: var(--a-font-size);
+   font-weight: var(--font-weight-mid);
+}
+
+.wallHub__nav-button a:hover {
+   color: var(--main-sky-blue);
+   font-weight: var(--font-weight-high);
+   transition: var(--default-transition);
+}
+
+.wallHub__nav-signup button,
+.wallHub__nav-login button {
+   padding: 0.5rem 1rem;
+   border: none;
+   border-radius: 5px;
+   background-color: var(--main-sky-blue);
+   color: var(--main-color-light);
+   font-size: var(--a-font-size);
+   font-weight: 500;
    cursor: pointer;
+}
+
+.wallHub__nav-login {
    display: none;
+}
+
+.wallHub__nav-icon {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   border: none;
+   background: transparent;
+}
+
+.wallHub__nav-icon svg:hover {
+   fill: #808080;
+   transition: var(--default-transition);
+}
+
+/* * --------------menu---------------- */
+
+.wallHub__header-menu {
+   position: absolute;
+   top: calc(var(--header-height) + 1rem);
+   right: var(--margin-x);
+   z-index: 10;
+   display: flex;
+   align-items: flex-start;
+   justify-content: center;
+   flex-direction: column;
+   background-color: var(--main-color-light);
+   padding: 1rem;
+   border-radius: 5px;
+   width: 250px;
+   border: 1px solid #ccc;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   /* transition: transform 200ms cubic-bezier(0.24, 0.22, 0.015, 1.56) 0s, opacity 100ms ease-in-out 0s; */
+}
+ 
+.wallHub__header-menu::before {
+   content: '';
+   position: absolute;
+   top: -10px;
+   right: 0;
+   width: 0;
+   height: 0;
+   border-left: 20px solid transparent;
+   border-right: 20px solid transparent;
+   border-bottom: 20px solid #fff; /* Adjust color as needed */
+ }
+
+.wallHub__header-menu h4 {
+   font-size: var(--h4-font-size);
+   margin: 0 .5rem;
 }
 
 .wallHub__header-menu_links {
+   display: flex;
+   align-items: first flex-start;
+   justify-content: center;
+   flex-direction: column;
+   margin: 0 .5rem;
+}
+
+.wallHub__header-menu_links a {
+   margin-top: .3rem;
+   font-size: var(--mid-font-size);
+}
+
+.wallHub__header-main hr {
+   width: 100%;
+   margin: 1rem 0;
+}
+
+.wallHub__header-menu_options {
+   display: flex;
+   align-items: flex-start;
+   justify-content: center;
+   flex-direction: column;
+   width: 100%;
+}
+
+.wallHub__header-menu_options a {
+   width: 100%;
+   padding: .5rem;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   font-size: var(--p-font-size);
+   border-radius: 5px;
+   transition: all 0.2s ease-in-out;
+}
+
+.wallHub__header-menu_options a:hover {
+   background-color: var(--main-sky-blue);
+   color: var(--main-color-light);
+}
+
+.wallHub__header-menu_options a svg {
+   margin-right: .5rem;
+}
+
+/* -----------mobile menu------------ */
+
+
+/* .wallHub__nav-toggler {
+   cursor: pointer;
+   display: none;
+} */
+
+/* .wallHub__header-menu_links {
    display: none;
    justify-content: space-between;
    align-self: start;
@@ -144,24 +262,34 @@ a.wallHub__header-menu_links-link {
    font-weight: var(--nav-font-weight);
    padding: 1rem var(--margin-x);
    border: 1px solid rgba(0, 0, 0, 0.1);
-}
+} */
 
 @media screen and (max-width:1050px) {
-   .wallHub__nav-toggler {
+   /* .wallHub__nav-toggler {
       display: block;
-   }
+   } */
 
-   .wallHub__header-menu_links {
+   /* .wallHub__header-menu_links {
       display: flex;
-   }
+   } */
 
+   .wallHub__nav-signup,
    .wallHub__nav-links {
       display: none;
    }
+
+   .wallHub__nav-login {
+      display: block;
+   }
+
+   /* 
+   .wallHub__nav-links {
+      display: none;
+   } */
 }
 
 @media screen and (max-width: 1050px) {
-   .wallHub__nav a{
+   .wallHub__nav a {
       margin: 0;
    }
 }
@@ -172,14 +300,7 @@ a.wallHub__header-menu_links-link {
       width: 150px;
    }
 
-   .wallHub__nav-signup {
-      display: none;
-   }
-
-   .wallHub__header-menu_login {
-      display: block;
-   }
-   .wallHub__header-search{
+   .wallHub__header-search {
       height: 2.3rem;
    }
 }

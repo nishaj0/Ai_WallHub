@@ -1,7 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { RiMenuLine, RiCloseLine, RiSearchLine } from "react-icons/ri";
+import {
+   RiMenuLine,
+   RiCloseLine,
+   RiSearchLine,
+   RiAccountCircleFill,
+   RiLogoutBoxLine,
+   RiQuestionLine,
+} from "react-icons/ri";
 import logoImgDark from "../../assets/images/logo/main-logo_dark.svg";
 import logoImgLight from "../../assets/images/logo/main-logo_light.svg";
 import miniLogo from "../../assets/images/logo/mini-logo.png";
@@ -13,6 +20,7 @@ function Header() {
    const [isNavAtTop, setIsNavAtTop] = useState(true);
    const [isTransparent, setIsTransparent] = useState(true);
    const [screenSize, setScreenSize] = useState(checkScreenSize());
+   const isLogged = true;
 
    // ? this state is used to store the search data
    const [searchData, setSearchData] = useState({ search: "" });
@@ -52,9 +60,9 @@ function Header() {
             setIsTransparent(false);
          } else {
             setIsNavAtTop(true);
-
-            // ? when the header is at the top and the menu is not open then it will be transparent otherwise it will be default
-            toggleMenu ? setIsTransparent(false) : setIsTransparent(true);
+            // // ? when the header is at the top and the menu is not open then it will be transparent otherwise it will be default
+            // toggleMenu ? setIsTransparent(false) : setIsTransparent(true);
+            setIsTransparent(true);
          }
       };
       // ? if the current path is "/" then it will add the event listener otherwise it will not
@@ -136,7 +144,12 @@ function Header() {
                            <button type="submit">
                               <RiSearchLine
                                  color="#333333"
-                                 size={screenSize === "small" ? 20 : 27}
+                                 size={
+                                    screenSize === "medium" ||
+                                    screenSize === "small"
+                                       ? 20
+                                       : 27
+                                 }
                               />
                            </button>
                         </Link>
@@ -144,16 +157,57 @@ function Header() {
                   </div>
                )}
                <nav className="wallHub__nav">
-                  <div className="wallHub__nav-links">
-                     <NavLinkTag to="/login" content="Login" />
-                  </div>
-                  <Link to="/signup" className="wallHub__nav-signup">
-                     <button>Sign up</button>
-                  </Link>
-                  {(screenSize === "medium" || screenSize === "small") && (
-                     <Link to="/login" className="wallHub__nav-login">
-                        <button>Login</button>
-                     </Link>
+                  {isLogged ? (
+                     <>
+                        <button
+                           onClick={() =>
+                              toggleMenu
+                                 ? setToggleMenu(false)
+                                 : setToggleMenu(true)
+                           }
+                           className="wallHub__nav-icon"
+                        >
+                           <RiAccountCircleFill
+                              color={
+                                 toggleMenu
+                                    ? "#808080"
+                                    : isTransparent
+                                    ? "#f8f8f8"
+                                    : "#333"
+                              }
+                              size={30}
+                           />
+                        </button>
+                        {toggleMenu && (
+                           <div className="wallHub__header-menu">
+                              <h4>None</h4>
+                              <div className="wallHub__header-menu_links">
+                                 <Link to={"/profile"}>Profile</Link>
+                              </div>
+                              <hr />
+                              <div className="wallHub__header-menu_options">
+                                 <Link to={"/help"}>
+                                    <RiQuestionLine color="000" /> Help
+                                 </Link>
+                                 <Link to={"/logout"}>
+                                    <RiLogoutBoxLine color="000" /> Logout
+                                 </Link>
+                              </div>
+                           </div>
+                        )}
+                     </>
+                  ) : (
+                     <div className="wallHub__nav-button">
+                        <div className="wallHub__nav-links">
+                           <NavLinkTag to="/login" content="Login" />
+                        </div>
+                        <Link to="/signup" className="wallHub__nav-signup">
+                           <button>Sign up</button>
+                        </Link>
+                        <Link to="/login" className="wallHub__nav-login">
+                           <button>Login</button>
+                        </Link>
+                     </div>
                   )}
                   {/* <div className="wallHub__nav-toggler">
                      {toggleMenu ? (
@@ -188,25 +242,6 @@ function Header() {
                   </div> */}
                </nav>
             </div>
-
-            <div className="wallHub__header-menu"></div>
-
-            {/* <div className="wallHub__header-menu_container">
-               {toggleMenu && (
-                  <div className="wallHub__header-menu_links">
-                     <MenuLinkTag to="/" content="Home" />
-                     <MenuLinkTag to="/catagories" content="Catagories" />
-                     <MenuLinkTag to="/contact" content="Contact" />
-                     <MenuLinkTag to="/about" content="About" />
-                     <MenuLinkTag to="/login" content="Login" />
-                     <div className="wallHub__header-menu_login">
-                        <Link to="/signup">
-                           <button>Sign up</button>
-                        </Link>
-                     </div>
-                  </div>
-               )}
-            </div> */}
          </div>
       </div>
    );
