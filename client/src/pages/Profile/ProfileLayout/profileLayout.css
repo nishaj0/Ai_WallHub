@@ -1,0 +1,114 @@
+.wallHub__profile-container {
+   padding-top: var(--header-height);
+   margin: 2rem 0;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.wallHub__profile {
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   flex-direction: column;
+   max-width: 600px;
+}
+
+.wallHub__profile-details {
+   width: 100%;
+   display: grid;
+   grid-template-columns: 100px 250px 100px;
+   column-gap: 2rem;
+   align-items: center;
+   justify-content: center;
+}
+
+.wallHub__profile-details_dp {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.wallHub__profile-details_dp-frame {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 1.5rem;
+   border-radius: 100%;
+   background-color: var(--light-color-gray);
+}
+
+.wallHub__profile-details_dp-frame svg {
+   fill: #000;
+}
+
+.wallHub__profile-details_info {
+   display: flex;
+   align-items: flex-start;
+   justify-content: center;
+   flex-direction: column;
+}
+
+.wallHub__profile-details_info h3 {
+   font-size: var(--h3-font-size);
+   color: var(--main-color-dark);
+}
+
+.wallHub__profile-details_info-likes {
+   margin-top: 1rem;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.wallHub__profile-details_info-likes h4 {
+   font-size: var(--p-font-size);
+}
+
+.wallHub__profile-details_info-likes p {
+   font-size: var(--small-font-size);
+}
+
+.wallHub__profile-details_info-likes div {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+}
+
+.wallHub__profile-details-button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.wallHub__profile-details-button button {
+   padding: 0.5rem 1rem;
+   border: none;
+   border-radius: 5px;
+   background-color: var(--main-sky-blue);
+   color: var(--main-color-light);
+   font-size: var(--a-font-size);
+   font-weight: 500;
+   cursor: pointer;
+}
+
+.wallHub__profile-activity {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+}
+
+.wallHub__profile-activity_button {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 0.25rem 1rem;
+   margin-right: 1rem;
+   border: 1px solid var(--light-color-gray);
+   border-radius: 2rem;
+   cursor: pointer;
+}

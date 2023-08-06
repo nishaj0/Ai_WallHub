@@ -49,6 +49,11 @@ function Header() {
       };
    }, []);
 
+   // ? turn off toggle menu when route is change
+   useEffect(() => {
+      setToggleMenu(false);
+   }, [location]);
+
    useEffect(() => {
       // ? this function used to check if the header is at the top or not
       const handleScroll = () => {

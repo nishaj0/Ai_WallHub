@@ -14,6 +14,8 @@ import {
    Signup,
    Login,
    LoginOtp,
+   ProfileLayout,
+   ProfilePosts,
 } from "./pages";
 import { Layout } from "./containers";
 
@@ -23,12 +25,16 @@ function App() {
    const router = createBrowserRouter(
       createRoutesFromElements(
          <>
+            <Route path="*" element={<h2>page not found</h2>} />
             <Route path="/" element={<Layout />}>
                <Route index element={<Home />} />
                <Route path="catagories" element={<Catagories />} />
                <Route path="contact" element={<Contact />} />
                <Route path="about" element={<About />} />
                <Route path="search" element={<Search />} />
+               <Route path="profile" element={<ProfileLayout />}>
+                  <Route index element={<ProfilePosts />} />
+               </Route>
             </Route>
             <Route path="signup" element={<Signup />} />
             <Route path="login" element={<Login />} />
