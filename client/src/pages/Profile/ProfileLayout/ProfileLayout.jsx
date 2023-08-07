@@ -6,7 +6,18 @@ import { RiUserFill } from "react-icons/ri";
 
 function ActivityLink({ content, to }) {
    return (
-      <NavLink to={to} className="wallHub__profile-activity_button">
+      <NavLink
+         to={to}
+         className="wallHub__profile-activity_button"
+         style={({ isActive }) => {
+            return {
+               // ? --main-sky-blue: #33a1de;
+               // ? --main-color-light: #f8f8f8;
+               backgroundColor: isActive && "#33a1de",
+               color: isActive && "#f8f8f8",
+            };
+         }}
+      >
          {content}
       </NavLink>
    );
