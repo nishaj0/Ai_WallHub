@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { RiSearchLine } from "react-icons/ri";
-
+import { SearchTag } from "../../components";
 import "./home.css";
 
 function Home() {
@@ -32,14 +32,6 @@ function Home() {
    const handleSubmit = (e) => {
       e.preventDefault();
    };
-
-   function FilterLink({ searchText, content }) {
-      return (
-         <div className="wallHub__home-wallpapers_filter">
-            <Link to={`search?keyword=${searchText}`}>{content}</Link>
-         </div>
-      );
-   }
 
    return (
       <div className="wallHub__home">
@@ -71,21 +63,21 @@ function Home() {
             </div>
          </div>
          <div className="wallHub__home-wallpapers section__padding">
-            <div className="wallHub__home-wallpapers_filter-container">
-               <FilterLink searchText={"anime"} content={"Anime"} />
-               <FilterLink searchText={"nature"} content={"Nature"} />
-               <FilterLink searchText={"landscape"} content={"Landscape"} />
-               <FilterLink searchText={"mountain"} content={"Mountain"} />
-               <FilterLink searchText={"forest"} content={"Forest"} />
-               <FilterLink searchText={"japan"} content={"Japan"} />
-               <FilterLink searchText={"character"} content={"Character"} />
-               <FilterLink searchText={"realistic"} content={"Realistic"} />
-               <FilterLink searchText={"city"} content={"City"} />
-               <FilterLink searchText={"space"} content={"Space"} />
-               <FilterLink searchText={"minimal"} content={"Minimal"} />
-               <FilterLink searchText={"dark"} content={"Dark"} />
-               <FilterLink searchText={"light"} content={"Light"} />
-               <FilterLink searchText={"4k"} content={"4K"} />
+            <div className="wallHub__home-wallpapers_searchTag-container">
+               <SearchTag searchText={"anime"} content={"Anime"} />
+               <SearchTag searchText={"nature"} content={"Nature"} />
+               <SearchTag searchText={"landscape"} content={"Landscape"} />
+               <SearchTag searchText={"mountain"} content={"Mountain"} />
+               <SearchTag searchText={"forest"} content={"Forest"} />
+               <SearchTag searchText={"japan"} content={"Japan"} />
+               <SearchTag searchText={"character"} content={"Character"} />
+               <SearchTag searchText={"realistic"} content={"Realistic"} />
+               <SearchTag searchText={"city"} content={"City"} />
+               <SearchTag searchText={"space"} content={"Space"} />
+               <SearchTag searchText={"minimal"} content={"Minimal"} />
+               <SearchTag searchText={"dark"} content={"Dark"} />
+               <SearchTag searchText={"light"} content={"Light"} />
+               <SearchTag searchText={"4k"} content={"4K"} />
             </div>
             <div className="wallHub__home-wallpapers_img-container"></div>
          </div>

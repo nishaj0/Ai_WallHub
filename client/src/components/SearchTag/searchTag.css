@@ -1,0 +1,16 @@
+/* button */
+.wallHub__searchTag {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 0.5rem 1rem;
+   margin-right: 1rem;
+   border: 1px solid var(--light-color-gray);
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: var(--mid-font-size);
+   color: var(--main-color-dark);
+}
+.wallHub__searchTag:hover {
+   box-shadow: 0 0 10px var(--light-sky-blue);
+}
