@@ -17,6 +17,8 @@ import {
    ProfileLayout,
    ProfilePosts,
 } from "./pages";
+import { action as signupAction } from "./pages/Auth/Signup/Signup.jsx";
+
 import { Layout } from "./containers";
 
 import "./App.css";
@@ -36,7 +38,7 @@ function App() {
                   <Route index element={<ProfilePosts />} />
                </Route>
             </Route>
-            <Route path="signup" element={<Signup />} />
+            <Route path="signup" action={signupAction} element={<Signup />} />
             <Route path="login" element={<Login />} />
             <Route path="login-otp" element={<LoginOtp />} />
          </>

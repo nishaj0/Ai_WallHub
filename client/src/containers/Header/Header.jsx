@@ -18,7 +18,7 @@ function Header() {
    const [isNavAtTop, setIsNavAtTop] = useState(true);
    const [isTransparent, setIsTransparent] = useState(true);
    const [screenSize, setScreenSize] = useState(checkScreenSize());
-   const isLogged = true;
+   const isLogged = false;
 
    // ? this state is used to store the search data
    const [searchData, setSearchData] = useState({ search: "" });
