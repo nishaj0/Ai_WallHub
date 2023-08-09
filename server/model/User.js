@@ -30,6 +30,9 @@ const userSchema = new Schema({
    posts: {
       type: [String],
    },
+   likedPosts: {
+      type: [String],
+   },
 }); // ? add { collection: 'collectionName' } as second parameter of Schema
 // ? if you want to specify a collection name
 // ? (by default mongoose will create a collection based on the model name)

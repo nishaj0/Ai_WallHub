@@ -1,8 +1,9 @@
 import React from "react";
 import "./signup.css";
+import axios from "axios";
 
 import { useState, useEffect } from "react";
-import { Link, Form } from "react-router-dom";
+import { Link, Form, useActionData, useNavigation } from "react-router-dom";
 import {
    RiEyeLine,
    RiEyeOffLine,
@@ -15,19 +16,36 @@ export async function action(obj) {
    const name = fromData.get("name");
    const email = fromData.get("email");
    const password = fromData.get("password");
-   console.log({ name, email, password })
-   return null
+   let errorMessage = false;
+   try {
+      const res = await axios.post("http://localhost:5000/register", {
+         name,
+         email,
+         password,
+      });
+   } catch (error) {
+      errorMessage = error.response.data.message;
+   }
+   // axios.post("http://localhost:5000/api/user/ssignup", )
+   return errorMessage;
 }
 
 function Signup() {
    const [isEyeToggle, setIsEyeToggle] = useState(true);
+   const [errorMessage, setErrorMessage] = useState(false);
+   const [status, setStatus] = useState("idle");
    const [passwordData, setPasswordData] = useState({
       tempPassword: "",
       password: "",
    });
-   const [isPasswordSame, setIsPasswordSame] = useState(true);
+   const actionData = useActionData();
+   const navigation = useNavigation();
 
-   const handleTempPassword = (e) => {
+   useEffect(() => {
+      setErrorMessage(actionData);
+   }, [actionData]);
+
+   const handlePassword = (e) => {
       setPasswordData((prevFormData) => {
          return {
             ...prevFormData,
@@ -35,13 +53,15 @@ function Signup() {
          };
       });
    };
-   const handlePassword = (e) => {
-      if (passwordData.tempPassword != e.target.value) {
-         setIsPasswordSame(false);
+
+   useEffect(() => {
+      if (passwordData.password !== passwordData.tempPassword) {
+         setErrorMessage("Password not matched");
       } else {
-         setIsPasswordSame(true);
+         setErrorMessage(false);
       }
-   };
+   }, [passwordData]);
+
    return (
       <div className="wallHub__signup">
          <div className="wallHub__signup-head">
@@ -74,7 +94,7 @@ function Signup() {
                </div>
                <div className="wallHub__signup-password_container">
                   <input
-                     onChange={handleTempPassword}
+                     onChange={handlePassword}
                      name="tempPassword"
                      className="wallHub__signup-password"
                      placeholder="Enter password"
@@ -112,13 +132,15 @@ function Signup() {
                      )}
                   </span>
                </div>
-               {!isPasswordSame && (
+               {errorMessage && (
                   <p className="wallHub__signup-password_error">
                      <RiErrorWarningFill />
-                     password not match
+                     {errorMessage}
                   </p>
                )}
-               <button>Sign up</button>
+               <button disabled={navigation.state === "submitting"}>
+                  {navigation.state === "submitting" ? "Signing..." : "Sign up"}
+               </button>
                <p className="wallHub__signup-agreement_p">
                   By registering, you agree to aiWallHub's{" "}
                   <Link to={"/terms-condition"}>Terms and Condition</Link> and{" "}

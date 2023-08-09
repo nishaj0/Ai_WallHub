@@ -10,7 +10,7 @@ const handleNewUser = async (req, res) => {
    }
 
    const duplicate = await User.findOne({ email: email }).exec();
-   if (duplicate) return res.sendStatus(409); //Conflict
+   if (duplicate) return res.status(409).json({message:"email already exist"}); //Conflict
 
    try {
       // encrypt password

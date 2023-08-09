@@ -6,14 +6,17 @@ const cors = require("cors");
 const connectDB = require("./config/dbConn");
 const PORT = process.env.PORT || 5000;
 
+// enable CORS
+app.use(cors());
+
 connectDB();
 
 // middleware for json
 app.use(express.json());
 
 //routers
-app.use("/register", require("./routes/register"))
-app.use("/login", require("./routes/login"))
+app.use("/register", require("./routes/register"));
+app.use("/login", require("./routes/login"));
 
 mongoose.connection.once("open", () => {
    console.log("connected to DB");
