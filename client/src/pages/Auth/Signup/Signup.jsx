@@ -43,7 +43,7 @@ function Signup() {
 
    useEffect(() => {
       setErrorMessage(actionData);
-   }, [actionData]);
+   }, [actionData, navigation.state]);
 
    const handlePassword = (e) => {
       setPasswordData((prevFormData) => {
