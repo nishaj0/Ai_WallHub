@@ -109,7 +109,7 @@
    margin-top: 0rem;
 }
 
-.wallHub__signup-password_error{
+.wallHub__signup-error{
    display: flex;
    align-self: flex-start;
    align-items: center;
@@ -118,7 +118,7 @@
    color: red;
    font-size: var(--small-font-size);
 }
-.wallHub__signup-password_error svg{
+.wallHub__signup-error svg{
    fill: red;
    margin-right: .25rem;
 }

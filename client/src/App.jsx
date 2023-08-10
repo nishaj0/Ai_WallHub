@@ -18,6 +18,7 @@ import {
    ProfilePosts,
 } from "./pages";
 import { action as signupAction } from "./pages/Auth/Signup/Signup.jsx";
+import { action as loginAction } from "./pages/Auth/Login/Login.jsx";
 
 import { Layout } from "./containers";
 
@@ -39,7 +40,7 @@ function App() {
                </Route>
             </Route>
             <Route path="signup" action={signupAction} element={<Signup />} />
-            <Route path="login" element={<Login />} />
+            <Route path="login" action={loginAction} element={<Login />} />
             <Route path="login-otp" element={<LoginOtp />} />
          </>
       )

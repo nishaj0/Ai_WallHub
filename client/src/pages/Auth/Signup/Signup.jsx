@@ -33,7 +33,6 @@ export async function action(obj) {
 function Signup() {
    const [isEyeToggle, setIsEyeToggle] = useState(true);
    const [errorMessage, setErrorMessage] = useState(false);
-   const [status, setStatus] = useState("idle");
    const [passwordData, setPasswordData] = useState({
       tempPassword: "",
       password: "",
@@ -133,7 +132,7 @@ function Signup() {
                   </span>
                </div>
                {errorMessage && (
-                  <p className="wallHub__signup-password_error">
+                  <p className="wallHub__signup-error">
                      <RiErrorWarningFill />
                      {errorMessage}
                   </p>

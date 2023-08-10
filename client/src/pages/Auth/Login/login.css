@@ -108,6 +108,19 @@
    margin-top: 0rem;
 }
 
+.wallHub__login_error{
+   display: flex;
+   align-self: flex-start;
+   align-items: center;
+   justify-content: center;
+   margin-top: .25rem;
+   color: red;
+   font-size: var(--small-font-size);
+}
+.wallHub__login_error svg{
+   fill: red;
+   margin-right: .25rem;
+}
 .wallHub__login-container form>button {
    border: none;
    outline: none;
