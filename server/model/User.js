@@ -21,6 +21,7 @@ const userSchema = new Schema({
       type: String,
       required: true,
    },
+   refreshToken: String,
    //this will store the date of the user's account creation
    date: {
       type: Date,

@@ -3,16 +3,27 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const connectDB = require("./config/dbConn");
+const credentials = require("./middlewares/credentials");
+const corsOptions = require("./config/corsOption");
 const PORT = process.env.PORT || 5000;
-
-// enable CORS
-app.use(cors());
 
 connectDB();
 
+// Handle options credentials check - before CORS!
+// and fetch cookies credentials requirement
+app.use(credentials);
+
+// enable CORS
+app.use(cors(corsOptions));
+
+//* require('crypto').randomBytes(64).toString('hex')
+
 // middleware for json
 app.use(express.json());
+
+app.use(cookieParser());
 
 //routers
 app.use("/register", require("./routes/register"));
