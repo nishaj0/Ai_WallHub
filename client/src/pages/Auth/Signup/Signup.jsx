@@ -1,6 +1,5 @@
 import React from "react";
 import "./signup.css";
-import axios from "axios";
 
 import { useState, useEffect } from "react";
 import { Link, Form, useActionData, useNavigation } from "react-router-dom";
@@ -11,6 +10,9 @@ import {
    RiErrorWarningFill,
 } from "react-icons/ri";
 
+import axios from "../../../api/axios";
+const SIGNUP_URL = '/register';
+
 export async function action(obj) {
    const fromData = await obj.request.formData();
    const name = fromData.get("name");
@@ -18,11 +20,14 @@ export async function action(obj) {
    const password = fromData.get("password");
    let errorMessage = false;
    try {
-      const res = await axios.post("http://localhost:5000/register", {
-         name,
-         email,
-         password,
-      });
+      const res = await axios.post(
+         SIGNUP_URL,
+         JSON.stringify({ name, email, password }),
+         {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+         }
+      );
    } catch (error) {
       errorMessage = error.response.data.message;
    }

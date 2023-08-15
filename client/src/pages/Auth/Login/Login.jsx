@@ -1,6 +1,5 @@
 import React from "react";
 import "./login.css";
-import axios from "axios"
 
 import { useState, useEffect } from "react";
 import { Link, Form, useActionData, useNavigation } from "react-router-dom";
@@ -11,16 +10,22 @@ import {
    RiErrorWarningFill,
 } from "react-icons/ri";
 
+import axios from "../../../api/axios"
+const LOGIN_URL = '/login'
+
 export async function action(obj) {
    const fromData = await obj.request.formData();
    const email = fromData.get("email");
    const password = fromData.get("password");
    let errorMessage = false;
    try {
-      const res = await axios.post("http://localhost:5000/login", {
-         email,
-         password,
-      });
+      const res = await axios.post(LOGIN_URL,
+         JSON.stringify({ email, password }),
+         {
+             headers: { 'Content-Type': 'application/json' },
+             withCredentials: true
+         }
+     );
       console.log(res);
    } catch (error) {
       errorMessage = error.response.data.message;
