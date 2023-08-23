@@ -40,12 +40,14 @@ const handleLogin = async (req, res) => {
          const result = await foundUser.save()
 
          res.cookie("jwt", refreshToken,{ 
+            // ? from the fcc tutorial
+            // withCredentials: true,
             httpOnly:true,
-            sameSite:"None",
+            // sameSite:"None",
             // secure:true,
             maxAge:24 * 60 * 60 * 1000 * 7,
          })
-         res.status(200).json({ success: "login success", accessToken });
+         res.status(200).json({ success: "login success", accessToken});
       } else {
          res.status(401).json({ message: "wrong password" });
       }

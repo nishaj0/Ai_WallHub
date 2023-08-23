@@ -28,6 +28,7 @@ app.use(cookieParser());
 //routers
 app.use("/register", require("./routes/register"));
 app.use("/login", require("./routes/login"));
+app.use("/refresh", require("./routes/refresh"));
 
 mongoose.connection.once("open", () => {
    console.log("connected to DB");
