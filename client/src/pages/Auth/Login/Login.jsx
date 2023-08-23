@@ -2,7 +2,9 @@ import React from "react";
 import "./login.css";
 
 import { useState, useEffect } from "react";
-import { Link, Form, useActionData, useNavigation } from "react-router-dom";
+import { Link,Form, useActionData, useNavigation } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import useRefreshToken from "../../../hooks/useRefreshToken";
 import {
    RiEyeLine,
    RiEyeOffLine,
@@ -10,28 +12,31 @@ import {
    RiErrorWarningFill,
 } from "react-icons/ri";
 
-import axios from "../../../api/axios"
-const LOGIN_URL = '/login'
+import axios from "../../../api/axios";
+const LOGIN_URL = "/login";
 
+// ? action function that will be called when the form is submitted
 export async function action(obj) {
-   const fromData = await obj.request.formData();
-   const email = fromData.get("email");
-   const password = fromData.get("password");
+   const formData = await obj.request.formData();
+   const email = formData.get("email")
+   const password = formData.get("password")
    let errorMessage = false;
+   let accessToken;
    try {
-      const res = await axios.post(LOGIN_URL,
+      const res = await axios.post(
+         LOGIN_URL,
          JSON.stringify({ email, password }),
          {
-             headers: { 'Content-Type': 'application/json' },
-             withCredentials: true
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
          }
-     );
-      console.log(res);
+      );
+      accessToken = res?.data?.accessToken;
+      console.log(accessToken);
    } catch (error) {
-      errorMessage = error.response.data.message;
-      // console.log(errorMessage);
+      errorMessage = error?.response?.data?.message;
    }
-   return errorMessage;
+   return { errorMessage, userData: { email, accessToken } };
 }
 
 function Login() {
@@ -39,13 +44,17 @@ function Login() {
    const [errorMessage, setErrorMessage] = useState(false);
    const actionData = useActionData();
    const navigation = useNavigation();
-   // console.log(actionData);
-   // console.log(navigation);
+   const { auth, setAuth } = useAuth();
+   const refresh = useRefreshToken();
 
+   // ? useEffect to set the error message and auth state when action is called
    useEffect(() => {
-      setErrorMessage(actionData);
+      setErrorMessage(actionData?.errorMessage);
+      setAuth(actionData?.userData);
    }, [actionData, navigation.state]);
 
+   // console.log({ auth });
+   
    return (
       <div className="wallHub__login">
          <div className="wallHub__login-head">
@@ -96,6 +105,7 @@ function Login() {
                   {navigation.state === "submitting" ? "logging..." : "Log in"}
                </button>
             </Form>
+            {/* <button onClick={() => refresh()}>refresh</button> */}
             <hr className="wallHub__login-hr" />
             <button className="wallHub__login-google_button">
                <RiGoogleFill color="#333" size={24} />
