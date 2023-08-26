@@ -2,7 +2,13 @@ import React from "react";
 import "./login.css";
 
 import { useState, useEffect } from "react";
-import { Link,Form, useActionData, useNavigation } from "react-router-dom";
+import {
+   Link,
+   Form,
+   useActionData,
+   useNavigation,
+   useLocation,
+} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useRefreshToken from "../../../hooks/useRefreshToken";
 import {
@@ -18,8 +24,8 @@ const LOGIN_URL = "/login";
 // ? action function that will be called when the form is submitted
 export async function action(obj) {
    const formData = await obj.request.formData();
-   const email = formData.get("email")
-   const password = formData.get("password")
+   const email = formData.get("email");
+   const password = formData.get("password");
    let errorMessage = false;
    let accessToken;
    try {
@@ -42,8 +48,11 @@ export async function action(obj) {
 function Login() {
    const [isEyeToggle, setIsEyeToggle] = useState(true);
    const [errorMessage, setErrorMessage] = useState(false);
+
    const actionData = useActionData();
    const navigation = useNavigation();
+   const location = useLocation();
+   
    const { auth, setAuth } = useAuth();
    const refresh = useRefreshToken();
 
@@ -54,7 +63,7 @@ function Login() {
    }, [actionData, navigation.state]);
 
    // console.log({ auth });
-   
+
    return (
       <div className="wallHub__login">
          <div className="wallHub__login-head">
@@ -105,7 +114,7 @@ function Login() {
                   {navigation.state === "submitting" ? "logging..." : "Log in"}
                </button>
             </Form>
-            {/* <button onClick={() => refresh()}>refresh</button> */}
+            <button onClick={() => refresh()}>refresh</button>
             <hr className="wallHub__login-hr" />
             <button className="wallHub__login-google_button">
                <RiGoogleFill color="#333" size={24} />
