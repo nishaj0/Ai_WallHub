@@ -20,7 +20,7 @@ import {
 import { action as signupAction } from "./pages/Auth/Signup/Signup.jsx";
 import { action as loginAction } from "./pages/Auth/Login/Login.jsx";
 
-import { Layout } from "./containers";
+import { Layout, PersistLogin } from "./containers";
 
 import "./App.css";
 
@@ -35,9 +35,14 @@ function App() {
                <Route path="contact" element={<Contact />} />
                <Route path="about" element={<About />} />
                <Route path="search" element={<Search />} />
-               <Route path="profile" element={<ProfileLayout />}>
-                  <Route index element={<ProfilePosts />} />
+
+               {/* protected route */}
+               <Route element={<PersistLogin />}>
+                  <Route path="profile" element={<ProfileLayout />}>
+                     <Route index element={<ProfilePosts />} />
+                  </Route>
                </Route>
+               
             </Route>
             <Route path="signup" action={signupAction} element={<Signup />} />
             <Route path="login" action={loginAction} element={<Login />} />

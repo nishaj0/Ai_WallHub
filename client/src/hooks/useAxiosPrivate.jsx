@@ -9,6 +9,7 @@ const useAxiosPrivate = () => {
 
    useEffect(() => {
       const requestIntercept = axiosPrivate.interceptors.request.use(
+         // ? this function will be called before every request
          (config) => {
             if (!config.headers["Authorization"]) {
                config.headers["Authorization"] = `Bearer ${auth?.accessToken}`;
@@ -19,6 +20,7 @@ const useAxiosPrivate = () => {
       );
 
       const responseIntercept = axiosPrivate.interceptors.response.use(
+         // ? this function will be called before every successful response
          (response) => response,
          async (error) => {
             const prevRequest = error?.config;
