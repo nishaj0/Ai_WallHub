@@ -1,4 +1,5 @@
 import React from "react";
+import "./header.css";
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import {
@@ -7,18 +8,20 @@ import {
    RiLogoutBoxLine,
    RiQuestionLine,
 } from "react-icons/ri";
+
 import logoImgDark from "../../assets/images/logo/main-logo_dark.svg";
 import logoImgLight from "../../assets/images/logo/main-logo_light.svg";
 import miniLogo from "../../assets/images/logo/mini-logo.png";
+
 import { isSmallScreen as checkScreenSize } from "../../utils";
-import "./header.css";
+import useAuth from "../../hooks/useAuth";
 
 function Header() {
+   const [isLogged, setIsLogged] = useState(false);
    const [toggleMenu, setToggleMenu] = useState(false);
    const [isNavAtTop, setIsNavAtTop] = useState(true);
    const [isTransparent, setIsTransparent] = useState(true);
    const [screenSize, setScreenSize] = useState(checkScreenSize());
-   const isLogged = false;
 
    // ? this state is used to store the search data
    const [searchData, setSearchData] = useState({ search: "" });
@@ -29,6 +32,18 @@ function Header() {
    // ? here "wallHub__header-transparent" class used to give transparent background to the header when it is at the top
    const transparentNavClass = "wallHub__header-transparent";
    const defaultNavClass = "wallHub__header-default";
+
+   const { auth } = useAuth();
+
+   useEffect(() => {
+      if (auth?.accessToken) {
+         setIsLogged(true);
+      } else {
+         setIsLogged(false);
+      }
+      console.log([auth?.accessToken]);
+      console.log({ isLogged });
+   }, [auth]);
 
    useEffect(() => {
       // adding event lister for check screen size
