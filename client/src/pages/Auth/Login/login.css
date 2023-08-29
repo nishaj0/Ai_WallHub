@@ -108,7 +108,7 @@
    margin-top: 0rem;
 }
 
-.wallHub__login_error{
+.wallHub__login-error {
    display: flex;
    align-self: flex-start;
    align-items: center;
@@ -117,10 +117,12 @@
    color: red;
    font-size: var(--small-font-size);
 }
-.wallHub__login_error svg{
+
+.wallHub__login-error svg {
    fill: red;
    margin-right: .25rem;
 }
+
 .wallHub__login-container form>button {
    border: none;
    outline: none;
@@ -134,6 +136,30 @@
    background-color: var(--main-sky-blue);
    border-radius: 5px;
    cursor: pointer;
+}
+
+/* ------------------checkbox------------------ */
+
+.wallHub__login-checkbox {
+   display: flex;
+   align-items: center;
+   justify-content: start;
+   width: 100%;
+   margin-top: 1rem;
+   font-size: var(--small-font-size);
+   position: relative;
+}
+
+/* .wallHub__login-checkbox input[type="checkbox"] {
+
+}
+
+.wallHub__login-checkbox_custom-icon {
+   
+} */
+
+.wallHub__login-checkbox>label {
+   margin-left: .5rem;
 }
 
 .wallHub__login-hr {

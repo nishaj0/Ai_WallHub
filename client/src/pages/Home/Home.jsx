@@ -64,6 +64,7 @@ function Home() {
          </div>
          <div className="wallHub__home-wallpapers section__padding">
             <div className="wallHub__home-wallpapers_searchTag-container">
+               {/* <Link to={"/profile"}>Profile</Link> */}
                <SearchTag searchText={"anime"} content={"Anime"} />
                <SearchTag searchText={"nature"} content={"Nature"} />
                <SearchTag searchText={"landscape"} content={"Landscape"} />

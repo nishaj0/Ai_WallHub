@@ -2,6 +2,7 @@ import React from "react";
 import "./profileLayout.css";
 import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth"
 import { RiUserFill } from "react-icons/ri";
 
 function ActivityLink({ content, to }) {
@@ -25,6 +26,8 @@ function ActivityLink({ content, to }) {
 
 function Profile() {
    const [customProfile, setCustomProfile] = useState(false);
+   const {auth} = useAuth()
+
    return (
       <div className="wallHub__profile-container">
          <div className="wallHub__profile">
@@ -39,7 +42,7 @@ function Profile() {
                   </div>
                </div>
                <div className="wallHub__profile-details_info">
-                  <h3>John Doe</h3>
+                  <h3>{auth?.email}</h3>
                   <div className="wallHub__profile-details_info-likes">
                      <div>
                         <h4>10</h4>

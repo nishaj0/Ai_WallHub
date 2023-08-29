@@ -7,6 +7,7 @@ import {
    Form,
    useActionData,
    useNavigation,
+   useNavigate,
    useLocation,
 } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
@@ -39,6 +40,7 @@ export async function action(obj) {
       );
       accessToken = res?.data?.accessToken;
       console.log(accessToken);
+      console.log({ email, accessToken });
    } catch (error) {
       errorMessage = error?.response?.data?.message;
    }
@@ -51,18 +53,37 @@ function Login() {
 
    const actionData = useActionData();
    const navigation = useNavigation();
+   const navigate = useNavigate();
    const location = useLocation();
-   
-   const { auth, setAuth } = useAuth();
+
+   const { auth, setAuth, persist, setPersist } = useAuth();
    const refresh = useRefreshToken();
+
+   const togglePersist = () => {
+      setPersist(prev => !prev);
+  }
+
+  useEffect(() => {
+      localStorage.setItem("persist", persist);
+  }, [persist])
 
    // ? useEffect to set the error message and auth state when action is called
    useEffect(() => {
       setErrorMessage(actionData?.errorMessage);
-      setAuth(actionData?.userData);
+      setAuth((prev) => {
+         if (actionData?.userData === undefined || false || null) {
+            return prev;
+         } else {
+            return actionData.userData;
+         }
+      });
    }, [actionData, navigation.state]);
+   console.log({ auth });
 
-   // console.log({ auth });
+   useEffect(() => {
+      if (actionData?.userData && actionData?.userData?.accessToken)
+         navigate("/profile");
+   }, [actionData]);
 
    return (
       <div className="wallHub__login">
@@ -105,7 +126,7 @@ function Login() {
                   </span>
                </div>
                {errorMessage && (
-                  <p className="wallHub__login_error">
+                  <p className="wallHub__login-error">
                      <RiErrorWarningFill />
                      {errorMessage}
                   </p>
@@ -113,8 +134,19 @@ function Login() {
                <button disabled={navigation.state === "submitting"}>
                   {navigation.state === "submitting" ? "logging..." : "Log in"}
                </button>
+               <div className="wallHub__login-checkbox">
+                  <input
+                     type="checkbox"
+                     id="persist"
+                     onChange={togglePersist}
+                     checked={persist}
+                  />
+                  {/* <span className="wallHub__login-checkbox_custom-icon"></span> */}
+                  <label htmlFor="persist">Trust this device</label>
+               </div>
             </Form>
-            <button onClick={() => refresh()}>refresh</button>
+            {/* <button onClick={() => refresh()}>refresh</button> */}
+
             <hr className="wallHub__login-hr" />
             <button className="wallHub__login-google_button">
                <RiGoogleFill color="#333" size={24} />
