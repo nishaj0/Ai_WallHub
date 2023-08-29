@@ -39,8 +39,8 @@ export async function action(obj) {
          }
       );
       accessToken = res?.data?.accessToken;
-      console.log(accessToken);
-      console.log({ email, accessToken });
+      // console.log(accessToken);
+      // console.log({ email, accessToken });
    } catch (error) {
       errorMessage = error?.response?.data?.message;
    }
@@ -78,7 +78,7 @@ function Login() {
          }
       });
    }, [actionData, navigation.state]);
-   console.log({ auth });
+   // console.log({ auth });
 
    useEffect(() => {
       if (actionData?.userData && actionData?.userData?.accessToken)

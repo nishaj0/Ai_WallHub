@@ -41,8 +41,8 @@ function Header() {
       } else {
          setIsLogged(false);
       }
-      console.log([auth?.accessToken]);
-      console.log({ isLogged });
+      // console.log([auth?.accessToken]);
+      // console.log({ isLogged });
    }, [auth]);
 
    useEffect(() => {
