@@ -1,7 +1,7 @@
 import React from "react";
 import "./header.css";
 import { useState, useEffect } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
    RiSearchLine,
    RiAccountCircleFill,
@@ -15,6 +15,7 @@ import miniLogo from "../../assets/images/logo/mini-logo.png";
 
 import { isSmallScreen as checkScreenSize } from "../../utils";
 import useAuth from "../../hooks/useAuth";
+import useLogout from "../../hooks/useLogout";
 
 function Header() {
    const [isLogged, setIsLogged] = useState(false);
@@ -26,6 +27,7 @@ function Header() {
    // ? this state is used to store the search data
    const [searchData, setSearchData] = useState({ search: "" });
 
+   const navigate = useNavigate();
    const location = useLocation();
    const currentPath = location.pathname;
 
@@ -34,6 +36,7 @@ function Header() {
    const defaultNavClass = "wallHub__header-default";
 
    const { auth } = useAuth();
+   const logout = useLogout();
 
    useEffect(() => {
       if (auth?.accessToken) {
@@ -106,6 +109,12 @@ function Header() {
       e.preventDefault();
    };
 
+   const signOut = async () => {
+      if(auth?.accessToken){
+         await logout();
+      }
+   };
+
    // ? component for NavLink used in the header
    function NavLinkTag({ to, content }) {
       return <NavLink to={to}>{content}</NavLink>;
@@ -176,11 +185,7 @@ function Header() {
                   {isLogged ? (
                      <>
                         <button
-                           onClick={() =>
-                              toggleMenu
-                                 ? setToggleMenu(false)
-                                 : setToggleMenu(true)
-                           }
+                           onClick={() => setToggleMenu((prev)=> !prev)}
                            className="wallHub__nav-icon"
                         >
                            <RiAccountCircleFill
@@ -205,7 +210,7 @@ function Header() {
                                  <Link to={"/help"}>
                                     <RiQuestionLine color="000" /> Help
                                  </Link>
-                                 <Link to={"/logout"}>
+                                 <Link onClick={()=> signOut()}>
                                     <RiLogoutBoxLine color="000" /> Logout
                                  </Link>
                               </div>
