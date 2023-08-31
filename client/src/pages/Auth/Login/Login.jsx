@@ -9,9 +9,10 @@ import {
    useNavigation,
    useNavigate,
    useLocation,
+   redirect,
 } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
-import useRefreshToken from "../../../hooks/useRefreshToken";
+// import useRefreshToken from "../../../hooks/useRefreshToken";
 import {
    RiEyeLine,
    RiEyeOffLine,
@@ -27,7 +28,7 @@ export async function action(obj) {
    const formData = await obj.request.formData();
    const email = formData.get("email");
    const password = formData.get("password");
-   let errorMessage = false;
+   let errorMessage;
    let accessToken;
    try {
       const res = await axios.post(
@@ -41,8 +42,16 @@ export async function action(obj) {
       accessToken = res?.data?.accessToken;
       // console.log(accessToken);
       // console.log({ email, accessToken });
-   } catch (error) {
-      errorMessage = error?.response?.data?.message;
+   } catch (err) {
+      if (!err?.response) {
+         errorMessage = "no Server Response";
+      } else if (err.response?.status === 400) {
+         errorMessage = "missing email or password";
+      } else if (err.response?.status === 401) {
+         errorMessage = "email or password not match";
+      } else {
+         errorMessage = "login failed";
+      }
    }
    return { errorMessage, userData: { email, accessToken } };
 }
@@ -55,34 +64,37 @@ function Login() {
    const navigation = useNavigation();
    const navigate = useNavigate();
    const location = useLocation();
-
+   
+   const from = location.state?.from?.pathname || "/";
    const { auth, setAuth, persist, setPersist } = useAuth();
-   const refresh = useRefreshToken();
+   // const refresh = useRefreshToken();
 
+   // ? toggle the persist state
    const togglePersist = () => {
-      setPersist(prev => !prev);
-  }
+      setPersist((prev) => !prev);
+   };
 
-  useEffect(() => {
+   // ? useEffect to set the persist state in the local storage
+   useEffect(() => {
       localStorage.setItem("persist", persist);
-  }, [persist])
+   }, [persist]);
 
    // ? useEffect to set the error message and auth state when action is called
    useEffect(() => {
       setErrorMessage(actionData?.errorMessage);
       setAuth((prev) => {
-         if (actionData?.userData === undefined || false || null) {
-            return prev;
-         } else {
+         if (actionData?.userData) {
             return actionData.userData;
+         } else {
+            return prev;
          }
       });
    }, [actionData, navigation.state]);
    // console.log({ auth });
 
+   // ? useEffect to redirect to the from path when the user is logged in
    useEffect(() => {
-      if (actionData?.userData && actionData?.userData?.accessToken)
-         navigate("/profile");
+      if (actionData?.userData?.accessToken) navigate(from, { replace: true });
    }, [actionData]);
 
    return (
@@ -91,7 +103,7 @@ function Login() {
             <h2>Welcome back</h2>
          </div>
          <div className="wallHub__login-container">
-            <Form method="post">
+            <Form method="post" replace>
                <div className="wallHub__login-label_container">
                   <label htmlFor="wallHub__login-email">Email address</label>
                </div>
@@ -101,6 +113,7 @@ function Login() {
                   name="email"
                   placeholder="john.doe@example.com"
                   type="email"
+                  required
                />
                <div className="wallHub__login-label_container">
                   <label htmlFor="wallHub__login-password">Password</label>
@@ -113,6 +126,7 @@ function Login() {
                      name="password"
                      placeholder="••••••••••••••"
                      type={isEyeToggle ? "password" : "text"}
+                     required
                   />
                   <span
                      className="wallHub__login-password_eye-span"
