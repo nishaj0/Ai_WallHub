@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 const connectDB = require("./config/dbConn");
 const corsOptions = require("./config/corsOption");
 const credentials = require("./middlewares/credentials");
-const verifyJWT = require("./middlewares/verifyJWT")
+const verifyJWT = require("./middlewares/verifyJWT");
 const PORT = process.env.PORT || 5000;
 
 connectDB();
@@ -32,8 +32,9 @@ app.use("/login", require("./routes/login"));
 app.use("/refresh", require("./routes/refresh"));
 app.use("/logout", require("./routes/logout"));
 
-app.use(verifyJWT)
+app.use(verifyJWT);
 // protected end points
+app.use("/api/profile", require("./routes/api/profile"));
 
 mongoose.connection.once("open", () => {
    console.log("connected to DB");
