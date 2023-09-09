@@ -19,12 +19,19 @@ import {
 } from "./pages";
 import { action as signupAction } from "./pages/Auth/Signup/Signup.jsx";
 import { action as loginAction } from "./pages/Auth/Login/Login.jsx";
+import { loader as profileLayoutLoader } from "./pages/Profile/ProfileLayout/ProfileLayout";
 
 import { Layout, PersistLogin } from "./containers";
+import useAuth from "./hooks/useAuth";
+import useAxiosPrivate from "./hooks/useAxiosPrivate";
+import useRefreshToken from "./hooks/useRefreshToken";
 
 import "./App.css";
 
 function App() {
+   const { auth, setAuth, persist } = useAuth();
+   const axiosPrivate = useAxiosPrivate();
+   const refresh = useRefreshToken();
    const router = createBrowserRouter(
       createRoutesFromElements(
          <>
@@ -38,7 +45,17 @@ function App() {
                   <Route path="search" element={<Search />} />
 
                   {/* protected route */}
-                  <Route path="profile" element={<ProfileLayout />}>
+                  <Route
+                     path="profile"
+                     loader={profileLayoutLoader(
+                        auth,
+                        setAuth,
+                        persist,
+                        axiosPrivate,
+                        refresh
+                     )}
+                     element={<ProfileLayout />}
+                  >
                      <Route index element={<ProfilePosts />} />
                   </Route>
                </Route>
