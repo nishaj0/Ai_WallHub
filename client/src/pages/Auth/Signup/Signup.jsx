@@ -2,7 +2,14 @@ import React from "react";
 import "./signup.css";
 
 import { useState, useEffect } from "react";
-import { Link, Form, useActionData, useNavigation } from "react-router-dom";
+import {
+   Link,
+   Form,
+   useActionData,
+   useNavigation,
+   useNavigate,
+   useLocation,
+} from "react-router-dom";
 import {
    RiEyeLine,
    RiEyeOffLine,
@@ -11,14 +18,16 @@ import {
 } from "react-icons/ri";
 
 import axios from "../../../api/axios";
-const SIGNUP_URL = '/register';
+import useAuth from "../../../hooks/useAuth";
+const SIGNUP_URL = "/register";
 
 export async function action(obj) {
    const fromData = await obj.request.formData();
    const name = fromData.get("name");
    const email = fromData.get("email");
    const password = fromData.get("password");
-   let errorMessage = false;
+   let errorMessage;
+   let accessToken;
    try {
       const res = await axios.post(
          SIGNUP_URL,
@@ -28,11 +37,12 @@ export async function action(obj) {
             withCredentials: true,
          }
       );
+      accessToken = res?.data?.accessToken;
    } catch (error) {
       errorMessage = error.response.data.message;
    }
    // axios.post("http://localhost:5000/api/user/ssignup", )
-   return errorMessage;
+   return { errorMessage, userData: { email, accessToken } };
 }
 
 function Signup() {
@@ -44,9 +54,22 @@ function Signup() {
    });
    const actionData = useActionData();
    const navigation = useNavigation();
+   const navigate = useNavigate();
+   const location = useLocation();
 
+   const { auth, setAuth, persist, setPersist } = useAuth();
+   const from = location.state?.from?.pathname || "/";
+
+   // ? useEffect to set the error message and auth state when action is called
    useEffect(() => {
-      setErrorMessage(actionData);
+      setErrorMessage(actionData?.errorMessage);
+      setAuth((prev) => {
+         if (actionData?.userData) {
+            return actionData.userData;
+         } else {
+            return prev;
+         }
+      });
    }, [actionData, navigation.state]);
 
    const handlePassword = (e) => {
@@ -65,6 +88,21 @@ function Signup() {
          setErrorMessage(false);
       }
    }, [passwordData]);
+
+   // ? useEffect to set the persist state in the local storage
+   useEffect(() => {
+      localStorage.setItem("persist", persist);
+   }, [persist]);
+
+   // ? toggle the persist state
+   const togglePersist = () => {
+      setPersist((prev) => !prev);
+   };
+
+   // ? useEffect to redirect to the from path when the user is logged in
+   useEffect(() => {
+      if (actionData?.userData?.accessToken) navigate(from, { replace: true });
+   }, [actionData]);
 
    return (
       <div className="wallHub__signup">
@@ -145,6 +183,16 @@ function Signup() {
                <button disabled={navigation.state === "submitting"}>
                   {navigation.state === "submitting" ? "Signing..." : "Sign up"}
                </button>
+               <div className="wallHub__login-checkbox">
+                  <input
+                     type="checkbox"
+                     id="persist"
+                     onChange={togglePersist}
+                     checked={persist}
+                  />
+                  {/* <span className="wallHub__login-checkbox_custom-icon"></span> */}
+                  <label htmlFor="persist">Trust this device</label>
+               </div>
                <p className="wallHub__signup-agreement_p">
                   By registering, you agree to aiWallHub's{" "}
                   <Link to={"/terms-condition"}>Terms and Condition</Link> and{" "}

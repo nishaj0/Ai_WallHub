@@ -1,5 +1,6 @@
 const User = require("../model/User");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const handleNewUser = async (req, res) => {
    const { name, email, password } = req.body;
@@ -10,19 +11,57 @@ const handleNewUser = async (req, res) => {
    }
 
    const duplicate = await User.findOne({ email: email }).exec();
-   if (duplicate) return res.status(409).json({message:"email already exist"}); //Conflict
+   if (duplicate)
+      return res.status(409).json({ message: "email already exist" }); //Conflict
 
    try {
       // encrypt password
       const hashPassword = await bcrypt.hash(password, 10);
 
       // create user
-      const result = User.create({
+      const createdUser = User.create({
          name: name,
          email: email,
          password: hashPassword,
       });
-      res.status(201).json({ success: `new user ${name} created` });
+
+      const foundUser = await User.findOne({ email: email }).exec();
+
+      // create jwt
+      const accessToken = jwt.sign(
+         {
+            userInfo: {
+               email: foundUser.email,
+               roles: foundUser.roles,
+            },
+         },
+         process.env.ACCESS_TOKEN_SECRET,
+         { expiresIn: "10s" }
+      );
+
+      const refreshToken = jwt.sign(
+         { email: foundUser.email },
+         process.env.REFRESH_TOKEN_SECRET,
+         { expiresIn: "7d" }
+      );
+
+      foundUser.refreshToken = refreshToken;
+      const result = await foundUser.save();
+      console.log(result);
+
+      res.cookie("jwt", refreshToken, {
+         // ? from the fcc tutorial
+         // withCredentials: true,
+         httpOnly: true,
+         // sameSite:"None",
+         // secure:true,
+         maxAge: 24 * 60 * 60 * 1000 * 7,
+      });
+
+      res.status(201).json({
+         success: `new user ${name} created`,
+         accessToken,
+      });
    } catch (err) {
       res.status(500).json({ message: err.message });
    }
