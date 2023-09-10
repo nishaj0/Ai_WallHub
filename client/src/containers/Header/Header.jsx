@@ -3,15 +3,15 @@ import "./header.css";
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
-   RiSearchLine,
    RiAccountCircleFill,
-   RiLogoutBoxLine,
-   RiQuestionLine,
 } from "react-icons/ri";
 
 import logoImgDark from "../../assets/images/logo/main-logo_dark.svg";
 import logoImgLight from "../../assets/images/logo/main-logo_light.svg";
 import miniLogo from "../../assets/images/logo/mini-logo.png";
+
+import HeaderSearchBar from "./HeaderSearchBar/HeaderSearchBar";
+import HeaderMenu from "./HeaderMenu/HeaderMenu";
 
 import { isSmallScreen as checkScreenSize } from "../../utils";
 import useAuth from "../../hooks/useAuth";
@@ -23,9 +23,6 @@ function Header() {
    const [isNavAtTop, setIsNavAtTop] = useState(true);
    const [isTransparent, setIsTransparent] = useState(true);
    const [screenSize, setScreenSize] = useState(checkScreenSize());
-
-   // ? this state is used to store the search data
-   const [searchData, setSearchData] = useState({ search: "" });
 
    const navigate = useNavigate();
    const location = useLocation();
@@ -84,6 +81,7 @@ function Header() {
             setIsTransparent(true);
          }
       };
+
       // ? if the current path is "/" then it will add the event listener otherwise it will not
       if (currentPath === "/") {
          window.addEventListener("scroll", handleScroll);
@@ -95,38 +93,9 @@ function Header() {
       }
    }, [isNavAtTop, location]);
 
-   // ? this function is used to handle the search data
-   const handleSearch = (e) => {
-      setSearchData((prevFormData) => {
-         return {
-            ...prevFormData,
-            [e.target.name]: e.target.value,
-         };
-      });
-   };
-
-   const handleSubmit = (e) => {
-      e.preventDefault();
-   };
-
-   const signOut = async () => {
-      if(auth?.accessToken){
-         await logout();
-      }
-   };
-
    // ? component for NavLink used in the header
    function NavLinkTag({ to, content }) {
       return <NavLink to={to}>{content}</NavLink>;
-   }
-
-   // ? component for NavLink used in the header menu
-   function MenuLinkTag({ to, content }) {
-      return (
-         <NavLink to={to} className={"wallHub__header-menu_links-link"}>
-            {content}
-         </NavLink>
-      );
    }
 
    return (
@@ -151,41 +120,12 @@ function Header() {
                      alt="Logo Image"
                   />
                </Link>
-               {!isTransparent && (
-                  <div className="wallHub__header-search">
-                     <form onSubmit={handleSubmit}>
-                        <input
-                           type="search"
-                           name="search"
-                           placeholder={
-                              screenSize === "small"
-                                 ? "Search"
-                                 : "Search Wallpaper"
-                           }
-                           onChange={handleSearch}
-                           value={searchData.search}
-                        />
-                        <Link to={`search?keyword=${searchData.search}`}>
-                           <button type="submit">
-                              <RiSearchLine
-                                 color="#333333"
-                                 size={
-                                    screenSize === "medium" ||
-                                    screenSize === "small"
-                                       ? 20
-                                       : 27
-                                 }
-                              />
-                           </button>
-                        </Link>
-                     </form>
-                  </div>
-               )}
+               {!isTransparent && <HeaderSearchBar />}
                <nav className="wallHub__nav">
                   {isLogged ? (
                      <>
                         <button
-                           onClick={() => setToggleMenu((prev)=> !prev)}
+                           onClick={() => setToggleMenu((prev) => !prev)}
                            className="wallHub__nav-icon"
                         >
                            <RiAccountCircleFill
@@ -199,23 +139,7 @@ function Header() {
                               size={30}
                            />
                         </button>
-                        {toggleMenu && (
-                           <div className="wallHub__header-menu">
-                              <h4>None</h4>
-                              <div className="wallHub__header-menu_links">
-                                 <Link to={"/profile"}>Profile</Link>
-                              </div>
-                              <hr />
-                              <div className="wallHub__header-menu_options">
-                                 <Link to={"/help"}>
-                                    <RiQuestionLine color="000" /> Help
-                                 </Link>
-                                 <Link onClick={()=> signOut()}>
-                                    <RiLogoutBoxLine color="000" /> Logout
-                                 </Link>
-                              </div>
-                           </div>
-                        )}
+                        {toggleMenu && <HeaderMenu />}
                      </>
                   ) : (
                      <div className="wallHub__nav-button">

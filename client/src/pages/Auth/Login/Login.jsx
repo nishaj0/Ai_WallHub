@@ -11,16 +11,16 @@ import {
    useLocation,
    redirect,
 } from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
 // import useRefreshToken from "../../../hooks/useRefreshToken";
 import {
    RiEyeLine,
    RiEyeOffLine,
-   RiGoogleFill,
    RiErrorWarningFill,
 } from "react-icons/ri";
 
 import axios from "../../../api/axios";
+import useAuth from "../../../hooks/useAuth";
+import { GoogleSignButton } from "../../../components";
 const LOGIN_URL = "/login";
 
 // ? action function that will be called when the form is submitted
@@ -162,10 +162,7 @@ function Login() {
             {/* <button onClick={() => refresh()}>refresh</button> */}
 
             <hr className="wallHub__login-hr" />
-            <button className="wallHub__login-google_button">
-               <RiGoogleFill color="#333" size={24} />
-               Sign in with Google
-            </button>
+            <GoogleSignButton/>
             <Link className="wallHub__login-link_signup" to={"/signup"}>
                Don't have an account?
             </Link>

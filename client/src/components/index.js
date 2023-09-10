@@ -1,3 +1,4 @@
-import SearchTag from "./SearchTag/SearchTag"
+import SearchTag from "./SearchTag/SearchTag";
+import GoogleSignButton from "./GoogleSignButton/GoogleSignButton";
 
-export{SearchTag}
+export { SearchTag, GoogleSignButton };

@@ -13,12 +13,13 @@ import {
 import {
    RiEyeLine,
    RiEyeOffLine,
-   RiGoogleFill,
    RiErrorWarningFill,
 } from "react-icons/ri";
 
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
+import { GoogleSignButton } from "../../../components";
+
 const SIGNUP_URL = "/register";
 
 export async function action(obj) {
@@ -66,7 +67,6 @@ function Signup() {
 
    const { auth, setAuth, persist, setPersist } = useAuth();
    const from = location.state?.from?.pathname || "/";
-   console.log({from, location,});
 
    // ? useEffect to set the error message and auth state when action is called
    useEffect(() => {
@@ -214,10 +214,7 @@ function Signup() {
                </p>
             </Form>
             <hr className="wallHub__signup-hr" />
-            <button className="wallHub__signup-google_button">
-               <RiGoogleFill color="#333" size={24} />
-               Sign up with Google
-            </button>
+            <GoogleSignButton />
             <Link className="wallHub__signup-link_login" to={"/login"}>
                Already have an account?
             </Link>
