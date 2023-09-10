@@ -38,10 +38,17 @@ export async function action(obj) {
          }
       );
       accessToken = res?.data?.accessToken;
-   } catch (error) {
-      errorMessage = error.response.data.message;
+   } catch (err) {
+      if (!err?.response) {
+         errorMessage = "no Server Response";
+      } else if (err.response?.status === 400) {
+         errorMessage = "missing email or password";
+      } else if (err.response?.status === 401) {
+         errorMessage = "email or password not match";
+      } else {
+         errorMessage = "login failed";
+      }
    }
-   // axios.post("http://localhost:5000/api/user/ssignup", )
    return { errorMessage, userData: { email, accessToken } };
 }
 
@@ -59,6 +66,7 @@ function Signup() {
 
    const { auth, setAuth, persist, setPersist } = useAuth();
    const from = location.state?.from?.pathname || "/";
+   console.log({from, location,});
 
    // ? useEffect to set the error message and auth state when action is called
    useEffect(() => {
@@ -72,6 +80,7 @@ function Signup() {
       });
    }, [actionData, navigation.state]);
 
+   // ? function to handle the password
    const handlePassword = (e) => {
       setPasswordData((prevFormData) => {
          return {
@@ -81,6 +90,7 @@ function Signup() {
       });
    };
 
+   // ? useEffect to set the error message when the password is not matched
    useEffect(() => {
       if (passwordData.password !== passwordData.tempPassword) {
          setErrorMessage("Password not matched");
@@ -99,7 +109,7 @@ function Signup() {
       setPersist((prev) => !prev);
    };
 
-   // ? useEffect to redirect to the from path when the user is logged in
+   // ? useEffect to redirect to the from path when the user is signed up
    useEffect(() => {
       if (actionData?.userData?.accessToken) navigate(from, { replace: true });
    }, [actionData]);
@@ -120,6 +130,7 @@ function Signup() {
                   name="name"
                   placeholder="John Doe"
                   type="name"
+                  required
                />
                <div className="wallHub__signup-label_container">
                   <label htmlFor="wallHub__signup-email">Email address</label>
@@ -130,6 +141,7 @@ function Signup() {
                   name="email"
                   placeholder="john.doe@example.com"
                   type="email"
+                  required
                />
                <div className="wallHub__signup-label_container">
                   <label htmlFor="wallHub__signup-password">Password</label>
@@ -143,6 +155,7 @@ function Signup() {
                      type={isEyeToggle ? "password" : "text"}
                      pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                      title="Password must be at least 8 characters long and contain at least one letter and one number"
+                     required
                   />
                   <span
                      className="wallHub__signup-password_eye-span"
@@ -162,6 +175,7 @@ function Signup() {
                      name="password"
                      placeholder="Confirm password"
                      type={isEyeToggle ? "password" : "text"}
+                     required
                   />
                   <span
                      className="wallHub__signup-password_eye-span"
