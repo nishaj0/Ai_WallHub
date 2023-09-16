@@ -17,7 +17,7 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 export const loader =
    (auth, setAuth, persist, axiosPrivate, refresh) => async () => {
       // ? using useEffect instead of loader, because there is some bugs when using loader
-      // ? 1. send so many requests to server 2. persist login not working
+      // ? 1. send so many requests to server(may be) 2. persist login not working
       // let responseData;
       // // console.log(auth);
 
@@ -78,6 +78,7 @@ function Profile() {
    const navigate = useNavigate();
 
    const { auth } = useAuth();
+   console.log({ auth });
    const axiosPrivate = useAxiosPrivate();
 
    useEffect(() => {

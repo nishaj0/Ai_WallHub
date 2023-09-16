@@ -52,7 +52,8 @@
 
 .wallHub__signup-email,
 .wallHub__signup-password,
-.wallHub__signup-name {
+.wallHub__signup-name,
+.wallHub__signup-username {
    border: solid 1px #cfdfe7;
    margin-top: .5rem;
    padding: .75rem;

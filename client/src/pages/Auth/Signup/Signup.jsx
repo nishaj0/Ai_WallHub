@@ -23,16 +23,17 @@ import { GoogleSignButton } from "../../../components";
 const SIGNUP_URL = "/register";
 
 export async function action(obj) {
-   const fromData = await obj.request.formData();
-   const name = fromData.get("name");
-   const email = fromData.get("email");
-   const password = fromData.get("password");
+   const formData = await obj.request.formData();
+   const name = formData.get("name");
+   const username = formData.get("username");
+   const email = formData.get("email");
+   const password = formData.get("password");
    let errorMessage;
    let accessToken;
    try {
       const res = await axios.post(
          SIGNUP_URL,
-         JSON.stringify({ name, email, password }),
+         JSON.stringify({ name, username, email, password }),
          {
             headers: { "Content-Type": "application/json" },
             withCredentials: true,
@@ -130,6 +131,17 @@ function Signup() {
                   name="name"
                   placeholder="John Doe"
                   type="name"
+                  required
+               />
+               <div className="wallHub__signup-label_container">
+                  <label htmlFor="wallHub__signup-name">User Name</label>
+               </div>
+               <input
+                  id="wallHub__signup-username"
+                  className="wallHub__signup-username"
+                  name="username"
+                  placeholder="john.doe"
+                  type="username"
                   required
                />
                <div className="wallHub__signup-label_container">

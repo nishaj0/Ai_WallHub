@@ -3,11 +3,11 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const handleNewUser = async (req, res) => {
-   const { name, email, password } = req.body;
-   if (!name || !email || !password) {
+   const { name, username, email, password } = req.body;
+   if (!name || !username || !email || !password) {
       return res
          .status(400)
-         .json({ message: "name, email and password are required" });
+         .json({ message: "name, username, email and password are required" });
    }
 
    const duplicate = await User.findOne({ email: email }).exec();
@@ -21,11 +21,13 @@ const handleNewUser = async (req, res) => {
       // create user
       const createdUser = User.create({
          name: name,
+         username: username,
          email: email,
          password: hashPassword,
       });
 
       const foundUser = await User.findOne({ email: email }).exec();
+      console.log({foundUser});
 
       // create jwt
       const accessToken = jwt.sign(
@@ -59,7 +61,7 @@ const handleNewUser = async (req, res) => {
       });
 
       res.status(201).json({
-         success: `new user ${name} created`,
+         success: `new user ${username} created`,
          accessToken,
       });
    } catch (err) {

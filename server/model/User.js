@@ -6,6 +6,11 @@ const userSchema = new Schema({
       type: String,
       required: true,
    },
+   username: {
+      type: String,
+      required: true,
+      unique: true,
+   },
    roles: {
       type: String,
       required: true,

@@ -10,6 +10,7 @@ const handleRefreshToken = async (req, res) => {
 
    const foundUser = await User.findOne({ refreshToken }).exec();
    if (!foundUser) return res.sendStatus(403); //Forbidden
+   
    // evaluate jwt
    jwt.verify(
       refreshToken,

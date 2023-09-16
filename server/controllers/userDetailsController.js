@@ -8,6 +8,7 @@ const getUserDetails = async (req, res) => {
 
    res.status(200).json({
       name: foundUser.name,
+      username: foundUser.username,
       email: foundUser.email,
       posts: foundUser.posts,
    });
