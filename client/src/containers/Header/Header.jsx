@@ -1,21 +1,17 @@
 import React from "react";
 import "./header.css";
 import { useState, useEffect } from "react";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import {
-   RiAccountCircleFill,
-} from "react-icons/ri";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import logoImgDark from "../../assets/images/logo/main-logo_dark.svg";
 import logoImgLight from "../../assets/images/logo/main-logo_light.svg";
 import miniLogo from "../../assets/images/logo/mini-logo.png";
 
+import HeaderNav from "./HeaderNav/HeaderNav";
 import HeaderSearchBar from "./HeaderSearchBar/HeaderSearchBar";
-import HeaderMenu from "./HeaderMenu/HeaderMenu";
 
 import { isSmallScreen as checkScreenSize } from "../../utils";
 import useAuth from "../../hooks/useAuth";
-import useLogout from "../../hooks/useLogout";
 
 function Header() {
    const [isLogged, setIsLogged] = useState(false);
@@ -33,7 +29,6 @@ function Header() {
    const defaultNavClass = "wallHub__header-default";
 
    const { auth } = useAuth();
-   const logout = useLogout();
 
    useEffect(() => {
       if (auth?.accessToken) {
@@ -93,11 +88,6 @@ function Header() {
       }
    }, [isNavAtTop, location]);
 
-   // ? component for NavLink used in the header
-   function NavLinkTag({ to, content }) {
-      return <NavLink to={to}>{content}</NavLink>;
-   }
-
    return (
       <div
          className={
@@ -121,40 +111,12 @@ function Header() {
                   />
                </Link>
                {!isTransparent && <HeaderSearchBar />}
-               <nav className="wallHub__nav">
-                  {isLogged ? (
-                     <>
-                        <button
-                           onClick={() => setToggleMenu((prev) => !prev)}
-                           className="wallHub__nav-icon"
-                        >
-                           <RiAccountCircleFill
-                              color={
-                                 toggleMenu
-                                    ? "#808080"
-                                    : isTransparent
-                                    ? "#f8f8f8"
-                                    : "#333"
-                              }
-                              size={30}
-                           />
-                        </button>
-                        {toggleMenu && <HeaderMenu />}
-                     </>
-                  ) : (
-                     <div className="wallHub__nav-button">
-                        <div className="wallHub__nav-links">
-                           <NavLinkTag to="/login" content="Login" />
-                        </div>
-                        <Link to="/signup" className="wallHub__nav-signup">
-                           <button>Sign up</button>
-                        </Link>
-                        <Link to="/login" className="wallHub__nav-login">
-                           <button>Login</button>
-                        </Link>
-                     </div>
-                  )}
-               </nav>
+               <HeaderNav
+                  isTransparent={isTransparent}
+                  isLogged={isLogged}
+                  toggleMenu={toggleMenu}
+                  setToggleMenu={setToggleMenu}
+               />
             </div>
          </div>
       </div>
