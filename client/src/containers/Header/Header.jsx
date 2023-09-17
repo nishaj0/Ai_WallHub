@@ -10,15 +10,14 @@ import miniLogo from "../../assets/images/logo/mini-logo.png";
 import HeaderNav from "./HeaderNav/HeaderNav";
 import HeaderSearchBar from "./HeaderSearchBar/HeaderSearchBar";
 
-import { isSmallScreen as checkScreenSize } from "../../utils";
 import useAuth from "../../hooks/useAuth";
+import useScreenWidth from "../../hooks/useScreenWidth";
 
 function Header() {
    const [isLogged, setIsLogged] = useState(false);
    const [toggleMenu, setToggleMenu] = useState(false);
    const [isNavAtTop, setIsNavAtTop] = useState(true);
    const [isTransparent, setIsTransparent] = useState(true);
-   const [screenSize, setScreenSize] = useState(checkScreenSize());
 
    const navigate = useNavigate();
    const location = useLocation();
@@ -29,6 +28,7 @@ function Header() {
    const defaultNavClass = "wallHub__header-default";
 
    const { auth } = useAuth();
+   let screenSize = useScreenWidth();
 
    useEffect(() => {
       if (auth?.accessToken) {
@@ -40,24 +40,6 @@ function Header() {
       // console.log({ isLogged });
    }, [auth]);
 
-   useEffect(() => {
-      // adding event lister for check screen size
-      const handleResize = () => {
-         if (window.innerWidth <= 550) {
-            setScreenSize("small");
-         } else if (window.innerWidth <= 768) {
-            setScreenSize("medium");
-         } else {
-            setScreenSize("large");
-         }
-      };
-
-      handleResize();
-      window.addEventListener("resize", handleResize);
-      return () => {
-         window.removeEventListener("resize", handleResize);
-      };
-   }, []);
 
    // ? turn off toggle menu when route is change
    useEffect(() => {
