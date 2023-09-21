@@ -8,6 +8,7 @@ import Login from "./Auth/Login/Login";
 import LoginOtp from "./Auth/LoginOtp/LoginOtp";
 import ProfileLayout from "./Profile/ProfileLayout/ProfileLayout";
 import ProfilePosts from "./Profile/ProfilePosts/ProfilePosts";
+import UploadPost from "./UploadPost/UploadPost";
 
 export {
    Home,
@@ -19,5 +20,6 @@ export {
    Signup,
    LoginOtp,
    ProfileLayout,
-   ProfilePosts
+   ProfilePosts,
+   UploadPost
 };

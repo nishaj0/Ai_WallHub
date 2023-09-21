@@ -16,6 +16,7 @@ import {
    LoginOtp,
    ProfileLayout,
    ProfilePosts,
+   UploadPost,
 } from "./pages";
 import { action as signupAction } from "./pages/Auth/Signup/Signup.jsx";
 import { action as loginAction } from "./pages/Auth/Login/Login.jsx";
@@ -60,6 +61,9 @@ function App() {
                   </Route>
                </Route>
             </Route>
+            {/* page without header and footer */}
+            <Route path="upload-post" element={<UploadPost />} />
+            {/* Auth pages */}
             <Route path="signup" action={signupAction} element={<Signup />} />
             <Route path="login" action={loginAction} element={<Login />} />
             <Route path="login-otp" element={<LoginOtp />} />
