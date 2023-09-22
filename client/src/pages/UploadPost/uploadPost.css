@@ -23,7 +23,7 @@
    cursor: pointer;
 }
 
-.wallHub__uploadPost-form{
+.wallHub__uploadPost-form {
    display: flex;
    flex-direction: column;
    align-items: flex-start;
@@ -32,7 +32,7 @@
    margin-top: 3rem;
 }
 
-.wallHub__uploadPost-form_textInput{
+.wallHub__uploadPost-form_textInput {
    width: 100%;
    border-radius: 10px;
    background: var(--main-color-light);
@@ -43,12 +43,13 @@
    font-weight: var(--font-weight-extreme);
    white-space: pre-wrap;
    word-wrap: break-word;
-   &::placeholder{
+
+   &::placeholder {
       color: var(--light-color-gray);
    }
 }
 
-.wallHub__uploadPost-form_imgInput-container{
+.wallHub__uploadPost-form_imgInput-container {
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -63,17 +64,17 @@
    cursor: pointer;
 }
 
-.wallHub__uploadPost-form_imgInput-container h4{
+.wallHub__uploadPost-form_imgInput-container h4 {
    margin-top: 1rem;
    font-size: var(--h4-font-size);
    color: var(--main-color-dark);
 }
 
-.wallHub__uploadPost-form_imgInput-container h4 span{
+.wallHub__uploadPost-form_imgInput-container h4 span {
    color: var(--main-sky-blue);
 }
 
-.wallHub__uploadPost-form_image-container{
+.wallHub__uploadPost-form_image-container {
    display: flex;
    align-items: flex-start;
    justify-content: flex-start;
@@ -81,7 +82,7 @@
    width: 100%;
 }
 
-.wallHub__uploadPost-form_image-container img{
+.wallHub__uploadPost-form_image-container img {
    max-width: 100%;
    max-height: 100%;
    width: auto;
@@ -89,7 +90,7 @@
    border-radius: 10px;
 }
 
-.wallHub__uploadPost-form_textarea{
+.wallHub__uploadPost-form_textarea {
    width: 100%;
    height: 100px;
    margin-top: 1rem;
@@ -101,7 +102,136 @@
    font-weight: var(--font-weight-mid);
    font-family: var(--primary-font-family);
    resize: none;
-   &::placeholder{
+
+   &::placeholder {
       color: var(--light-color-gray);
    }
+}
+
+.wallHub__uploadPost-form_tag-head {
+   font-size: var(--h2-font-size);
+   color: var(--main-color-dark);
+}
+
+.wallHub__uploadPost-form_tag-container {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   justify-content: flex-start;
+   margin-top: 1rem;
+   width: 100%;
+   background: var(--input-bg-color);
+   border-radius: 15px;
+   padding: 1rem 2rem;
+}
+
+.wallHub__uploadPost-form_tag-display {
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   flex-wrap: wrap;
+   width: 100%;
+   margin-top: .5rem;
+   margin-bottom: 2rem;
+   padding: .5rem;
+   background-color: var(--main-color-light);
+   border-radius: 15px;
+}
+
+.wallHub__uploadPost-form_tag-box {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: .5rem .5rem .5rem .5rem;
+   padding: .5rem 1rem;
+   background-color: var(--input-bg-color);
+   color: var(--main-color-dark);
+   border-radius: 10px;
+   position: relative;
+}
+
+.wallHub__uploadPost-form_tag-box svg {
+   position: absolute;
+   /* little outside of the relative */
+   top: -5px;
+   right: -5px;
+   width: 20px;
+   height: 20px;
+   fill: var(--main-color-dark);
+   cursor: pointer;
+}
+
+.wallHub__uploadPost-form_tagInput-container {
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   width: 100%;
+}
+
+.wallHub__uploadPost-form_tagInput {
+   width: 250px;
+   height: 40px;
+   padding: 1rem;
+   border-radius: 10px;
+   outline: none;
+   border: 2px var(--light-color-gray) solid;
+   background: var(--main-color-light);
+   color: var(--main-color-dark);
+   font-size: var(--p-font-size);
+   font-weight: var(--font-weight-low);
+   font-family: var(--primary-font-family);
+
+   &::placeholder {
+      color: var(--light-color-gray);
+   }
+}
+
+.wallHub__uploadPost-form_tagButton {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-left: 1rem;
+   padding: .5rem 1rem;
+   border-radius: 10px;
+   background: var(--main-color-dark);
+   border: none;
+   color: var(--main-color-light);
+   font-size: var(--p-font-size);
+   font-weight: var(--font-weight-mid);
+   font-family: var(--primary-font-family);
+   cursor: pointer;
+}
+
+.wallHub__uploadPost-form_submitButton-container {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   justify-content: flex-start;
+   margin-top: 4rem;
+   width: 100%;
+}
+
+.wallHub__uploadPost-form_submitButton-container p {
+   font-size: var(--small-font-size);
+   color: var(--main-color-dark);
+}
+
+.wallHub__uploadPost-form_submitButton-container p a {
+   color: var(--main-sky-blue);
+   text-decoration: underline;
+}
+
+.wallHub__uploadPost-form_submitButton {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 1rem;
+   padding: .5rem 1rem;
+   border-radius: 10px;
+   background: var(--main-sky-blue);
+   border: none;
+   color: var(--main-color-light);
+   font-size: var(--p-font-size);
+   font-family: var(--primary-font-family);
+   cursor: pointer;
 }
