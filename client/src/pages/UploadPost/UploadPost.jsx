@@ -6,6 +6,7 @@ import { Form } from "react-router-dom";
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { BsImage } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
+import useScreenWidth from "../../hooks/useScreenWidth";
 
 function UploadPost() {
    const [image, setImage] = useState(null);
@@ -15,6 +16,7 @@ function UploadPost() {
    });
    const [tags, setTags] = useState([]);
    const [tagInput, setTagInput] = useState("");
+   let screenSize = useScreenWidth();
 
    useEffect(() => {
       console.log(tags);
@@ -95,7 +97,10 @@ function UploadPost() {
                   className="wallHub__uploadPost-form_imgInput-container"
                   onClick={containerHandleClick}
                >
-                  <BsImage color="#8ed7f8" size={70} />
+                  <BsImage
+                     color="#8ed7f8"
+                     size={screenSize === "small" ? 50 : 70}
+                  />
                   <h4>
                      Upload image or <span>drag and drop</span>
                   </h4>

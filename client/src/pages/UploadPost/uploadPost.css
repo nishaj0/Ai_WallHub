@@ -55,7 +55,7 @@
    align-items: center;
    justify-content: center;
    margin-top: 2rem;
-   max-width: 900px;
+   padding: 0 1rem;
    width: 100%;
    height: 400px;
    background: var(--light-input-bg-color);
@@ -234,4 +234,39 @@
    font-size: var(--p-font-size);
    font-family: var(--primary-font-family);
    cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+   .wallHub__uploadPost-form_imgInput-container {
+      height: 300px;
+   }
+
+   .wallHub__uploadPost-form_image-container {
+      height: 300px;
+   }
+}
+
+@media only screen and (max-width: 550px) {
+   .wallHub__uploadPost-form_imgInput-container {
+      height: 200px;
+
+   }
+
+   .wallHub__uploadPost-form_image-container {
+      height: 200px;
+   }
+   .wallHub__uploadPost-form_tag-container {
+      padding: 1rem;
+   }
+   .wallHub__uploadPost-form_tagInput-container{
+      flex-direction: column;
+      align-items: flex-start;
+   }
+   .wallHub__uploadPost-form_tagInput{
+      width: 100%;
+   }
+   .wallHub__uploadPost-form_tagButton{
+      margin-left: 0;
+      margin-top: 1rem;
+   }
 }
