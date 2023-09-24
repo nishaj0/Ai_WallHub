@@ -10,6 +10,9 @@ function HeaderNav({ isTransparent, isLogged, toggleMenu, setToggleMenu }) {
       <nav className="wallHub__nav">
          {isLogged ? (
             <>
+               <Link to="/upload-post" className="wallHub__nav-upload">
+                  Upload
+               </Link>
                <button
                   onClick={() => setToggleMenu((prev) => !prev)}
                   className="wallHub__nav-icon"

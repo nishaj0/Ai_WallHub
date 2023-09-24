@@ -16,6 +16,32 @@
    color: var(--main-color-dark);
 }
 
+.wallHub__nav-upload{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: .5rem 1rem;
+   font-size: var(--small-font-size);
+   background: var(--main-sky-blue);
+   color: var(--main-color-light);
+   border-radius: 5px;
+}
+
+.wallHub__nav-icon {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-left: 1rem;
+   cursor: pointer;
+   border: none;
+   background: transparent;
+}
+
+.wallHub__nav-icon svg:hover {
+   fill: #808080;
+   transition: var(--default-transition);
+}
+
 /*! font colors are specified at top */
 .wallHub__nav-button a {
    margin: 0 0 0 2rem;
@@ -30,7 +56,7 @@
 }
 
 .wallHub__nav-signup button,
-.wallHub__nav-login button {
+.wallHub__nav-login button{
    padding: 0.5rem 1rem;
    border: none;
    border-radius: 5px;
@@ -43,20 +69,6 @@
 
 .wallHub__nav-login {
    display: none;
-}
-
-.wallHub__nav-icon {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   cursor: pointer;
-   border: none;
-   background: transparent;
-}
-
-.wallHub__nav-icon svg:hover {
-   fill: #808080;
-   transition: var(--default-transition);
 }
 
 @media screen and (max-width:1050px) {
@@ -74,5 +86,11 @@
 @media screen and (max-width: 1050px) {
    .wallHub__nav a {
       margin: 0;
+   }
+}
+
+@media screen and (max-width: 768px){
+   .wallHub__nav-upload{
+      display: none;
    }
 }

@@ -38,6 +38,7 @@ function App() {
          <>
             <Route element={<PersistLogin />}>
                <Route path="*" element={<h2>page not found</h2>} />
+               <Route path="upload-post" element={<UploadPost />} />
                <Route path="/" element={<Layout />}>
                   <Route index element={<Home />} />
                   <Route path="catagories" element={<Catagories />} />
@@ -62,7 +63,6 @@ function App() {
                </Route>
             </Route>
             {/* page without header and footer */}
-            <Route path="upload-post" element={<UploadPost />} />
             {/* Auth pages */}
             <Route path="signup" action={signupAction} element={<Signup />} />
             <Route path="login" action={loginAction} element={<Login />} />

@@ -2,7 +2,7 @@ import React from "react";
 import "./uploadPost.css";
 
 import { useState, useEffect } from "react";
-import { Form } from "react-router-dom";
+import { Form, useLocation, Link } from "react-router-dom";
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { BsImage } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -16,11 +16,16 @@ function UploadPost() {
    });
    const [tags, setTags] = useState([]);
    const [tagInput, setTagInput] = useState("");
+
+   const location = useLocation();
+   const from = location.state?.from?.pathname || "/";
+   // console.log(location);
+
    let screenSize = useScreenWidth();
 
-   useEffect(() => {
-      console.log(tags);
-   }, [tags]);
+   // useEffect(() => {
+   //    console.log(tags);
+   // }, [tags]);
 
    function handleImage(e) {
       if (e.target.files[0]) {
@@ -73,9 +78,9 @@ function UploadPost() {
 
    return (
       <div className="wallHub__uploadPost">
-         <button className="wallHub__uploadPost-backButton">
+         <Link className="wallHub__uploadPost-backButton" to={from}>
             <BiLeftArrowAlt />
-         </button>
+         </Link>
          <form className="wallHub__uploadPost-form">
             <input
                type="text"

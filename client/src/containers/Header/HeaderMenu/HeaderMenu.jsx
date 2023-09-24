@@ -3,6 +3,7 @@ import "./headerMenu.css";
 
 import { Link } from "react-router-dom";
 import { RiQuestionLine, RiLogoutBoxLine } from "react-icons/ri";
+import { FiUpload } from "react-icons/fi";
 import useAuth from "../../../hooks/useAuth";
 import useLogout from "../../../hooks/useLogout";
 
@@ -23,6 +24,9 @@ function HeaderMenu() {
          </div>
          <hr />
          <div className="wallHub__header-menu_options">
+            <Link to={"/upload-post"}>
+               <FiUpload color="000" /> Upload
+            </Link>
             <Link to={"/help"}>
                <RiQuestionLine color="000" /> Help
             </Link>
