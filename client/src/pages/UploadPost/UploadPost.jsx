@@ -2,24 +2,32 @@ import React from "react";
 import "./uploadPost.css";
 
 import { useState, useEffect } from "react";
-import { Form, useLocation, Link } from "react-router-dom";
+import { Form, useLocation, Link, useNavigate } from "react-router-dom";
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { BsImage } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
 import useScreenWidth from "../../hooks/useScreenWidth";
+import axios from "axios";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 function UploadPost() {
+   const [imageUrl, setImageUrl] = useState(null);
    const [image, setImage] = useState(null);
-   const [formData, setFormData] = useState({
+   // console.log(imageUrl);
+   const [formInputData, setFormInputData] = useState({
       title: "",
       prompt: "",
    });
    const [tags, setTags] = useState([]);
    const [tagInput, setTagInput] = useState("");
+   const [error, setError] = useState(false);
+   const [loading, setLoading] = useState(false);
 
    const location = useLocation();
+   const navigate = useNavigate();
    const from = location.state?.from?.pathname || "/";
    // console.log(location);
+   const axiosPrivate = useAxiosPrivate();
 
    let screenSize = useScreenWidth();
 
@@ -27,12 +35,18 @@ function UploadPost() {
    //    console.log(tags);
    // }, [tags]);
 
+   // ? this function is used to set the image url to the image state
    function handleImage(e) {
       if (e.target.files[0]) {
-         setImage(URL.createObjectURL(e.target.files[0]));
+         // ? creating image url
+         setImageUrl(URL.createObjectURL(e.target.files[0]));
+
+         // ? setting image to image state
+         setImage(e.target.files[0]);
       }
    }
 
+   // ? this function is used to click the input element when user clicked on the container
    function containerHandleClick() {
       const input = document.getElementById(
          "wallHub__uploadPost-form_imgInput"
@@ -41,8 +55,8 @@ function UploadPost() {
    }
 
    function handleChange(e) {
-      setFormData({
-         ...formData,
+      setFormInputData({
+         ...formInputData,
          [e.target.name]: e.target.value,
       });
    }
@@ -51,6 +65,7 @@ function UploadPost() {
       setTagInput(e.target.value);
    }
 
+   // ? this function is called when user clicked add button it will add tag to tags array
    function addTag() {
       if (tagInput.length > 0) {
          setTags([...tags, tagInput]);
@@ -64,7 +79,7 @@ function UploadPost() {
       }
    }
 
-   // function for when user clicked close button on tag
+   // ? function for when user clicked close button on tag
    function handleTagClose(e) {
       let tag;
       if (e.target.tagName === "svg") {
@@ -74,6 +89,44 @@ function UploadPost() {
       }
       const newTags = tags.filter((t) => t != tag);
       setTags(newTags);
+   }
+
+   // ? this function is called when user clicked upload button
+   async function handleSubmit(e) {
+      e.preventDefault();
+      const controller = new AbortController();
+      console.log(controller);
+      try {
+         if (formInputData.title && image) {
+            setLoading(true);
+            console.log("start");
+
+            // ? creating form data
+            const formData = new FormData();
+            formData.append("image", image);
+            formData.append("title", formInputData.title);
+            formData.append("prompt", formInputData.prompt);
+            formData.append("tags", tags);
+
+            // ? sending request to server
+            const response = await axiosPrivate.post("api/upload", formData);
+
+            console.log("end");
+            console.log(response);
+            navigate(from);
+         } else {
+            setError("title and image are required");
+         }
+      } catch (err) {
+         if (axios.isCancel(err)) {
+            console.log("Request cancelled:", err.message);
+         } else {
+            console.error(err);
+            navigate(from);
+         }
+      } finally {
+         setLoading(false);
+      }
    }
 
    return (
@@ -89,13 +142,13 @@ function UploadPost() {
                name="title"
                placeholder="Add title"
                onChange={(e) => handleChange(e)}
-               value={formData.title}
+               value={formInputData.title}
                required
                maxLength="50"
             />
-            {image ? (
+            {imageUrl ? (
                <div className="wallHub__uploadPost-form_image-container">
-                  <img src={image} />
+                  <img src={imageUrl} />
                </div>
             ) : (
                <div
@@ -107,7 +160,7 @@ function UploadPost() {
                      size={screenSize === "small" ? 50 : 70}
                   />
                   <h4>
-                     Upload image or <span>drag and drop</span>
+                     Upload image or <span>drag and drop(10mb max)</span>
                   </h4>
                   <input
                      type="file"
@@ -129,7 +182,7 @@ function UploadPost() {
                name="prompt"
                placeholder="Prompt (optional)"
                onChange={(e) => handleChange(e)}
-               value={formData.prompt}
+               value={formInputData.prompt}
             />
             <h2 className="wallHub__uploadPost-form_tag-head">Tags</h2>
             <div className="wallHub__uploadPost-form_tag-container">
@@ -176,7 +229,10 @@ function UploadPost() {
                <p>
                   This post must follow <a href="#">Content Guidelines</a>
                </p>
-               <button className="wallHub__uploadPost-form_submitButton">
+               <button
+                  className="wallHub__uploadPost-form_submitButton"
+                  onClick={(e) => handleSubmit(e)}
+               >
                   Upload
                </button>
             </div>
