@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const multer = require("multer");
 const connectDB = require("./config/dbConn");
 const corsOptions = require("./config/corsOption");
 const credentials = require("./middlewares/credentials");
@@ -22,9 +23,15 @@ app.use(cors(corsOptions));
 //* require('crypto').randomBytes(64).toString('hex')
 
 // middleware for json
-app.use(express.json());
+app.use(express.json({}));
 
 app.use(cookieParser());
+
+
+// Configure multer storage
+const storage = multer.memoryStorage(); // Use memory storage for multer
+const upload = multer({ storage: storage }); // Initialize multer with the storage configuration
+
 
 //routers
 app.use("/register", require("./routes/register"));
@@ -35,6 +42,7 @@ app.use("/logout", require("./routes/logout"));
 app.use(verifyJWT);
 // protected end points
 app.use("/api/profile", require("./routes/api/profile"));
+app.use("/api/upload", require("./routes/api/upload"));
 
 mongoose.connection.once("open", () => {
    console.log("connected to DB");
