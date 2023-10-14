@@ -6,12 +6,17 @@ const postSchema = new Schema({
       type: String,
       required: true,
    },
-   cloudinary_id: {
+   cloudinaryAsset_id: {
       type: String,
       required: true,
    },
+   cloudinaryPublic_id:{
+      type:String,
+      required: true,
+   },
+   // this will store the public url of the image stored in cloudinary
    publicImgUrl: {
-      type: string,
+      type: String,
       required: true,
    },
    prompt: {
@@ -21,8 +26,16 @@ const postSchema = new Schema({
       type: [String],
    },
    // this will store the username of the user who posted the post
-   username: {
-      type: string,
+   userEmail: {
+      type: String,
+      required: true,
+   },
+   width: {
+      type: Number,
+      required: true,
+   },
+   height: {
+      type: Number,
       required: true,
    },
    // this will store the date of the post's creation
@@ -31,3 +44,5 @@ const postSchema = new Schema({
       default: Date.now,
    },
 });
+
+module.exports = mongoose.model("Post", postSchema);
