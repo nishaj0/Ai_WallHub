@@ -12,15 +12,12 @@ import {
    redirect,
 } from "react-router-dom";
 // import useRefreshToken from "../../../hooks/useRefreshToken";
-import {
-   RiEyeLine,
-   RiEyeOffLine,
-   RiErrorWarningFill,
-} from "react-icons/ri";
+import { RiEyeLine, RiEyeOffLine, RiErrorWarningFill } from "react-icons/ri";
 
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
 import { GoogleSignButton } from "../../../components";
+import FormError from "../../../components/FormError/FormError";
 const LOGIN_URL = "/login";
 
 // ? action function that will be called when the form is submitted
@@ -64,7 +61,7 @@ function Login() {
    const navigation = useNavigation();
    const navigate = useNavigate();
    const location = useLocation();
-   
+
    const from = location.state?.from?.pathname || "/";
    const { auth, setAuth, persist, setPersist } = useAuth();
    // const refresh = useRefreshToken();
@@ -139,12 +136,7 @@ function Login() {
                      )}
                   </span>
                </div>
-               {errorMessage && (
-                  <p className="wallHub__login-error">
-                     <RiErrorWarningFill />
-                     {errorMessage}
-                  </p>
-               )}
+               {errorMessage && <FormError errorMessage={errorMessage} />}
                <button disabled={navigation.state === "submitting"}>
                   {navigation.state === "submitting" ? "logging..." : "Log in"}
                </button>
@@ -162,7 +154,7 @@ function Login() {
             {/* <button onClick={() => refresh()}>refresh</button> */}
 
             <hr className="wallHub__login-hr" />
-            <GoogleSignButton/>
+            <GoogleSignButton />
             <Link className="wallHub__login-link_signup" to={"/signup"}>
                Don't have an account?
             </Link>

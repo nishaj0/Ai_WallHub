@@ -10,15 +10,13 @@ import {
    useNavigate,
    useLocation,
 } from "react-router-dom";
-import {
-   RiEyeLine,
-   RiEyeOffLine,
-   RiErrorWarningFill,
-} from "react-icons/ri";
+import { RiEyeLine, RiEyeOffLine, RiErrorWarningFill } from "react-icons/ri";
 
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
+
 import { GoogleSignButton } from "../../../components";
+import FormError from "../../../components/FormError/FormError";
 
 const SIGNUP_URL = "/register";
 
@@ -200,12 +198,7 @@ function Signup() {
                      )}
                   </span>
                </div>
-               {errorMessage && (
-                  <p className="wallHub__signup-error">
-                     <RiErrorWarningFill />
-                     {errorMessage}
-                  </p>
-               )}
+               {errorMessage && <FormError errorMessage={errorMessage} />}
                <button disabled={navigation.state === "submitting"}>
                   {navigation.state === "submitting" ? "Signing..." : "Sign up"}
                </button>

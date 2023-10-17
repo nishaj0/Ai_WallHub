@@ -3,12 +3,16 @@ import "./uploadPost.css";
 
 import { useState, useEffect } from "react";
 import { Form, useLocation, Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { BsImage } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
+
 import useScreenWidth from "../../hooks/useScreenWidth";
-import axios from "axios";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+
+import FormError from "../../components/FormError/FormError";
 
 function UploadPost() {
    const [imageUrl, setImageUrl] = useState(null);
@@ -38,6 +42,10 @@ function UploadPost() {
          navigate("/");
       }
    }, [isUploaded]);
+
+   // useEffect(()=>{
+
+   // })
 
    // ? this function is used to set the image url to the image state
    function handleImage(e) {
@@ -116,13 +124,15 @@ function UploadPost() {
             console.log(response);
             setIsUploaded(true);
          } else {
-            setError("title and image are required");
+            setError("Title and Image are required");
          }
       } catch (err) {
          if (axios.isCancel(err)) {
             console.log("Request cancelled:", err.message);
+            setError("Request cancelled");
          } else {
             console.error(err);
+            setError("Something went wrong");
          }
       } finally {
          setLoading(false);
@@ -226,7 +236,8 @@ function UploadPost() {
                </div>
             </div>
             <div className="wallHub__uploadPost-form_submitButton-container">
-               <p>
+            {error && <FormError errorMessage={error} />}
+               <p className="wallHub__uploadPost-form_guidelines-p">
                   This post must follow <a href="#">Content Guidelines</a>
                </p>
                <button

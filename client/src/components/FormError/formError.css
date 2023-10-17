@@ -1,0 +1,13 @@
+.wallHub__form-error {
+   display: flex;
+   align-self: flex-start;
+   align-items: center;
+   justify-content: center;
+   color: red;
+   font-size: var(--small-font-size);
+}
+
+.wallHub__form-error svg {
+   fill: red;
+   margin-right: .25rem;
+}

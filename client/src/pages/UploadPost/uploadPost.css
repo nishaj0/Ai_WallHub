@@ -212,11 +212,15 @@
 }
 
 .wallHub__uploadPost-form_submitButton-container p {
+   margin-bottom: .5rem;
+}
+
+.wallHub__uploadPost-form_guidelines-p {
    font-size: var(--small-font-size);
    color: var(--main-color-dark);
 }
 
-.wallHub__uploadPost-form_submitButton-container p a {
+.wallHub__uploadPost-form_guidelines-p a {
    color: var(--main-sky-blue);
    text-decoration: underline;
 }
