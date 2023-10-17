@@ -8,6 +8,7 @@ import axios from "axios";
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { BsImage } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
+import {RiDeleteBin2Fill} from "react-icons/ri";
 
 import useScreenWidth from "../../hooks/useScreenWidth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
@@ -38,7 +39,7 @@ function UploadPost() {
 
    // ? if the image is uploaded then navigate to the home page
    useEffect(() => {
-      if(isUploaded) {
+      if (isUploaded) {
          navigate("/");
       }
    }, [isUploaded]);
@@ -158,6 +159,12 @@ function UploadPost() {
             />
             {imageUrl ? (
                <div className="wallHub__uploadPost-form_image-container">
+                  <div className="wallHub__uploadPost-form_image-remove_container">
+                     <RiDeleteBin2Fill
+                        className="wallHub__uploadPost-form_image-remove"
+                        onClick={() => setImageUrl(null)}
+                     />
+                  </div>
                   <img src={imageUrl} />
                </div>
             ) : (
@@ -236,7 +243,7 @@ function UploadPost() {
                </div>
             </div>
             <div className="wallHub__uploadPost-form_submitButton-container">
-            {error && <FormError errorMessage={error} />}
+               {error && <FormError errorMessage={error} />}
                <p className="wallHub__uploadPost-form_guidelines-p">
                   This post must follow <a href="#">Content Guidelines</a>
                </p>
