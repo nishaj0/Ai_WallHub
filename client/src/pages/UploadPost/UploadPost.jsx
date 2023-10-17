@@ -20,20 +20,24 @@ function UploadPost() {
    });
    const [tags, setTags] = useState([]);
    const [tagInput, setTagInput] = useState("");
+   const [isUploaded, setIsUploaded] = useState(false); // ? this state is used to check if the image is uploaded or not
    const [error, setError] = useState(false);
    const [loading, setLoading] = useState(false);
 
    const location = useLocation();
    const navigate = useNavigate();
-   const from = location.state?.from?.pathname || "/";
+   const from = location?.state?.from?.pathname || "/";
    // console.log(location);
    const axiosPrivate = useAxiosPrivate();
 
    let screenSize = useScreenWidth();
 
-   // useEffect(() => {
-   //    console.log(tags);
-   // }, [tags]);
+   // ? if the image is uploaded then navigate to the home page
+   useEffect(() => {
+      if(isUploaded) {
+         navigate("/");
+      }
+   }, [isUploaded]);
 
    // ? this function is used to set the image url to the image state
    function handleImage(e) {
@@ -95,11 +99,9 @@ function UploadPost() {
    async function handleSubmit(e) {
       e.preventDefault();
       const controller = new AbortController();
-      console.log(controller);
       try {
          if (formInputData.title && image) {
             setLoading(true);
-            console.log("start");
 
             // ? creating form data
             const formData = new FormData();
@@ -111,9 +113,8 @@ function UploadPost() {
             // ? sending request to server
             const response = await axiosPrivate.post("api/upload", formData);
 
-            console.log("end");
             console.log(response);
-            navigate(from);
+            setIsUploaded(true);
          } else {
             setError("title and image are required");
          }
@@ -122,7 +123,6 @@ function UploadPost() {
             console.log("Request cancelled:", err.message);
          } else {
             console.error(err);
-            navigate(from);
          }
       } finally {
          setLoading(false);
@@ -160,7 +160,7 @@ function UploadPost() {
                      size={screenSize === "small" ? 50 : 70}
                   />
                   <h4>
-                     Upload image or <span>drag and drop(10mb max)</span>
+                     Upload image or <span>drag and drop</span>
                   </h4>
                   <input
                      type="file"
@@ -233,7 +233,7 @@ function UploadPost() {
                   className="wallHub__uploadPost-form_submitButton"
                   onClick={(e) => handleSubmit(e)}
                >
-                  Upload
+                  {loading ? "Uploading..." : "Upload"}
                </button>
             </div>
          </form>
