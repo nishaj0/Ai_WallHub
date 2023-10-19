@@ -1,14 +1,14 @@
 import React from "react";
 import "./uploadPost.css";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Form, useLocation, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { BsImage } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
-import {RiDeleteBin2Fill} from "react-icons/ri";
+import { RiDeleteBin2Fill } from "react-icons/ri";
 
 import useScreenWidth from "../../hooks/useScreenWidth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
@@ -27,15 +27,18 @@ function UploadPost() {
    const [tagInput, setTagInput] = useState("");
    const [isUploaded, setIsUploaded] = useState(false); // ? this state is used to check if the image is uploaded or not
    const [error, setError] = useState(false);
+   const [tagError, setTagError] = useState(false); // ? this state is used to check if the tag is valid or not [only alphabets, numbers, _ and - are allowed
    const [loading, setLoading] = useState(false);
+   const tagInputRef = useRef(null);
 
    const location = useLocation();
    const navigate = useNavigate();
    const from = location?.state?.from?.pathname || "/";
    // console.log(location);
    const axiosPrivate = useAxiosPrivate();
-
    let screenSize = useScreenWidth();
+
+   const TAG_REGEX = /^[a-z0-9_-]+$/;
 
    // ? if the image is uploaded then navigate to the home page
    useEffect(() => {
@@ -81,13 +84,24 @@ function UploadPost() {
    // ? this function is called when user clicked add button it will add tag to tags array
    function addTag() {
       if (tagInput.length > 0) {
-         setTags([...tags, tagInput]);
-         setTagInput("");
+         if (tags.includes(tagInput)) {
+            setTagError("Tag already exists");
+            return;
+         } else if (!TAG_REGEX.test(tagInput)) {
+            setTagError("Only lowercase  alphabets, numbers, _ and - are allowed");
+            return;
+         } else {
+            setTagError(false);
+            setTags([...tags, tagInput]);
+            setTagInput("");
+            tagInputRef.current.focus();
+         }
       }
    }
 
    function handleKeyDown(e) {
       if (e.key === "Enter") {
+         e.preventDefault(); // ? Prevent form submission when enter is clicked
          addTag();
       }
    }
@@ -136,6 +150,7 @@ function UploadPost() {
             setError("Something went wrong");
          }
       } finally {
+         controller.abort();
          setLoading(false);
       }
    }
@@ -145,7 +160,10 @@ function UploadPost() {
          <Link className="wallHub__uploadPost-backButton" to={from}>
             <BiLeftArrowAlt />
          </Link>
-         <form className="wallHub__uploadPost-form">
+         <form
+            className="wallHub__uploadPost-form"
+            onSubmit={(e) => handleSubmit(e)}
+         >
             <input
                type="text"
                id="wallHub__uploadPost-form_titleInput"
@@ -154,7 +172,6 @@ function UploadPost() {
                placeholder="Add title"
                onChange={(e) => handleChange(e)}
                value={formInputData.title}
-               required
                maxLength="50"
             />
             {imageUrl ? (
@@ -186,7 +203,6 @@ function UploadPost() {
                      name="image"
                      accept="image/*"
                      multiple={false}
-                     required
                      onChange={(e) => handleImage(e)}
                      hidden
                   />
@@ -222,24 +238,28 @@ function UploadPost() {
                )}
 
                <div className="wallHub__uploadPost-form_tagInput-container">
-                  <input
-                     type="text"
-                     id="wallHub__uploadPost-form_tagInput"
-                     className="wallHub__uploadPost-form_tagInput"
-                     name="tag"
-                     placeholder="eg: anime, dark, forest"
-                     maxLength={20}
-                     autoComplete="off"
-                     onChange={(e) => handleTagInput(e)}
-                     onKeyDown={handleKeyDown}
-                     value={tagInput}
-                  />
-                  <span
-                     className="wallHub__uploadPost-form_tagButton"
-                     onClick={addTag}
-                  >
-                     Add
-                  </span>
+                  <div className="wallHub__uploadPost-form_tagInput-container_col1">
+                     <input
+                        type="text"
+                        id="wallHub__uploadPost-form_tagInput"
+                        className="wallHub__uploadPost-form_tagInput"
+                        name="tag"
+                        placeholder="eg: anime, dark, forest"
+                        maxLength={20}
+                        autoComplete="off"
+                        onChange={(e) => handleTagInput(e)}
+                        onKeyDown={handleKeyDown}
+                        value={tagInput}
+                        ref={tagInputRef}
+                     />
+                     <span
+                        className="wallHub__uploadPost-form_tagButton"
+                        onClick={addTag}
+                     >
+                        Add
+                     </span>
+                  </div>
+                  {tagError && <FormError errorMessage={tagError} />}
                </div>
             </div>
             <div className="wallHub__uploadPost-form_submitButton-container">
@@ -249,7 +269,7 @@ function UploadPost() {
                </p>
                <button
                   className="wallHub__uploadPost-form_submitButton"
-                  onClick={(e) => handleSubmit(e)}
+                  // onClick={(e) => handleSubmit(e)}
                >
                   {loading ? "Uploading..." : "Upload"}
                </button>
