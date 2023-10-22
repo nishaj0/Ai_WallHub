@@ -1,17 +1,17 @@
-import React from "react";
-import "./formError.css";
+import React from 'react';
+import './formError.css';
 
-import { RiErrorWarningFill } from "react-icons/ri";
+import { RiErrorWarningFill } from 'react-icons/ri';
 
-function FormError({errorMessage}) {
-   return (
-      <>
-         <p className="wallHub__form-error">
-            <RiErrorWarningFill />
-            {errorMessage}
-         </p>
-      </>
-   );
+function FormError({ errorMessage }) {
+  return (
+    <>
+      <p className="wallHub__form-error">
+        <RiErrorWarningFill />
+        {errorMessage}
+      </p>
+    </>
+  );
 }
 
 export default FormError;

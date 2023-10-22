@@ -1,138 +1,137 @@
 .wallHub__login {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   min-height: 100vh;
-   background-color: var(--main-color-light);
-   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--main-color-light);
+  position: relative;
 }
 
 .wallHub__login-logo {
-   width: 140px;
-   position: absolute;
-   top: 1rem;
-   left: var(--margin-x);
+  width: 140px;
+  position: absolute;
+  top: 1rem;
+  left: var(--margin-x);
 }
 
 .wallHub__login-head {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .wallHub__login-head h2 {
-   font-size: var(--h2-font-size);
-   font-weight: var(--font-weight-extreme);
-   color: var(--main-color-dark);
+  font-size: var(--h2-font-size);
+  font-weight: var(--font-weight-extreme);
+  color: var(--main-color-dark);
 }
 
 .wallHub__login-container {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-   margin-top: 2rem;
-   padding: 2.5rem;
-   border-radius: 5px;
-   background-color: #fff;
-   border: solid 1px #cfdfe7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 2rem;
+  padding: 2.5rem;
+  border-radius: 5px;
+  background-color: #fff;
+  border: solid 1px #cfdfe7;
 }
 
-
 .wallHub__login-container form {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .wallHub__login-email,
 .wallHub__login-password {
-   border: solid 1px #cfdfe7;
-   margin-top: .5rem;
-   padding: .75rem;
-   line-height: 20px;
-   font-size: var(--small-font-size);
-   font-weight: var(--font-weight-mid);
-   color: var(--main-color-dark);
-   background-color: transparent;
-   border-radius: 5px;
-   width: var(--login-input-x);
-   height: var(--login-input-y);
+  border: solid 1px #cfdfe7;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  line-height: 20px;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-weight-mid);
+  color: var(--main-color-dark);
+  background-color: transparent;
+  border-radius: 5px;
+  width: var(--login-input-x);
+  height: var(--login-input-y);
 }
 
 .wallHub__login-container form input:focus {
-   outline: solid 1px var(--main-sky-blue);
+  outline: solid 1px var(--main-sky-blue);
 }
 
 .wallHub__login-container form input:hover {
-   border: solid 1px var(--main-sky-blue);
+  border: solid 1px var(--main-sky-blue);
 }
 
 .wallHub__login-password_container {
-   width: var(--login-input-x);
-   height: var(--login-input-y);
-   margin-top: .5rem;
-   position: relative;
+  width: var(--login-input-x);
+  height: var(--login-input-y);
+  margin-top: 0.5rem;
+  position: relative;
 }
 
 .wallHub__login-password {
-   letter-spacing: 3px;
-   margin-top: 0;
+  letter-spacing: 3px;
+  margin-top: 0;
 }
 
 .wallHub__login-password_container span {
-   position: absolute;
-   top: 54%;
-   right: .75rem;
-   transform: translateY(-50%);
-   cursor: pointer;
+  position: absolute;
+  top: 54%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .wallHub__login-label_container {
-   font-size: var(--small-font-size);
-   font-weight: var(--font-weight-mid);
-   color: var(--medium-gray);
-   margin-top: 1.5rem;
-   width: 100%;
-   text-align: left;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-weight-mid);
+  color: var(--medium-gray);
+  margin-top: 1.5rem;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .wallHub__login-label_container:nth-child(1) {
-   margin-top: 0rem;
+  margin-top: 0rem;
 }
 
-.wallHub__login-container form>button {
-   border: none;
-   outline: none;
-   width: var(--login-input-x);
-   height: var(--login-input-y);
-   margin-top: 1.75rem;
-   line-height: 20px;
-   font-size: var(--small-font-size);
-   font-weight: var(--font-weight-mid);
-   color: var(--main-color-light);
-   background-color: var(--main-sky-blue);
-   border-radius: 5px;
-   cursor: pointer;
+.wallHub__login-container form > button {
+  border: none;
+  outline: none;
+  width: var(--login-input-x);
+  height: var(--login-input-y);
+  margin-top: 1.75rem;
+  line-height: 20px;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-weight-mid);
+  color: var(--main-color-light);
+  background-color: var(--main-sky-blue);
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* ------------------checkbox------------------ */
 
 .wallHub__login-checkbox {
-   display: flex;
-   align-items: center;
-   justify-content: start;
-   width: 100%;
-   margin-top: 1rem;
-   font-size: var(--small-font-size);
-   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  margin-top: 1rem;
+  font-size: var(--small-font-size);
+  position: relative;
 }
 
 /* .wallHub__login-checkbox input[type="checkbox"] {
@@ -143,49 +142,49 @@
    
 } */
 
-.wallHub__login-checkbox>label {
-   margin-left: .5rem;
+.wallHub__login-checkbox > label {
+  margin-left: 0.5rem;
 }
 
 .wallHub__login-hr {
-   width: var(--login-input-x);
-   margin-top: 1.5rem;
-   margin-bottom: 1.5rem;
-   border: none;
-   border-bottom: solid 1px #cfdfe7;
+  width: var(--login-input-x);
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  border-bottom: solid 1px #cfdfe7;
 }
 
 .wallHub__login-link_signup {
-   font-size: var(--small-font-size);
-   font-weight: var(--font-weight-mid);
-   color: var(--main-color-dark);
-   margin-top: 1.5rem;
-   text-decoration: none;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-weight-mid);
+  color: var(--main-color-dark);
+  margin-top: 1.5rem;
+  text-decoration: none;
 }
 
-@media screen and (max-width:550px) {
-   .wallHub__login-logo {
-      width: 120px;
-   }
+@media screen and (max-width: 550px) {
+  .wallHub__login-logo {
+    width: 120px;
+  }
 
-   .wallHub__login-container {
-      padding: 1.5rem;
-   }
+  .wallHub__login-container {
+    padding: 1.5rem;
+  }
 
-   .wallHub__login-container form>button {
-      margin-top: 1.25rem;
-   }
+  .wallHub__login-container form > button {
+    margin-top: 1.25rem;
+  }
 
-   .wallHub__login-hr {
-      margin-top: 1.25rem;
-      margin-bottom: 1.25rem;
-   }
+  .wallHub__login-hr {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
 
-   .wallHub__login-google_button {
-      margin-top: .5rem;
-   }
+  .wallHub__login-google_button {
+    margin-top: 0.5rem;
+  }
 
-   .wallHub__login-link_signup {
-      margin-top: 1rem;
-   }
+  .wallHub__login-link_signup {
+    margin-top: 1rem;
+  }
 }

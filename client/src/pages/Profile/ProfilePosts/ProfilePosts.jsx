@@ -1,10 +1,8 @@
-import React from 'react'
-import "./profilePost.css"
+import React from 'react';
+import './profilePost.css';
 
 function ProfilePosts() {
-  return (
-    <div>ProfilePosts</div>
-  )
+  return <div>ProfilePosts</div>;
 }
 
-export default ProfilePosts
+export default ProfilePosts;
