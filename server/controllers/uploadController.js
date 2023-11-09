@@ -20,19 +20,18 @@ const uploadImage = async (req, res) => {
     console.log({ imageBuffer, title, prompt, tags });
 
     // ? title and image are required
-    if (!title || !imageBuffer)
-      res.status(400).json({ message: 'title and image are required' });
+    if (!title || !imageBuffer) res.status(400).json({ message: 'title and image are required' });
 
     // ? Create a Readable Stream from the image buffer
     const imageStream = cloudinary.uploader.upload_stream(
-      { resource_type: 'image', folder: 'wallHub' },
+      { resource_type: 'image', folder: 'wallHub/wallpapers' },
       (error, result) => {
         // ? this callback function will called when the upload is completed
         // console.log("Upload Stream Callback Called");
         // console.log({ result, error });
 
         if (error) {
-          console.log(error);
+          console.log({ error });
 
           res.status(500).json({
             success: false,
