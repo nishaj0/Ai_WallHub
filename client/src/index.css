@@ -11,6 +11,7 @@
   --home-search-bar-height: 3rem;
   --login-input-x: 350px;
   --login-input-y: 40px;
+  --loading-svg-width:4rem;
   /* -------------Colors-------------- */
   --main-color-light: #f8f8f8;
   --main-color-dark: #333333;
@@ -52,6 +53,7 @@
     --margin-y: 4rem;
     --header-height: 3.5rem;
     --login-input-x: 300px;
+    --loading-svg-width: 3rem;
     --h1-font-size: 2rem;
     --h2-font-size: 1.5rem;
     --h3-font-size: 1.3rem;
