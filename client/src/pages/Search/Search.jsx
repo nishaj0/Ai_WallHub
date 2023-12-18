@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import PhotoAlbum from 'react-photo-album';
 
 import './search.css';
@@ -17,6 +17,7 @@ function Search() {
   const [abortController, setAbortController] = useState(null);
   const [searchParams] = useSearchParams();
   const searchKeyword = searchParams.get('keyword');
+  const navigate = useNavigate();
 
   // ? this will fetch the images from the server
   // ? and convert to the format that react-photo-album accepts
@@ -83,6 +84,7 @@ function Search() {
               if (containerWidth < 550) return 1;
               if (containerWidth < 768) return 3;
             }}
+            onClick={(e) => navigate(`/image/${e.photo.key}`)}
           />
         </div>
       )}

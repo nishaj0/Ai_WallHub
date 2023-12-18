@@ -17,6 +17,7 @@ import {
   ProfileLayout,
   ProfilePosts,
   UploadPost,
+  Wallpaper
 } from './pages';
 import { action as signupAction } from './pages/Auth/Signup/Signup.jsx';
 import { action as loginAction } from './pages/Auth/Login/Login.jsx';
@@ -45,6 +46,7 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="about" element={<About />} />
             <Route path="search" element={<Search />} />
+            <Route path="image/:id" element={<Wallpaper />} />
 
             {/* protected route */}
             <Route

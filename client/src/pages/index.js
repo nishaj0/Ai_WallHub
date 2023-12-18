@@ -9,6 +9,7 @@ import LoginOtp from './Auth/LoginOtp/LoginOtp';
 import ProfileLayout from './Profile/ProfileLayout/ProfileLayout';
 import ProfilePosts from './Profile/ProfilePosts/ProfilePosts';
 import UploadPost from './UploadPost/UploadPost';
+import Wallpaper from './Wallpaper/Wallpaper';
 
 export {
   Home,
@@ -22,4 +23,5 @@ export {
   ProfileLayout,
   ProfilePosts,
   UploadPost,
+  Wallpaper,
 };
