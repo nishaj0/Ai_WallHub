@@ -37,6 +37,7 @@ app.use('/login', require('./routes/login'));
 app.use('/refresh', require('./routes/refresh'));
 app.use('/logout', require('./routes/logout'));
 app.use('/search', require('./routes/search'));
+app.use('/image', require('./routes/image'));
 
 app.use(verifyJWT);
 // protected end points
