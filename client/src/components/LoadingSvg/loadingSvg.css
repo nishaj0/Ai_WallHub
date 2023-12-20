@@ -14,9 +14,3 @@
     flex-direction: column;
     width: var(--loading-svg-width);
 }
-
-.wallHub__loadingSvg>h3 {
-    color: var(--main-color-dark);
-    font-size: var(--h3-font-size);
-    margin-top: 2rem;
-}

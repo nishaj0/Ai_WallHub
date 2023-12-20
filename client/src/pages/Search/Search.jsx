@@ -5,9 +5,8 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import PhotoAlbum from 'react-photo-album';
 
 import './search.css';
-import { SearchTag } from '../../components';
+import { SearchTag, LoadingSvg } from '../../components';
 import axios from '../../api/axios';
-import loadingSvg from '../../assets/svg/loading-svg-rolling.svg';
 
 const SEARCH_URL = '/search';
 
@@ -30,8 +29,8 @@ function Search() {
         const response = await axios.post(SEARCH_URL, { searchKeyword }, { signal: controller.signal });
 
         // ? giving manual delay
-        // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-        // await delay(3000);
+        const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+        await delay(3000);
 
         // console.log(response);
 
@@ -73,7 +72,7 @@ function Search() {
       {/* image gallery */}
       {isLoading ? (
         <div className="wallHub__search-loading">
-          <img className="wallHub__search-loading_svg" src={loadingSvg} alt="loading svg" />
+          <LoadingSvg />
         </div>
       ) : (
         <div className="wallHub__search-images">
