@@ -18,6 +18,8 @@ function Search() {
   const searchKeyword = searchParams.get('keyword');
   const navigate = useNavigate();
 
+  const searchString = ['phone', 'PC', 'nature', 'landscape'];
+
   // ? this will fetch the images from the server
   // ? and convert to the format that react-photo-album accepts
   useEffect(() => {
@@ -64,10 +66,9 @@ function Search() {
         <p>Discover and download our AI-generated wallpapers.</p>
       </div>
       <div className="wallHub__search-tags" style={{ display: isLoading ? 'none' : 'flex' }}>
-        <SearchTag searchText={'phone'} content={'Phone'} />
-        <SearchTag searchText={'pc'} content={'PC'} />
-        <SearchTag searchText={'nature'} content={'Nature'} />
-        <SearchTag searchText={'landscape'} content={'Landscape'} />
+        {searchString.map((tag, index) => (
+          <SearchTag searchText={tag} key={index} />
+        ))}
       </div>
       {/* image gallery */}
       {isLoading ? (

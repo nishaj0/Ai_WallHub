@@ -1,12 +1,29 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
+
 import { Link } from 'react-router-dom';
 import { RiSearchLine } from 'react-icons/ri';
+
 import { SearchTag } from '../../components';
 import './home.css';
 
 function Home() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const searchString = [
+    'anime',
+    'nature',
+    'landscape',
+    'mountain',
+    'forest',
+    'japan',
+    'character',
+    'realistic',
+    'city',
+    'space',
+    'minimal',
+    'dark',
+    'light',
+    '4k',
+  ];
 
   // ? this state is used to store the search data
   const [searchData, setSearchData] = useState({ search: '' });
@@ -44,11 +61,7 @@ function Home() {
             <form onSubmit={handleSubmit}>
               <input
                 type="search"
-                placeholder={
-                  isSmallScreen
-                    ? 'Search Wallpaper'
-                    : 'Search AI-Generated Wallpapers'
-                }
+                placeholder={isSmallScreen ? 'Search Wallpaper' : 'Search AI-Generated Wallpapers'}
                 onChange={handleSearch}
                 name="search"
                 value={searchData.search}
@@ -64,21 +77,9 @@ function Home() {
       </div>
       <div className="wallHub__home-wallpapers section__padding">
         <div className="wallHub__home-wallpapers_searchTag-container">
-          {/* <Link to={"/profile"}>Profile</Link> */}
-          <SearchTag searchText={'anime'} content={'Anime'} />
-          <SearchTag searchText={'nature'} content={'Nature'} />
-          <SearchTag searchText={'landscape'} content={'Landscape'} />
-          <SearchTag searchText={'mountain'} content={'Mountain'} />
-          <SearchTag searchText={'forest'} content={'Forest'} />
-          <SearchTag searchText={'japan'} content={'Japan'} />
-          <SearchTag searchText={'character'} content={'Character'} />
-          <SearchTag searchText={'realistic'} content={'Realistic'} />
-          <SearchTag searchText={'city'} content={'City'} />
-          <SearchTag searchText={'space'} content={'Space'} />
-          <SearchTag searchText={'minimal'} content={'Minimal'} />
-          <SearchTag searchText={'dark'} content={'Dark'} />
-          <SearchTag searchText={'light'} content={'Light'} />
-          <SearchTag searchText={'4k'} content={'4K'} />
+          {searchString.map((tag, index) => (
+            <SearchTag searchText={tag} key={index} />
+          ))}
         </div>
         <div className="wallHub__home-wallpapers_img-container"></div>
       </div>
