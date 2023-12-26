@@ -1,6 +1,6 @@
 const Post = require('../model/Post');
 
-const handleSearch = async (req, res) => {
+const searchByKeyword = async (req, res) => {
   const keyword = req.body.searchKeyword;
   if (!keyword) return res.status(400).json({ message: 'search keyword required' });
 
@@ -12,7 +12,7 @@ const handleSearch = async (req, res) => {
     ],
   })
     .select({
-      _id:1,
+      _id: 1,
       title: 1,
       prompt: 1,
       hashTags: 1,
@@ -27,4 +27,13 @@ const handleSearch = async (req, res) => {
   res.status(200).json({ searchImages });
 };
 
-module.exports = { handleSearch };
+const get20Images = async (req, res) => {
+  try {
+    const images = await Post.find().sort({ date: -1 }).limit(20).exec();
+    res.status(200).json({ images });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { searchByKeyword, get20Images };
