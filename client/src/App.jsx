@@ -21,7 +21,6 @@ import {
 } from './pages';
 import { action as signupAction } from './pages/Auth/Signup/Signup.jsx';
 import { action as loginAction } from './pages/Auth/Login/Login.jsx';
-import { loader as profileLayoutLoader } from './pages/Profile/ProfileLayout/ProfileLayout';
 
 import { Layout, PersistLogin } from './containers';
 import useAuth from './hooks/useAuth';
@@ -51,13 +50,6 @@ function App() {
             {/* protected route */}
             <Route
               path="profile"
-              loader={profileLayoutLoader(
-                auth,
-                setAuth,
-                persist,
-                axiosPrivate,
-                refresh,
-              )}
               element={<ProfileLayout />}
             >
               <Route index element={<ProfilePosts />} />
