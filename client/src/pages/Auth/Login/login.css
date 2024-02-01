@@ -48,66 +48,7 @@
   flex-direction: column;
 }
 
-.wallHub__login-email,
-.wallHub__login-password {
-  border: solid 1px #cfdfe7;
-  margin-top: 0.5rem;
-  padding: 0.75rem;
-  line-height: 20px;
-  font-size: var(--small-font-size);
-  font-weight: var(--font-weight-mid);
-  color: var(--main-color-dark);
-  background-color: transparent;
-  border-radius: 5px;
-  width: var(--login-input-x);
-  height: var(--login-input-y);
-}
-
-.wallHub__login-container form input:focus {
-  outline: solid 1px var(--main-sky-blue);
-}
-
-.wallHub__login-container form input:hover {
-  border: solid 1px var(--main-sky-blue);
-}
-
-.wallHub__login-password_container {
-  width: var(--login-input-x);
-  height: var(--login-input-y);
-  margin-top: 0.5rem;
-  position: relative;
-}
-
-.wallHub__login-password {
-  letter-spacing: 3px;
-  margin-top: 0;
-}
-
-.wallHub__login-password_container span {
-  position: absolute;
-  top: 54%;
-  right: 0.75rem;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-
-.wallHub__login-label_container {
-  font-size: var(--small-font-size);
-  font-weight: var(--font-weight-mid);
-  color: var(--medium-gray);
-  margin-top: 1.5rem;
-  width: 100%;
-  text-align: left;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.wallHub__login-label_container:nth-child(1) {
-  margin-top: 0rem;
-}
-
-.wallHub__login-container form > button {
+.wallHub__login-container form>button {
   border: none;
   outline: none;
   width: var(--login-input-x);
@@ -134,15 +75,8 @@
   position: relative;
 }
 
-/* .wallHub__login-checkbox input[type="checkbox"] {
 
-}
-
-.wallHub__login-checkbox_custom-icon {
-   
-} */
-
-.wallHub__login-checkbox > label {
+.wallHub__login-checkbox>label {
   margin-left: 0.5rem;
 }
 
@@ -171,7 +105,7 @@
     padding: 1.5rem;
   }
 
-  .wallHub__login-container form > button {
+  .wallHub__login-container form>button {
     margin-top: 1.25rem;
   }
 

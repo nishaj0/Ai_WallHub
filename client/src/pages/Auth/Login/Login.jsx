@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
 import './login.css';
 import axios from '../../../api/axios';
 import useAuth from '../../../hooks/useAuth';
 import FormError from '../../../components/FormError/FormError';
-import { GoogleSignButton } from '../../../components';
+import { GoogleSignButton, InputBox } from '../../../components';
 
 const LOGIN_URL = '/login';
 
 function Login() {
-   const [isEyeToggle, setIsEyeToggle] = useState(true);
    const [errorMessage, setErrorMessage] = useState(false);
    const [isSubmitting, setIsSubmitting] = useState(false);
    const [email, setEmail] = useState('');
@@ -34,6 +32,7 @@ function Login() {
       const { name, value } = e.target;
       if (name === 'email') {
          setEmail(value);
+         console.log(email);
       } else if (name === 'password') {
          setPassword(value);
       }
@@ -71,12 +70,9 @@ function Login() {
          </div>
          <div className="wallHub__login-container">
             <form onSubmit={handleSubmit}>
-               <div className="wallHub__login-label_container">
-                  <label htmlFor="wallHub__login-email">Email address</label>
-               </div>
-               <input
+               <InputBox
                   id="wallHub__login-email"
-                  className="wallHub__login-email"
+                  label={'Email'}
                   name="email"
                   placeholder="john.doe@example.com"
                   type="email"
@@ -84,25 +80,18 @@ function Login() {
                   value={email}
                   onChange={handleChange}
                />
-               <div className="wallHub__login-label_container">
-                  <label htmlFor="wallHub__login-password">Password</label>
-                  <Link to={'/'}>forgot?</Link>
-               </div>
-               <div className="wallHub__login-password_container">
-                  <input
-                     id="wallHub__login-password"
-                     className="wallHub__login-password"
-                     name="password"
-                     placeholder="••••••••••••••"
-                     type={isEyeToggle ? 'password' : 'text'}
-                     required
-                     value={password}
-                     onChange={handleChange}
-                  />
-                  <span className="wallHub__login-password_eye-span" onClick={() => setIsEyeToggle((prev) => !prev)}>
-                     {isEyeToggle ? <RiEyeOffLine color="#333" size={23} /> : <RiEyeLine color="#333" size={23} />}
-                  </span>
-               </div>
+               <InputBox
+                  id="wallHub__login-password"
+                  name="password"
+                  placeholder="••••••••••••••"
+                  label={'Password'}
+                  link={{ to: '/', text: 'forgot?' }}
+                  type={'password'}
+                  marginTop={1}
+                  required
+                  value={password}
+                  onChange={handleChange}
+               />
                {errorMessage && <FormError errorMessage={errorMessage} />}
                <button disabled={isSubmitting} type="submit">
                   {isSubmitting ? 'logging...' : 'Log in'}
