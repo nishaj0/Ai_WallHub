@@ -49,67 +49,7 @@
   flex-direction: column;
 }
 
-.wallHub__signup-email,
-.wallHub__signup-password,
-.wallHub__signup-name,
-.wallHub__signup-username {
-  border: solid 1px #cfdfe7;
-  margin-top: 0.5rem;
-  padding: 0.75rem;
-  line-height: 20px;
-  font-size: var(--small-font-size);
-  font-weight: var(--font-weight-mid);
-  color: var(--main-color-dark);
-  background-color: transparent;
-  border-radius: 5px;
-  width: var(--login-input-x);
-  height: var(--login-input-y);
-}
-
-.wallHub__signup-container form input:focus {
-  outline: solid 1px var(--main-sky-blue);
-}
-
-.wallHub__signup-container form input:hover {
-  border: solid 1px var(--main-sky-blue);
-}
-
-.wallHub__signup-password_container {
-  width: var(--login-input-x);
-  height: var(--login-input-y);
-  margin-top: 0.5rem;
-  position: relative;
-}
-
-.wallHub__signup-password {
-  margin-top: 0;
-}
-
-.wallHub__signup-password_container span {
-  position: absolute;
-  top: 54%;
-  right: 0.75rem;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-
-.wallHub__signup-label_container {
-  font-size: var(--small-font-size);
-  font-weight: var(--font-weight-mid);
-  color: var(--medium-gray);
-  margin-top: 1.5rem;
-  width: 100%;
-  text-align: left;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.wallHub__signup-label_container:nth-child(1) {
-  margin-top: 0rem;
-}
-
-.wallHub__signup-container form > button {
+.wallHub__signup-container form>button {
   border: none;
   outline: none;
   width: var(--login-input-x);
@@ -143,27 +83,6 @@
   border-bottom: solid 1px #cfdfe7;
 }
 
-.wallHub__signup-google_button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--login-input-x);
-  height: var(--login-input-y);
-  margin-top: 0.75rem;
-  line-height: 20px;
-  font-size: var(--small-font-size);
-  font-weight: var(--font-weight-mid);
-  color: var(--main-color-dark);
-  background-color: var(--google-blue);
-  border-radius: 5px;
-  border: 1px solid var(--main-color-dark);
-  cursor: pointer;
-}
-
-.wallHub__signup-google_button svg {
-  margin-right: 0.5rem;
-}
-
 .wallHub__signup-link_login {
   font-size: var(--small-font-size);
   font-weight: var(--font-weight-mid);
@@ -181,7 +100,7 @@
     padding: 1.5rem;
   }
 
-  .wallHub__signup-container form > button {
+  .wallHub__signup-container form>button {
     margin-top: 1.25rem;
   }
 

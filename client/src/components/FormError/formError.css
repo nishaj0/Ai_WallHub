@@ -5,6 +5,7 @@
   justify-content: center;
   color: red;
   font-size: var(--small-font-size);
+  margin-top: .75rem;
 }
 
 .wallHub__form-error svg {
