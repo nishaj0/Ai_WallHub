@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import './signup.css';
 import axios from '../../../api/axios';
 import useAuth from '../../../hooks/useAuth';
 import FormError from '../../../components/FormError/FormError';
 import { GoogleSignButton, InputBox } from '../../../components';
+import { setUser } from '../../../redux/user/userSlice';
+import { togglePersist } from '../../../redux/persist/persistSlice';
 
 const SIGNUP_URL = '/register';
 
@@ -20,19 +23,17 @@ function Signup() {
    const navigate = useNavigate();
    const location = useLocation();
 
-   const { setAuth, persist, setPersist } = useAuth();
+   const dispatch = useDispatch();
+   const persist = useSelector((state) => state.persist);
+
    const from = location.state?.from?.pathname || '/';
 
    useEffect(() => {
       setErrorMessage(passwordData.password !== passwordData.tempPassword ? 'Password not matched' : false);
    }, [passwordData]);
 
-   useEffect(() => {
-      localStorage.setItem('persist', persist);
-   }, [persist]);
-
-   const togglePersist = () => {
-      setPersist((prev) => !prev);
+   const togglePersistValue = () => {
+      dispatch(togglePersist());
    };
 
    const handlePassword = (e) => {
@@ -58,7 +59,7 @@ function Signup() {
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true,
          });
-         setAuth({ email: res.data.email, accessToken: res.data.accessToken });
+         dispatch(setUser({ user: res.data.username, token: res.data.accessToken }));
          navigate(from, { replace: true });
       } catch (err) {
          if (!err?.response) {
@@ -143,7 +144,7 @@ function Signup() {
                   {isSubmitting ? 'Signing...' : 'Sign up'}
                </button>
                <div className="wallHub__login-checkbox">
-                  <input type="checkbox" id="persist" onChange={togglePersist} checked={persist} />
+                  <input type="checkbox" id="persist" onChange={togglePersistValue} checked={persist} />
                   <label htmlFor="persist">Trust this device</label>
                </div>
                <p className="wallHub__signup-agreement_p">
