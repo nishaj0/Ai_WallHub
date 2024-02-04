@@ -6,15 +6,15 @@ import Footer from '../Footer/Footer.jsx';
 import './layout.css';
 
 function Layout() {
-  return (
-    <div className="wallHub">
-      <Header />
-      <div className="wallHub__main">
-        <Outlet />
+   return (
+      <div className="wallHub">
+         <Header />
+         <div className="wallHub__main">
+            <Outlet />
+         </div>
+         <Footer />
       </div>
-      <Footer />
-    </div>
-  );
+   );
 }
 
 export default Layout;

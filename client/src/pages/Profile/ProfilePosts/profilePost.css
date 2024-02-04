@@ -1,27 +1,27 @@
 .wallHub__profilePost {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
+   display: flex;
+   justify-content: center;
+   align-items: flex-start;
+   flex-direction: column;
 }
 
 .wallHub__profilePost-loading {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    margin: 3rem 0;
+   display: flex;
+   align-content: center;
+   justify-content: center;
+   flex-direction: column;
+   width: 100%;
+   margin: 3rem 0;
 }
 
 .wallHub__profilePost-images {
-    /* ! this is required here otherwise PhotoAlbum component not showing anything */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    width: 100%;
+   /* ! this is required here otherwise PhotoAlbum component not showing anything */
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   width: 100%;
 }
 
 .wallHub__profilePost-images img {
-    border-radius: 5px;
-    cursor: pointer;
+   border-radius: 5px;
+   cursor: pointer;
 }

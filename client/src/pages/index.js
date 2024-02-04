@@ -12,16 +12,16 @@ import UploadPost from './UploadPost/UploadPost';
 import Wallpaper from './Wallpaper/Wallpaper';
 
 export {
-  Home,
-  About,
-  Contact,
-  Catagories,
-  Search,
-  Login,
-  Signup,
-  LoginOtp,
-  ProfileLayout,
-  ProfilePosts,
-  UploadPost,
-  Wallpaper,
+   Home,
+   About,
+   Contact,
+   Catagories,
+   Search,
+   Login,
+   Signup,
+   LoginOtp,
+   ProfileLayout,
+   ProfilePosts,
+   UploadPost,
+   Wallpaper,
 };

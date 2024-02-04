@@ -45,6 +45,6 @@ app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/upload', require('./routes/api/upload'));
 
 mongoose.connection.once('open', () => {
-  console.log('connected to DB');
-  app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+   console.log('connected to DB');
+   app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 });
