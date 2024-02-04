@@ -1,187 +1,187 @@
 .wallHub__loginOtp {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: var(--main-color-light);
-  position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   min-height: 100vh;
+   background-color: var(--main-color-light);
+   position: relative;
 }
 
 .wallHub__loginOtp-logo {
-  width: 140px;
-  position: absolute;
-  top: 1rem;
-  left: var(--margin-x);
+   width: 140px;
+   position: absolute;
+   top: 1rem;
+   left: var(--margin-x);
 }
 
 .wallHub__loginOtp-head {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   text-align: center;
 }
 
 .wallHub__loginOtp-head h2 {
-  font-size: var(--h2-font-size);
-  font-weight: var(--font-weight-extreme);
-  color: var(--main-color-dark);
+   font-size: var(--h2-font-size);
+   font-weight: var(--font-weight-extreme);
+   color: var(--main-color-dark);
 }
 
 .wallHub__loginOtp-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 2rem;
-  padding: 2.5rem;
-  border-radius: 5px;
-  background-color: #fff;
-  border: solid 1px #cfdfe7;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   margin-top: 2rem;
+   padding: 2.5rem;
+   border-radius: 5px;
+   background-color: #fff;
+   border: solid 1px #cfdfe7;
 }
 
 .wallHub__loginOtp-container form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
 }
 
 .wallHub__loginOtp-email,
 .wallHub__loginOtp-password {
-  border: solid 1px #cfdfe7;
-  margin-top: 0.5rem;
-  padding: 0.75rem;
-  line-height: 20px;
-  font-size: var(--small-font-size);
-  font-weight: var(--font-weight-mid);
-  color: var(--main-color-dark);
-  background-color: transparent;
-  border-radius: 5px;
-  width: var(--login-input-x);
-  height: var(--login-input-y);
+   border: solid 1px #cfdfe7;
+   margin-top: 0.5rem;
+   padding: 0.75rem;
+   line-height: 20px;
+   font-size: var(--small-font-size);
+   font-weight: var(--font-weight-mid);
+   color: var(--main-color-dark);
+   background-color: transparent;
+   border-radius: 5px;
+   width: var(--login-input-x);
+   height: var(--login-input-y);
 }
 
 .wallHub__loginOtp-container form input:focus {
-  outline: solid 1px var(--main-sky-blue);
+   outline: solid 1px var(--main-sky-blue);
 }
 
 .wallHub__loginOtp-container form input:hover {
-  border: solid 1px var(--main-sky-blue);
+   border: solid 1px var(--main-sky-blue);
 }
 
 .wallHub__loginOtp-password_container {
-  width: var(--login-input-x);
-  height: var(--login-input-y);
-  margin-top: 0.5rem;
-  position: relative;
+   width: var(--login-input-x);
+   height: var(--login-input-y);
+   margin-top: 0.5rem;
+   position: relative;
 }
 
 .wallHub__loginOtp-password {
-  letter-spacing: 3px;
-  margin-top: 0;
+   letter-spacing: 3px;
+   margin-top: 0;
 }
 
 .wallHub__loginOtp-password_container span {
-  position: absolute;
-  top: 54%;
-  right: 0.75rem;
-  transform: translateY(-50%);
-  cursor: pointer;
+   position: absolute;
+   top: 54%;
+   right: 0.75rem;
+   transform: translateY(-50%);
+   cursor: pointer;
 }
 
 .wallHub__loginOtp-label_container {
-  font-size: var(--small-font-size);
-  font-weight: var(--font-weight-mid);
-  color: var(--medium-gray);
-  margin-top: 1.5rem;
-  width: 100%;
-  text-align: left;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+   font-size: var(--small-font-size);
+   font-weight: var(--font-weight-mid);
+   color: var(--medium-gray);
+   margin-top: 1.5rem;
+   width: 100%;
+   text-align: left;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
 }
 
 .wallHub__loginOtp-label_container:nth-child(1) {
-  margin-top: 0rem;
+   margin-top: 0rem;
 }
 
 .wallHub__loginOtp-container form > button {
-  border: none;
-  outline: none;
-  width: var(--login-input-x);
-  height: var(--login-input-y);
-  margin-top: 1.75rem;
-  line-height: 20px;
-  font-size: var(--small-font-size);
-  font-weight: var(--font-weight-mid);
-  color: var(--main-color-light);
-  background-color: var(--main-sky-blue);
-  border-radius: 5px;
-  cursor: pointer;
+   border: none;
+   outline: none;
+   width: var(--login-input-x);
+   height: var(--login-input-y);
+   margin-top: 1.75rem;
+   line-height: 20px;
+   font-size: var(--small-font-size);
+   font-weight: var(--font-weight-mid);
+   color: var(--main-color-light);
+   background-color: var(--main-sky-blue);
+   border-radius: 5px;
+   cursor: pointer;
 }
 
 .wallHub__loginOtp-hr {
-  width: var(--login-input-x);
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  border: none;
-  border-bottom: solid 1px #cfdfe7;
+   width: var(--login-input-x);
+   margin-top: 1.5rem;
+   margin-bottom: 1.5rem;
+   border: none;
+   border-bottom: solid 1px #cfdfe7;
 }
 
 .wallHub__loginOtp-google_button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--login-input-x);
-  height: var(--login-input-y);
-  margin-top: 0.75rem;
-  line-height: 20px;
-  font-size: var(--small-font-size);
-  font-weight: var(--font-weight-mid);
-  color: var(--main-color-dark);
-  background-color: var(--google-blue);
-  border-radius: 5px;
-  border: 1px solid var(--main-color-dark);
-  cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: var(--login-input-x);
+   height: var(--login-input-y);
+   margin-top: 0.75rem;
+   line-height: 20px;
+   font-size: var(--small-font-size);
+   font-weight: var(--font-weight-mid);
+   color: var(--main-color-dark);
+   background-color: var(--google-blue);
+   border-radius: 5px;
+   border: 1px solid var(--main-color-dark);
+   cursor: pointer;
 }
 
 .wallHub__loginOtp-google_button svg {
-  margin-right: 0.5rem;
+   margin-right: 0.5rem;
 }
 
 .wallHub__loginOtp-link_signup {
-  font-size: var(--small-font-size);
-  font-weight: var(--font-weight-mid);
-  color: var(--main-color-dark);
-  margin-top: 1.5rem;
-  text-decoration: none;
+   font-size: var(--small-font-size);
+   font-weight: var(--font-weight-mid);
+   color: var(--main-color-dark);
+   margin-top: 1.5rem;
+   text-decoration: none;
 }
 
 @media screen and (max-width: 550px) {
-  .wallHub__loginOtp-logo {
-    width: 120px;
-  }
+   .wallHub__loginOtp-logo {
+      width: 120px;
+   }
 
-  .wallHub__loginOtp-container {
-    padding: 1.5rem;
-  }
+   .wallHub__loginOtp-container {
+      padding: 1.5rem;
+   }
 
-  .wallHub__loginOtp-container form > button {
-    margin-top: 1.25rem;
-  }
+   .wallHub__loginOtp-container form > button {
+      margin-top: 1.25rem;
+   }
 
-  .wallHub__loginOtp-hr {
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
-  }
+   .wallHub__loginOtp-hr {
+      margin-top: 1.25rem;
+      margin-bottom: 1.25rem;
+   }
 
-  .wallHub__loginOtp-google_button {
-    margin-top: 0.5rem;
-  }
+   .wallHub__loginOtp-google_button {
+      margin-top: 0.5rem;
+   }
 
-  .wallHub__loginOtp-link_signup {
-    margin-top: 1rem;
-  }
+   .wallHub__loginOtp-link_signup {
+      margin-top: 1rem;
+   }
 }

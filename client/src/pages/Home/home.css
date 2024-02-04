@@ -1,137 +1,136 @@
 .wallHub__home-search_div {
-  background: url(../../assets/images/landscape_forest_road_1536x512px.webp);
-  background-position: bottom;
-  background-size: cover;
-  height: var(--home-bg-height);
+   background: url(../../assets/images/landscape_forest_road_1536x512px.webp);
+   background-position: bottom;
+   background-size: cover;
+   height: var(--home-bg-height);
 }
 
 .wallHub__home-search_container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100%;
-  max-width: var(--home-search-bar-width);
-  margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+   height: 100%;
+   max-width: var(--home-search-bar-width);
+   margin: 0 auto;
 }
 
 .wallHub__home-search_container h1 {
-  font-size: var(--h1-font-size);
-  font-weight: var(--font-weight-high);
-  color: var(--main-color-light);
+   font-size: var(--h1-font-size);
+   font-weight: var(--font-weight-high);
+   color: var(--main-color-light);
 }
 
 .wallHub__home-search_container h3 {
-  font-size: var(--h3-font-size);
-  font-weight: var(--font-weight-mid);
-  color: var(--main-color-light);
-  margin-top: 1rem;
+   font-size: var(--h3-font-size);
+   font-weight: var(--font-weight-mid);
+   color: var(--main-color-light);
+   margin-top: 1rem;
 }
 
 .wallHub__home-search_bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: var(--home-search-bar-height);
-  margin-top: 2rem;
-  background-color: var(--main-color-light);
-  border-radius: 5px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: var(--home-search-bar-height);
+   margin-top: 2rem;
+   background-color: var(--main-color-light);
+   border-radius: 5px;
 }
 
 .wallHub__home-search_bar form {
-  width: 100%;
-  height: 100%;
-  padding: 0 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+   width: 100%;
+   height: 100%;
+   padding: 0 1rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .wallHub__home-search_bar input {
-  height: 100%;
-  /* ! 27px is the size of search icon*/
-  width: calc(100% - 27px);
-  border: none;
-  outline: none;
-  font-size: var(--p-font-size);
-  font-weight: var(--font-weight-mid);
-  color: var(--main-color-dark);
-  background-color: transparent;
+   height: 100%;
+   /* ! 27px is the size of search icon*/
+   width: calc(100% - 27px);
+   border: none;
+   outline: none;
+   font-size: var(--p-font-size);
+   font-weight: var(--font-weight-mid);
+   color: var(--main-color-dark);
+   background-color: transparent;
 }
 
 .wallHub__home-search_bar button {
-  /* button */
-  size: var(----default-icon-size);
-  border: none;
-  outline: none;
-  background-color: transparent;
-  cursor: pointer;
+   /* button */
+   size: var(----default-icon-size);
+   border: none;
+   outline: none;
+   background-color: transparent;
+   cursor: pointer;
 }
 
 .wallHub__home-Loading {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  margin: 3rem 0;
+   display: flex;
+   justify-content: start;
+   align-items: center;
+   margin: 3rem 0;
 }
 
 /* -----------searchTag bar---------- */
 
 .wallHub__home-wallpapers_searchTag-container {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  overflow-x: auto;
+   display: flex;
+   justify-content: start;
+   align-items: center;
+   overflow-x: auto;
 }
 
 .wallHub__home-wallpapers_searchTag-container::-webkit-scrollbar {
-  display: none;
-  text-align: start;
+   display: none;
+   text-align: start;
 }
 
 .wallHub__home-wallpapers_img-container {
-  margin: 3rem 0;
+   margin: 3rem 0;
 }
-.wallHub__home-wallpapers_img-container h2{
-  font-size: var(--h2-font-size);
-  color: var(--main-color-dark);
-  margin-bottom: 1rem;
-  
+.wallHub__home-wallpapers_img-container h2 {
+   font-size: var(--h2-font-size);
+   color: var(--main-color-dark);
+   margin-bottom: 1rem;
 }
 
 .wallHub__home-wallpapers_img-container img {
-  border-radius: 5px;
-  cursor: pointer;
+   border-radius: 5px;
+   cursor: pointer;
 }
 
 .wallHub__home-wallpapers_footer {
-  display: flex;
-  align-content: center;
-  justify-content: center;
+   display: flex;
+   align-content: center;
+   justify-content: center;
 }
 
-.wallHub__home-wallpapers_footer>button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  outline: 1px solid var(--light-color-gray);
-  border: none;
-  font-size: var(--mid-font-size);
-  color: var(--main-color-dark);
-  background-color: var(--main-color-light);
-  transition: var(--default-transition);
-  cursor: pointer;
+.wallHub__home-wallpapers_footer > button {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   padding: 0.5rem 1rem;
+   border-radius: 5px;
+   outline: 1px solid var(--light-color-gray);
+   border: none;
+   font-size: var(--mid-font-size);
+   color: var(--main-color-dark);
+   background-color: var(--main-color-light);
+   transition: var(--default-transition);
+   cursor: pointer;
 }
 
-.wallHub__home-wallpapers_footer>button:hover {
-  box-shadow: 0px 1px 10px 1px var(--light-color-gray);
+.wallHub__home-wallpapers_footer > button:hover {
+   box-shadow: 0px 1px 10px 1px var(--light-color-gray);
 }
 
-.wallHub__home-wallpapers_footer>button:active {
-  outline: solid 1px var(--main-color-dark);
-  transition: none;
+.wallHub__home-wallpapers_footer > button:active {
+   outline: solid 1px var(--main-color-dark);
+   transition: none;
 }

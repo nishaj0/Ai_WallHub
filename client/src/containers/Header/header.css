@@ -1,51 +1,51 @@
 .header__container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  width: 100%;
-  transition: var(--default-transition);
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   z-index: 100;
+   width: 100%;
+   transition: var(--default-transition);
 }
 
 /* ? this class name will assign when header is at top */
 .wallHub__header-transparent {
-  background-color: transparent;
+   background-color: transparent;
 }
 
 /* ? this is the default class name of header */
 .wallHub__header-default {
-  background-color: var(--main-color-light);
-  border-bottom: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   background-color: var(--main-color-light);
+   border-bottom: 1px solid #ccc;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .wallHub__header-main {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.25rem var(--margin-x);
-  height: var(--header-height);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0.25rem var(--margin-x);
+   height: var(--header-height);
 }
 
 .wallHub__header__logo img {
-  margin-top: 0.75rem;
-  width: 140px;
+   margin-top: 0.75rem;
+   width: 140px;
 }
 
 @media screen and (max-width: 768px) {
-  .wallHub__header__logo img {
-    width: 150px;
-  }
+   .wallHub__header__logo img {
+      width: 150px;
+   }
 
-  .wallHub__header-search {
-    height: 2.3rem;
-  }
+   .wallHub__header-search {
+      height: 2.3rem;
+   }
 }
 
 @media screen and (max-width: 550px) {
-  .wallHub__header__logo img {
-    margin-top: 0;
-    width: 27px;
-  }
+   .wallHub__header__logo img {
+      margin-top: 0;
+      width: 27px;
+   }
 }

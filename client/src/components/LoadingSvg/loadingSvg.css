@@ -1,16 +1,16 @@
 .wallHub__loadingSvg {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    width: 100%;
+   display: flex;
+   align-content: center;
+   justify-content: center;
+   flex-direction: column;
+   text-align: center;
+   width: 100%;
 }
 
 .wallHub__loadingSvg-image {
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    flex-direction: column;
-    width: var(--loading-svg-width);
+   display: flex;
+   align-self: center;
+   justify-content: center;
+   flex-direction: column;
+   width: var(--loading-svg-width);
 }

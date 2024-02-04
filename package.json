@@ -1,8 +1,8 @@
 {
-  "devDependencies": {
-    "prettier": "^3.0.3"
-  },
-  "scripts": {
-    "format": "npx prettier --write ."
-  }
+   "devDependencies": {
+      "prettier": "^3.0.3"
+   },
+   "scripts": {
+      "format": "npx prettier --write ."
+   }
 }

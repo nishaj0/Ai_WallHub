@@ -8,34 +8,34 @@ import useAuth from '../../../hooks/useAuth';
 import useLogout from '../../../hooks/useLogout';
 
 function HeaderMenu() {
-  const { auth } = useAuth();
-  const logout = useLogout();
+   const { auth } = useAuth();
+   const logout = useLogout();
 
-  const signOut = async () => {
-    if (auth?.accessToken) {
-      await logout();
-    }
-  };
-  return (
-    <div className="wallHub__header-menu">
-      <h4>None</h4>
-      <div className="wallHub__header-menu_links">
-        <Link to={'/profile'}>Profile</Link>
+   const signOut = async () => {
+      if (auth?.accessToken) {
+         await logout();
+      }
+   };
+   return (
+      <div className="wallHub__header-menu">
+         <h4>None</h4>
+         <div className="wallHub__header-menu_links">
+            <Link to={'/profile'}>Profile</Link>
+         </div>
+         <hr />
+         <div className="wallHub__header-menu_options">
+            <Link to={'/upload-post'}>
+               <FiUpload color="000" /> Upload
+            </Link>
+            <Link to={'/help'}>
+               <RiQuestionLine color="000" /> Help
+            </Link>
+            <Link onClick={() => signOut()}>
+               <RiLogoutBoxLine color="000" /> Logout
+            </Link>
+         </div>
       </div>
-      <hr />
-      <div className="wallHub__header-menu_options">
-        <Link to={'/upload-post'}>
-          <FiUpload color="000" /> Upload
-        </Link>
-        <Link to={'/help'}>
-          <RiQuestionLine color="000" /> Help
-        </Link>
-        <Link onClick={() => signOut()}>
-          <RiLogoutBoxLine color="000" /> Logout
-        </Link>
-      </div>
-    </div>
-  );
+   );
 }
 
 export default HeaderMenu;
