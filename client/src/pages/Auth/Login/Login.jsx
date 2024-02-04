@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import './login.css';
 import axios from '../../../api/axios';
-import useAuth from '../../../hooks/useAuth';
 import FormError from '../../../components/FormError/FormError';
 import { GoogleSignButton, InputBox } from '../../../components';
+import { setUser } from '../../../redux/user/userSlice';
+import { togglePersist } from '../../../redux/persist/persistSlice';
 
 const LOGIN_URL = '/login';
 
@@ -16,16 +18,13 @@ function Login() {
 
    const navigate = useNavigate();
    const location = useLocation();
-   const { setAuth, persist, setPersist } = useAuth();
+   const dispatch = useDispatch();
+   const persist = useSelector((state) => state.persist);
 
    const from = location.state?.from?.pathname || '/';
 
-   useEffect(() => {
-      localStorage.setItem('persist', persist);
-   }, [persist]);
-
-   const togglePersist = () => {
-      setPersist((prev) => !prev);
+   const togglePersistValue = () => {
+      dispatch(togglePersist());
    };
 
    const handleChange = (e) => {
@@ -46,7 +45,7 @@ function Login() {
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true,
          });
-         setAuth({ email: res.data.email, accessToken: res.data.accessToken });
+         dispatch(setUser({ user: res.data.username, token: res.data.accessToken }));
          navigate(from, { replace: true });
       } catch (err) {
          if (!err?.response) {
@@ -97,7 +96,7 @@ function Login() {
                   {isSubmitting ? 'logging...' : 'Log in'}
                </button>
                <div className="wallHub__login-checkbox">
-                  <input type="checkbox" id="persist" onChange={togglePersist} checked={persist} />
+                  <input type="checkbox" id="persist" onChange={togglePersistValue} checked={persist} />
                   <label htmlFor="persist">Trust this device</label>
                </div>
             </form>
