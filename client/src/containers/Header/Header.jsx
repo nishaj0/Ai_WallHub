@@ -1,8 +1,9 @@
 import React from 'react';
-import './header.css';
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
+import './header.css';
 import logoImgDark from '../../assets/images/logo/main-logo_dark.svg';
 import logoImgLight from '../../assets/images/logo/main-logo_light.svg';
 import miniLogo from '../../assets/images/logo/mini-logo.png';
@@ -19,7 +20,6 @@ function Header() {
    const [isNavAtTop, setIsNavAtTop] = useState(true);
    const [isTransparent, setIsTransparent] = useState(true);
 
-   const navigate = useNavigate();
    const location = useLocation();
    const currentPath = location.pathname;
 
@@ -27,18 +27,16 @@ function Header() {
    const transparentNavClass = 'wallHub__header-transparent';
    const defaultNavClass = 'wallHub__header-default';
 
-   const { auth } = useAuth();
+   const { token } = useSelector((state) => state.user);
    let screenSize = useScreenWidth();
 
    useEffect(() => {
-      if (auth?.accessToken) {
+      if (token) {
          setIsLogged(true);
       } else {
          setIsLogged(false);
       }
-      // console.log([auth?.accessToken]);
-      // console.log({ isLogged });
-   }, [auth]);
+   }, [token]);
 
    // ? turn off toggle menu when route is change
    useEffect(() => {
