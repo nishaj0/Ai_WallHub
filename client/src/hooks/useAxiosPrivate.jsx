@@ -1,18 +1,19 @@
+import { useSelector } from 'react-redux';
 import { axiosPrivate } from '../api/axios';
 import { useEffect } from 'react';
 import useRefreshToken from './useRefreshToken';
-import useAuth from './useAuth';
 
 const useAxiosPrivate = () => {
    const refresh = useRefreshToken();
-   const { auth } = useAuth();
+   const user = useSelector((state) => state.user);
 
    useEffect(() => {
       const requestIntercept = axiosPrivate.interceptors.request.use(
          // ? this function will be called before every request
          (config) => {
             if (!config.headers['Authorization']) {
-               config.headers['Authorization'] = `Bearer ${auth?.accessToken}`;
+               // ? adding accessToken to the header
+               config.headers['Authorization'] = `Bearer ${user?.token}`;
             }
             return config;
          },
@@ -38,7 +39,7 @@ const useAxiosPrivate = () => {
          axiosPrivate.interceptors.request.eject(requestIntercept);
          axiosPrivate.interceptors.response.eject(responseIntercept);
       };
-   }, [auth, refresh]);
+   }, [user, refresh]);
 
    return axiosPrivate;
 };
