@@ -43,7 +43,7 @@ const handleLogin = async (req, res) => {
             // secure:true,
             maxAge: 24 * 60 * 60 * 1000 * 7,
          });
-         res.status(200).json({ success: 'login success', accessToken });
+         res.status(200).json({ success: 'login success', accessToken, username: foundUser.username });
       } else {
          res.status(401).json({ message: 'wrong password' });
       }
