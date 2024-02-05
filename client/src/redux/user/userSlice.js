@@ -15,7 +15,7 @@ export const userSlice = createSlice({
       },
       removeUser: (state, action) => {
          state.user = null;
-         state.loading = false;
+         state.token = null;
       },
    },
 });
