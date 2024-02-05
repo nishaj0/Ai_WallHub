@@ -1,15 +1,16 @@
+import { useDispatch } from 'react-redux';
 import axios from '../api/axios';
-import useAuth from './useAuth';
+import { removeUser } from '../redux/user/userSlice';
 
 const useLogout = () => {
-   const { setAuth } = useAuth();
+   const dispatch = useDispatch();
 
    const logout = async () => {
       try {
          const response = await axios('/logout', {
             withCredentials: true,
          });
-         setAuth({});
+         dispatch(removeUser());
       } catch (err) {
          console.error(err);
       }

@@ -2,20 +2,15 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
 import './header.css';
 import logoImgDark from '../../assets/images/logo/main-logo_dark.svg';
 import logoImgLight from '../../assets/images/logo/main-logo_light.svg';
 import miniLogo from '../../assets/images/logo/mini-logo.png';
-
 import HeaderNav from './HeaderNav/HeaderNav';
 import HeaderSearchBar from './HeaderSearchBar/HeaderSearchBar';
-
-import useAuth from '../../hooks/useAuth';
 import useScreenWidth from '../../hooks/useScreenWidth';
 
 function Header() {
-   const [isLogged, setIsLogged] = useState(false);
    const [toggleMenu, setToggleMenu] = useState(false);
    const [isNavAtTop, setIsNavAtTop] = useState(true);
    const [isTransparent, setIsTransparent] = useState(true);
@@ -27,16 +22,8 @@ function Header() {
    const transparentNavClass = 'wallHub__header-transparent';
    const defaultNavClass = 'wallHub__header-default';
 
-   const { token } = useSelector((state) => state.user);
+   const token = useSelector((state) => state.user.token);
    let screenSize = useScreenWidth();
-
-   useEffect(() => {
-      if (token) {
-         setIsLogged(true);
-      } else {
-         setIsLogged(false);
-      }
-   }, [token]);
 
    // ? turn off toggle menu when route is change
    useEffect(() => {
@@ -80,7 +67,7 @@ function Header() {
                {!isTransparent && <HeaderSearchBar />}
                <HeaderNav
                   isTransparent={isTransparent}
-                  isLogged={isLogged}
+                  isLogged={!!token}
                   toggleMenu={toggleMenu}
                   setToggleMenu={setToggleMenu}
                />
