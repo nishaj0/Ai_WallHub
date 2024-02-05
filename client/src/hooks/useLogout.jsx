@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import axios from '../api/axios';
 import { removeUser } from '../redux/user/userSlice';
+import { setPersistFalse } from '../redux/persist/persistSlice';
 
 const useLogout = () => {
    const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const useLogout = () => {
             withCredentials: true,
          });
          dispatch(removeUser());
+         dispatch(setPersistFalse())
       } catch (err) {
          console.error(err);
       }
