@@ -9,6 +9,7 @@ const connectDB = require('./config/dbConn');
 const corsOptions = require('./config/corsOption');
 const credentials = require('./middlewares/credentials');
 const verifyJWT = require('./middlewares/verifyJWT');
+const errorHandler = require('./middlewares/errorHandler');
 const PORT = process.env.PORT || 5000;
 
 connectDB();
@@ -43,6 +44,8 @@ app.use(verifyJWT);
 // protected end points
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/upload', require('./routes/api/upload'));
+
+app.use(errorHandler)
 
 mongoose.connection.once('open', () => {
    console.log('connected to DB');
