@@ -1,9 +1,9 @@
 import React from 'react';
-import './profileLayout.css';
 import { useState, useEffect } from 'react';
 import { NavLink, Outlet, redirect, useNavigate, useLocation, useLoaderData } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
-import useAuth from '../../../hooks/useAuth';
+import './profileLayout.css';
 import { RiUserFill } from 'react-icons/ri';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 
@@ -69,8 +69,6 @@ function Profile() {
    const location = useLocation();
    const navigate = useNavigate();
 
-   const { auth } = useAuth();
-   console.log({ auth });
    const axiosPrivate = useAxiosPrivate();
 
    useEffect(() => {

@@ -16,14 +16,12 @@ import {
 } from './pages';
 
 import { Layout, PersistLogin } from './containers';
-import useAuth from './hooks/useAuth';
 import useAxiosPrivate from './hooks/useAxiosPrivate';
 import useRefreshToken from './hooks/useRefreshToken';
 
 import './App.css';
 
 function App() {
-   const { auth, setAuth, persist } = useAuth();
    const axiosPrivate = useAxiosPrivate();
    const refresh = useRefreshToken();
    const router = createBrowserRouter(

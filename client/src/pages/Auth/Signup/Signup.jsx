@@ -3,7 +3,6 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './signup.css';
 import axios from '../../../api/axios';
-import useAuth from '../../../hooks/useAuth';
 import FormError from '../../../components/FormError/FormError';
 import { GoogleSignButton, InputBox } from '../../../components';
 import { setUser } from '../../../redux/user/userSlice';
