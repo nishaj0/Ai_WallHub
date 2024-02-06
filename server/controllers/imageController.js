@@ -1,17 +1,17 @@
 const Post = require('../model/Post');
+const returnError = require('../util/returnError');
 
-const getImage = async (req, res) => {
-   const imageId = req?.params?.id;
-   if (!imageId) return res.status(400).json({ message: 'imageId required' });
+const getImage = async (req, res, next) => {
+   const { id } = req.params;
 
    try {
-      const imageDetails = await Post.findOne({ _id: imageId }).exec();
+      const image = await Post.findById(id);
 
-      if (!imageDetails) return res.status(204).json({ message: `no image matches to ID:${imageId}` });
-      // console.log(image);
-      res.status(200).json({ imageDetails });
+      if (!image) return next(returnError(404, `no image matches to ID:${id}`));
+      res.status(200).json(image);
    } catch (err) {
-      console.error(err);
+      console.log(err);
+      next(err);
    }
 };
 
