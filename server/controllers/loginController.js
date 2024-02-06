@@ -1,54 +1,53 @@
 const User = require('../model/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const returnError = require('../util/returnError');
 
-const handleLogin = async (req, res) => {
+const handleLogin = async (req, res, next) => {
    const { email, password } = req.body;
-
-   if (!email || !password) {
-      return res.status(400).json({ message: 'email and password are required' });
-   }
-
-   const foundUser = await User.findOne({ email: email }).exec();
-   if (!foundUser) return res.status(401).json({ message: 'user not found' }); //unauthorized'
+   if (!email || !password) return next(returnError(400, "email and password can't be empty"));
 
    try {
-      // evaluate password
+      const foundUser = await User.findOne({ email: email });
+      if (!foundUser) return next(returnError(401, 'user not found'));
+
+      // ? evaluate password
       const match = await bcrypt.compare(password, foundUser.password);
       if (match) {
-         const roles = foundUser.roles;
-         // create jwt
+         // ? create jwt
          const accessToken = jwt.sign(
             {
                userInfo: {
-                  email: foundUser.email,
-                  roles: roles,
+                  userId: foundUser.id,
+                  username: foundUser.username,
+                  role: foundUser.role,
                },
             },
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: '10s' },
+            { expiresIn: '10m' },
          );
-         const refreshToken = jwt.sign({ email: foundUser.email }, process.env.REFRESH_TOKEN_SECRET, {
+
+         const refreshToken = jwt.sign({ userId: foundUser.id }, process.env.REFRESH_TOKEN_SECRET, {
             expiresIn: '7d',
          });
-         // save refresh token in db
+
+         // ? save refresh token in db
          foundUser.refreshToken = refreshToken;
          const result = await foundUser.save();
 
          res.cookie('jwt', refreshToken, {
-            // ? from the fcc tutorial
-            // withCredentials: true,
             httpOnly: true,
             // sameSite:"None",
             // secure:true,
-            maxAge: 24 * 60 * 60 * 1000 * 7,
+            maxAge: 24 * 60 * 60 * 1000 * 7, // 7 days
          });
-         res.status(200).json({ success: 'login success', accessToken, username: foundUser.username });
+         res.status(200).json({ message: 'login success', accessToken, username: foundUser.username });
       } else {
-         res.status(401).json({ message: 'wrong password' });
+         next(returnError(401, 'user not found'));
       }
    } catch (err) {
-      res.status(500).json({ message: err.message });
+      console.log(err);
+      next(err);
    }
 };
 
