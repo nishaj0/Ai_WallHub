@@ -26,15 +26,11 @@ app.use(cookieParser());
 
 //routers
 app.use('/api/auth', require('./routes/auth'));
-app.use('/search', require('./routes/search'));
-app.use('/image', require('./routes/image'));
+app.use('/api/post', require('./routes/post'));
+app.use('/api/search', require('./routes/search'));
+app.use('/api/user', require('./routes/user'));
 
-app.use(verifyJWT);
-// protected end points
-app.use('/api/profile', require('./routes/api/profile'));
-app.use('/api/upload', require('./routes/api/upload'));
-
-app.use(errorHandler)
+app.use(errorHandler);
 
 mongoose.connection.once('open', () => {
    console.log('connected to DB');
