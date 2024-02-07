@@ -2,7 +2,7 @@ const User = require('../model/User');
 const Post = require('../model/Post');
 const returnError = require('../util/returnError');
 
-const getUserDetails = async (req, res, next) => {
+const getUserProfile = async (req, res, next) => {
    try {
       const foundUser = await User.findById(req.userId);
       if (!foundUser) return next(returnError(404, 'user not found'));
@@ -20,9 +20,11 @@ const getUserDetails = async (req, res, next) => {
    }
 };
 
-const getUserPosts = async (req, res) => {
+const getUserPosts = async (req, res, next) => {
    try {
-      const posts = await Post.findById(req.userId)
+      const { userId } = req;
+
+      const posts = await Post.find({ userRef: userId })
          .select({ id: 1, url: 1, width: 1, height: 1 })
          .sort({ date: -1 })
          .exec();
@@ -36,4 +38,4 @@ const getUserPosts = async (req, res) => {
    }
 };
 
-module.exports = { getUserDetails, getUserPosts };
+module.exports = { getUserProfile, getUserPosts };
