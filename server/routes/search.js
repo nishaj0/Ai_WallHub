@@ -1,8 +1,9 @@
 const express = require('express');
-const router = express.Router();
 const searchController = require('../controllers/searchController');
 
-router.route('/').get(searchController.searchByKeyword);
-router.route('/home').get(searchController.get20Images);
+const router = express.Router();
+
+router.get('/', searchController.searchPostsByKeyword);
+router.get('/recent', searchController.getRecentPost);
 
 module.exports = router;

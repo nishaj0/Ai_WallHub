@@ -1,12 +1,12 @@
 const Post = require('../model/Post');
 const returnError = require('../util/returnError');
 
-const searchByKeyword = async (req, res, next) => {
+const searchPostsByKeyword = async (req, res, next) => {
    const { keyword } = req.query;
    if (!keyword) return next(returnError(400, 'search keyword is required'));
 
    try {
-      const searchImages = await Post.find({
+      const posts = await Post.find({
          $or: [
             { title: { $regex: new RegExp(keyword, 'i') } },
             { prompt: { $regex: new RegExp(keyword, 'i') } },
@@ -24,16 +24,19 @@ const searchByKeyword = async (req, res, next) => {
          height: 1,
       });
 
-      res.status(200).json(searchImages);
+      res.status(200).json(posts);
    } catch (error) {
       console.log(error);
       next(error);
    }
 };
 
-const get20Images = async (req, res, next) => {
+const getRecentPost = async (req, res, next) => {
+   // ? if there is no limit query, it will return all posts
+   const limit = req.query.limit || {};
+
    try {
-      const images = await Post.find()
+      const posts = await Post.find()
          .select({
             id: 1,
             title: 1,
@@ -46,12 +49,12 @@ const get20Images = async (req, res, next) => {
             height: 1,
          })
          .sort({ createdAt: -1 })
-         .limit(20);
-      res.status(200).json(images);
+         .limit(limit);
+      res.status(200).json(posts);
    } catch (error) {
       console.log(error);
       next(error);
    }
 };
 
-module.exports = { searchByKeyword, get20Images };
+module.exports = { searchPostsByKeyword, getRecentPost };
