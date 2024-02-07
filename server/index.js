@@ -25,10 +25,7 @@ app.use(express.json({}));
 app.use(cookieParser());
 
 //routers
-app.use('/register', require('./routes/register'));
-app.use('/login', require('./routes/login'));
-app.use('/refresh', require('./routes/refresh'));
-app.use('/logout', require('./routes/logout'));
+app.use('/api/auth', require('./routes/auth'));
 app.use('/search', require('./routes/search'));
 app.use('/image', require('./routes/image'));
 
