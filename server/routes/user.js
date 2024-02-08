@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.get('/profile', verifyJWT, userController.getUserProfile);
 router.get('/posts', verifyJWT, userController.getUserPosts);
+router.route('/').put(verifyJWT, userController.updateUser).delete(verifyJWT, userController.deleteUser);
 
 module.exports = router;
