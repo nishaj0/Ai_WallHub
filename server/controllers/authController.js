@@ -5,19 +5,28 @@ const returnError = require('../util/returnError');
 
 const handleRegister = async (req, res, next) => {
    const { fullName, username, email, password } = req.body;
+   const usernameRegex = /^[a-z][a-z0-9_]*$/;
+   const passwordRegex = /^\S{8,16}$/;
 
    if (!fullName || !username || !email || !password)
       return next(returnError(400, 'fullName, username, email and password are required'));
 
-   const duplicate = await User.findOne({ email: email }).exec();
-   if (duplicate) return next(returnError(409, 'email already exists'));
+   // ? Check regex match
+   if (!usernameRegex.test(username)) return next(returnError(400, 'Invalid username format'));
+   if (!passwordRegex.test(password)) return next(returnError(400, 'Invalid password format'));
 
    try {
+      const duplicateEmail = await User.findOne({ email: email });
+      if (duplicateEmail) return next(returnError(409, 'email already exists'));
+
+      const duplicateUsername = await User.findOne({ username: username });
+      if (duplicateUsername) return next(returnError(409, 'username already exists'));
+
       // ? encrypt password
       const hashPassword = await bcrypt.hash(password, 10);
 
       // ? create user
-      const createdUser = User.create({
+      const createdUser = await User.create({
          fullName: fullName,
          username: username,
          email: email,
