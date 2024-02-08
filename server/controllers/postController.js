@@ -63,4 +63,43 @@ const uploadImagePost = async (req, res, next) => {
    }
 };
 
-module.exports = { getImagePost, uploadImagePost };
+const updatePost = async (req, res, next) => {
+   const postId = req.params.id;
+   const { userId } = req;
+   const { title, prompt, hashTags } = req.body;
+   if (!title || !prompt || !hashTags) return next(returnError(401, 'title, prompt and hashTags are required'));
+
+   try {
+      const post = await Post.findById(postId);
+      if (!post) return next(returnError(404, `no post matches to ID:${postId}`));
+
+      if (!userId === post.userRef) return next(returnError(403, 'You are not authorized to delete this post'));
+
+      post.title = title;
+      post.prompt = prompt;
+      post.hashTags = hashTags;
+      await post.save();
+      res.status(200).json({ message: 'post updated successfully' });
+   } catch (error) {
+      next(error);
+   }
+};
+
+const deletePost = async (req, res, next) => {
+   const postId = req.params.id;
+   const { userId } = req;
+
+   try {
+      const post = await Post.findById(postId);
+      if (!post) return next(returnError(404, `no post matches to ID:${postId}`));
+
+      if (!userId === post.userRef) return next(returnError(403, 'You are not authorized to delete this post'));
+
+      await Post.findByIdAndDelete(postId);
+      res.status(200).json({ message: 'post deleted successfully' });
+   } catch (error) {
+      next(error);
+   }
+};
+
+module.exports = { getImagePost, uploadImagePost, updatePost, deletePost };

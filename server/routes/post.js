@@ -9,7 +9,12 @@ const router = express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-router.get('/:id', postController.getImagePost);
+router
+   .route('/:id')
+   .get(postController.getImagePost)
+   .put(verifyJWT, postController.updatePost)
+   .delete(verifyJWT, postController.deletePost);
+
 router.post('/upload', verifyJWT, upload.single('image'), postController.uploadImagePost);
 
 module.exports = router;
