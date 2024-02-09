@@ -1,44 +1,40 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
-
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import PhotoAlbum from 'react-photo-album';
-
 import './search.css';
 import { SearchTag, LoadingSvg } from '../../components';
 import axios from '../../api/axios';
-
-const SEARCH_URL = '/search';
 
 function Search() {
    const [fetchedImages, setFetchedImages] = useState([]);
    const [isLoading, setIsLoading] = useState(true);
    const [abortController, setAbortController] = useState(null);
+
    const [searchParams] = useSearchParams();
-   const searchKeyword = searchParams.get('keyword');
+   const keyword = searchParams.get('keyword');
    const navigate = useNavigate();
 
+   const SEARCH_URL = '/api/search';
    const searchString = ['phone', 'PC', 'nature', 'landscape'];
 
-   // ? this will fetch the images from the server
-   // ? and convert to the format that react-photo-album accepts
    useEffect(() => {
+      // ? this will fetch the images from the server
+      // ? and convert to the format that react-photo-album accepts
       const fetchData = async () => {
          try {
             const controller = new AbortController();
             setAbortController(controller);
 
-            const response = await axios.post(SEARCH_URL, { searchKeyword }, { signal: controller.signal });
+            const response = await axios(`${SEARCH_URL}?keyword=${keyword}`, { signal: controller.signal });
 
             // ? giving manual delay
-            const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-            await delay(3000);
+            // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+            // await delay(3000);
 
-            // console.log(response);
-
-            const transformedData = response.data.searchImages.map((img, index) => ({
+            // ? transform to usable data
+            const transformedData = response.data.map((img, index) => ({
                key: img._id,
-               src: img.publicImgUrl,
+               src: img.url,
                width: img.width,
                height: img.height,
             }));
@@ -49,7 +45,6 @@ function Search() {
             setIsLoading(false);
          }
       };
-
       fetchData();
 
       return () => {
@@ -57,12 +52,12 @@ function Search() {
             abortController.abort();
          }
       };
-   }, [searchKeyword]);
+   }, [keyword]);
 
    return (
       <div className="wallHub__search">
          <div className="wallHub__search-header">
-            <h2>{searchKeyword.charAt(0).toUpperCase() + searchKeyword.slice(1)}</h2>
+            <h2>{keyword.charAt(0).toUpperCase() + keyword.slice(1)}</h2>
             <p>Discover and download our AI-generated wallpapers.</p>
          </div>
          <div className="wallHub__search-tags" style={{ display: isLoading ? 'none' : 'flex' }}>
