@@ -8,8 +8,6 @@ import { GoogleSignButton, InputBox } from '../../../components';
 import { setUser } from '../../../redux/user/userSlice';
 import { togglePersist } from '../../../redux/persist/persistSlice';
 
-const LOGIN_URL = '/login';
-
 function Login() {
    const [errorMessage, setErrorMessage] = useState(false);
    const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,6 +20,7 @@ function Login() {
    const persist = useSelector((state) => state.persist);
 
    const from = location.state?.from?.pathname || '/';
+   const LOGIN_URL = '/api/auth/login';
 
    const togglePersistValue = () => {
       dispatch(togglePersist());
@@ -31,7 +30,6 @@ function Login() {
       const { name, value } = e.target;
       if (name === 'email') {
          setEmail(value);
-         console.log(email);
       } else if (name === 'password') {
          setPassword(value);
       }
