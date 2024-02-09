@@ -1,28 +1,23 @@
 import { useEffect, useState } from 'react';
-
 import { Link, useNavigate } from 'react-router-dom';
 import { RiSearchLine } from 'react-icons/ri';
 import PhotoAlbum from 'react-photo-album';
-
 import './home.css';
 import { LoadingSvg, SearchTag } from '../../components';
 import useScreenWidth from '../../hooks/useScreenWidth';
-import { testSearchArray } from '../Search/testSearchArray';
 import axios from '../../api/axios';
 
-const SEARCH_URL = '/search/home';
-
 function Home() {
-   const [isSmallScreen, setIsSmallScreen] = useState(false);
-
-   // ? this state is used to store the search data
    const [searchData, setSearchData] = useState({ search: '' });
    const [transformedData, setTransformedData] = useState(null);
    const [isLoading, setIsLoading] = useState(true);
    const [abortController, setAbortController] = useState(null);
+
    const navigate = useNavigate();
    const screenSize = useScreenWidth();
 
+   const RECENT_POSTS_URL = '/api/search/recent';
+   const recentPostLimit = 20;
    const searchString = [
       'anime',
       'nature',
@@ -45,17 +40,18 @@ function Home() {
       setAbortController(controller);
       const fetchImages = async () => {
          try {
-            const response = await axios.get(SEARCH_URL, { signal: controller.signal });
-            console.log(response);
+            const response = await axios.get(`${RECENT_POSTS_URL}?limit=${recentPostLimit}`, {
+               signal: controller.signal,
+            });
 
             // ? giving manual delay
             // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-            // await delay(30000);
+            // await delay(3000);
 
             // ? transform data to usable format
-            const transformData = response.data.images.map((img) => ({
+            const transformData = response.data.map((img) => ({
                key: img._id,
-               src: img.publicImgUrl,
+               src: img.url,
                width: img.width,
                height: img.height,
             }));
