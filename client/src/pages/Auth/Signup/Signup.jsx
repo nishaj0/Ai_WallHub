@@ -8,11 +8,9 @@ import { GoogleSignButton, InputBox } from '../../../components';
 import { setUser } from '../../../redux/user/userSlice';
 import { togglePersist } from '../../../redux/persist/persistSlice';
 
-const SIGNUP_URL = '/register';
-
 function Signup() {
    const [errorMessage, setErrorMessage] = useState(false);
-   const [formData, setFormData] = useState({ name: '', username: '', email: '' });
+   const [formData, setFormData] = useState({ fullName: '', username: '', email: '' });
    const [isSubmitting, setIsSubmitting] = useState(false);
    const [passwordData, setPasswordData] = useState({
       tempPassword: '',
@@ -26,6 +24,7 @@ function Signup() {
    const persist = useSelector((state) => state.persist);
 
    const from = location.state?.from?.pathname || '/';
+   const SIGNUP_URL = '/api/auth/register';
 
    useEffect(() => {
       setErrorMessage(passwordData.password !== passwordData.tempPassword ? 'Password not matched' : false);
@@ -85,11 +84,11 @@ function Signup() {
                <InputBox
                   id="wallHub__signup-name"
                   label={'Full Name'}
-                  name="name"
+                  name="fullName"
                   placeholder="John Doe"
-                  type="name"
+                  type="text"
                   required
-                  value={formData.name}
+                  value={formData.fullName}
                   onChange={handleChange}
                />
                <InputBox
@@ -97,7 +96,9 @@ function Signup() {
                   label={'User Name'}
                   name="username"
                   placeholder="john.doe"
-                  type="username"
+                  type="text"
+                  pattern="^[a-z][a-z0-9_.]{3,15}$"
+                  title="username must be 3-15 characters long and does not contain any space."
                   marginTop={1}
                   required
                   value={formData.username}
@@ -108,7 +109,7 @@ function Signup() {
                   label={'Email address'}
                   name="email"
                   placeholder={'john.doe@example.com'}
-                  type={'email'}
+                  type="email"
                   marginTop={1}
                   required
                   value={formData.email}
@@ -116,12 +117,12 @@ function Signup() {
                />
                <InputBox
                   id="wallHub__signup-password"
-                  label={'Password'}
+                  label='Password'
                   name="password"
                   placeholder="Enter password"
-                  type={'password'}
-                  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-                  title="Password must be at least 8 characters long and contain at least one letter and one number"
+                  type='password'
+                  pattern="^\S{8,16}$"
+                  title="Password must be least 8-16 characters long and does not contain any space."
                   required
                   marginTop={1}
                   value={passwordData.password}
@@ -131,9 +132,9 @@ function Signup() {
                   id="wallHub__signup-confirmPassword"
                   name="tempPassword"
                   placeholder="Confirm Password"
-                  type={'password'}
-                  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-                  title="Password must be at least 8 characters long and contain at least one letter and one number"
+                  type='password'
+                  pattern="^\S{8,16}$"
+                  title="Password must be least 8-16 characters long and does not contain any space."
                   required
                   value={passwordData.tempPassword}
                   onChange={handlePassword}
