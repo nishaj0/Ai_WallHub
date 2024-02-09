@@ -5,7 +5,7 @@ import { setUser } from '../redux/user/userSlice';
 const useRefreshToken = () => {
    const dispatch = useDispatch();
    const refresh = async () => {
-      const response = await axios.get('/refresh', {
+      const response = await axios.get('/api/auth/refresh', {
          withCredentials: true,
       });
       dispatch(setUser({ user: response.data.username, token: response.data.accessToken }));
