@@ -41,7 +41,7 @@ const getUserPosts = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
    const { userId } = req;
    const { fullName, username } = req.body;
-   const usernameRegex = /^[a-z][a-z0-9_]*$/;
+   const usernameRegex = /^[a-z][a-z0-9_.]{3,15}$/;
 
    if (!fullName || !username) return next(returnError(401, 'fullName and username is required'));
 

@@ -5,7 +5,7 @@ const returnError = require('../util/returnError');
 
 const handleRegister = async (req, res, next) => {
    const { fullName, username, email, password } = req.body;
-   const usernameRegex = /^[a-z][a-z0-9_]*$/;
+   const usernameRegex = /^[a-z][a-z0-9_.]{3,15}$/;
    const passwordRegex = /^\S{8,16}$/;
 
    if (!fullName || !username || !email || !password)
