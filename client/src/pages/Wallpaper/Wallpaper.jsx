@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './wallpaper.css';
-
 import { useParams } from 'react-router-dom';
 import { IoIosHeartEmpty, IoMdHeart } from 'react-icons/io';
 import { saveAs } from 'file-saver';
-
-import useScreenWidth from '../../hooks/useScreenWidth';
+import './wallpaper.css';
 import axios from '../../api/axios';
 import { LoadingSvg } from '../../components';
 
@@ -15,27 +12,29 @@ function Wallpaper() {
    const [abortController, setAbortController] = useState(null);
    const [isLoading, setIsLoading] = useState(true);
    const { id: imageId } = useParams();
-   let screenSize = useScreenWidth();
 
    useEffect(() => {
       const controller = new AbortController();
       setAbortController(controller);
       const fetchImageDetails = async () => {
          try {
-            const response = await axios.get(`/image/${imageId}`, {
+            const response = await axios.get(`/api/post/${imageId}`, {
                signal: controller.signal,
             });
+
+            // ? give manual delay
             // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
             // await delay(30000);
-            setImageDetails(response.data.imageDetails);
+
+            setImageDetails(response.data);
          } catch (err) {
             console.error(err);
          } finally {
             setIsLoading(false);
          }
       };
-
       fetchImageDetails();
+
       return () => {
          if (abortController) controller.abort();
       };
@@ -43,7 +42,7 @@ function Wallpaper() {
 
    // ? download image when user click download button
    const downloadImage = () => {
-      saveAs(imageDetails.publicImgUrl, imageDetails.title);
+      saveAs(imageDetails.url, imageDetails.title);
    };
 
    // ? convert to useful date format
@@ -64,7 +63,7 @@ function Wallpaper() {
          ) : (
             <>
                <div className="wallHub__wallpaper-image_container">
-                  <img className="wallHub__wallpaper-image" src={imageDetails.publicImgUrl} alt="wallpaper image" />
+                  <img className="wallHub__wallpaper-image" src={imageDetails.url} alt="wallpaper image" />
                </div>
                <div className="wallHub__wallpaper-info">
                   <div className="wallHub__wallpaper-button-container">
@@ -82,7 +81,7 @@ function Wallpaper() {
                      <p>
                         posted by: <a href="#">{imageDetails.userEmail}</a>
                      </p>
-                     <p>upload date: {convertDate(imageDetails.date)}</p>
+                     <p>upload date: {convertDate(imageDetails.createdAt)}</p>
                      <p>
                         size: {imageDetails.width}x{imageDetails.height}
                      </p>
