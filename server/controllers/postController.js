@@ -53,7 +53,7 @@ const uploadImagePost = async (req, res, next) => {
             foundUser.posts.push(newPost.id);
             await foundUser.save();
 
-            res.status(201).json({ message: 'post created' });
+            res.status(201).json({ message: 'post created', postId: newPost.id });
          },
       );
       imageStream.end(imageBuffer);
@@ -79,7 +79,7 @@ const updatePost = async (req, res, next) => {
       post.prompt = prompt;
       post.hashTags = hashTags;
       await post.save();
-      res.status(200).json({ message: 'post updated successfully' });
+      res.status(200).json({ message: 'post updated successfully', postId: post.id });
    } catch (error) {
       next(error);
    }
