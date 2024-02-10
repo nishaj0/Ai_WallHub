@@ -1,46 +1,8 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
-import { NavLink, Outlet, redirect, useNavigate, useLocation, useLoaderData } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
-import './profileLayout.css';
+import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { RiUserFill } from 'react-icons/ri';
+import './profileLayout.css';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
-
-export const loader = (auth, setAuth, persist, axiosPrivate, refresh) => async () => {
-   // ? using useEffect instead of loader, because there is some bugs when using loader
-   // ? 1. send so many requests to server(may be) 2. persist login not working
-   // let responseData;
-   // // console.log(auth);
-
-   // // const verifyRefreshToken = async () => {
-   // //    try {
-   // //       await refresh();
-   // //    } catch (err) {
-   // //       console.error(err);
-   // //    }
-   // // };
-
-   // // !auth?.accessToken && persist && verifyRefreshToken() && console.log({afterRefresh:auth})
-   // if (!auth?.accessToken) throw redirect("/login");
-   // else {
-   //    // let isMounted = true;
-   //    const controller = new AbortController();
-   //    console.log(controller)
-   //    try {
-   //       const response = await axiosPrivate.get("/api/profile", {
-   //          signal: controller.signal,
-   //       });
-   //       responseData = response.data;
-   //       // console.log(responseData);
-   //    } catch (err) {
-   //       console.error(err);
-   //       return redirect("/login");
-   //    }
-   // }
-   // return responseData;
-   return null;
-};
 
 function ActivityLink({ content, to }) {
    return (
@@ -64,40 +26,35 @@ function ActivityLink({ content, to }) {
 function Profile() {
    const [customProfile, setCustomProfile] = useState(false);
    const [userData, setUserData] = useState();
+   const [abortController, setAbortController] = useState(null);
 
-   const loaderData = useLoaderData();
    const location = useLocation();
    const navigate = useNavigate();
-
    const axiosPrivate = useAxiosPrivate();
 
+   const PROFILE_URL = '/api/user/profile';
+
    useEffect(() => {
-      let isMounted = true;
       const controller = new AbortController();
-      console.log(controller);
+      setAbortController(controller);
 
       const getUserData = async () => {
          try {
-            const response = await axiosPrivate.get('/api/profile', {
+            const response = await axiosPrivate.get(PROFILE_URL, {
                signal: controller.signal,
             });
-            console.log(response.data);
-            isMounted && setUserData(response.data);
+            setUserData(response.data);
          } catch (err) {
-            if (axios.isCancel(err)) {
-               console.log('Request cancelled:', err.message);
-            } else {
-               console.error(err);
-               navigate('/login', { state: { from: location }, replace: true });
-            }
+            console.error(err);
+            navigate('/login', { state: { from: location }, replace: true });
          }
       };
-
       getUserData();
 
       return () => {
-         isMounted = false;
-         controller.abort();
+         if (abortController) {
+            abortController.abort();
+         }
       };
    }, []);
 
@@ -111,7 +68,7 @@ function Profile() {
                   </div>
                </div>
                <div className="wallHub__profile-details_info">
-                  <h3>{userData?.name || loaderData?.name}</h3>
+                  <h3>{userData?.fullName}</h3>
                   <div className="wallHub__profile-details_info-likes">
                      <div>
                         <h4>10</h4>

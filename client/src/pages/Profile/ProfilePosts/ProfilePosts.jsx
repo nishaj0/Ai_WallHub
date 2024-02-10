@@ -1,24 +1,21 @@
 import { useState, useEffect } from 'react';
-
 import PhotoAlbum from 'react-photo-album';
 import { useNavigate } from 'react-router-dom';
-
 import './profilePost.css';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { LoadingSvg } from '../../../components';
 
-const SEARCH_URL = '/api/profile/posts';
 
 function ProfilePosts() {
    const [fetchedImages, setFetchedImages] = useState([]);
-   console.log(fetchedImages);
    const [isLoading, setIsLoading] = useState(true);
    const [abortController, setAbortController] = useState(null);
-
+   
    const navigate = useNavigate();
    const axiosPrivate = useAxiosPrivate();
 
-   // ? this will fetch the images from the server
+   const SEARCH_URL = '/api/user/posts';
+
    useEffect(() => {
       const fetchData = async () => {
          try {
@@ -26,17 +23,15 @@ function ProfilePosts() {
             setAbortController(controller);
 
             const response = await axiosPrivate.get(SEARCH_URL, { signal: controller.signal });
-            console.log(response);
+
             // ? giving manual delay
             // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
             // await delay(3000);
 
-            // console.log(response);
-
             // ? converting to the format that react-photo-album accepts
-            const transformedData = response.data.posts.map((img, index) => ({
+            const transformedData = response.data.map((img, index) => ({
                key: img._id,
-               src: img.publicImgUrl,
+               src: img.url,
                width: img.width,
                height: img.height,
             }));
@@ -47,7 +42,6 @@ function ProfilePosts() {
             setIsLoading(false);
          }
       };
-
       fetchData();
 
       return () => {
