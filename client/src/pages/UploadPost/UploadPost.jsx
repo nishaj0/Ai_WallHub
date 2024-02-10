@@ -1,55 +1,37 @@
-import React from 'react';
-import './uploadPost.css';
-
-import { useState, useEffect, useRef } from 'react';
-import { Form, useLocation, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import { useState, useRef } from 'react';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { BiLeftArrowAlt } from 'react-icons/bi';
 import { BsImage } from 'react-icons/bs';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
-
+import './uploadPost.css';
 import useScreenWidth from '../../hooks/useScreenWidth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-
 import FormError from '../../components/FormError/FormError';
 
 function UploadPost() {
    const [imageUrl, setImageUrl] = useState(null);
    const [image, setImage] = useState(null);
-   // console.log(imageUrl);
    const [formInputData, setFormInputData] = useState({
       title: '',
       prompt: '',
    });
    const [tags, setTags] = useState([]);
    const [tagInput, setTagInput] = useState('');
-   const [isUploaded, setIsUploaded] = useState(false); // ? this state is used to check if the image is uploaded or not
    const [error, setError] = useState(false);
-   const [tagError, setTagError] = useState(false); // ? this state is used to check if the tag is valid or not [only alphabets, numbers, _ and - are allowed
+   const [tagError, setTagError] = useState(false);
    const [loading, setLoading] = useState(false);
    const tagInputRef = useRef(null);
 
    const location = useLocation();
    const navigate = useNavigate();
    const from = location?.state?.from?.pathname || '/';
-   // console.log(location);
    const axiosPrivate = useAxiosPrivate();
    let screenSize = useScreenWidth();
 
    const TAG_REGEX = /^[a-z0-9_-]+$/;
-
-   // ? if the image is uploaded then navigate to the home page
-   useEffect(() => {
-      if (isUploaded) {
-         navigate('/');
-      }
-   }, [isUploaded]);
-
-   // useEffect(()=>{
-
-   // })
+   const UPLOAD_URL = '/api/post/upload';
 
    // ? this function is used to set the image url to the image state
    function handleImage(e) {
@@ -132,10 +114,9 @@ function UploadPost() {
             formData.append('tags', tags);
 
             // ? sending request to server
-            const response = await axiosPrivate.post('api/upload', formData);
+            const response = await axiosPrivate.post(UPLOAD_URL, formData);
 
-            console.log(response);
-            setIsUploaded(true);
+            navigate(`/image/${response.data.postId}`);
          } else {
             setError('Title and Image are required');
          }
@@ -248,12 +229,7 @@ function UploadPost() {
                <p className="wallHub__uploadPost-form_guidelines-p">
                   This post must follow <a href="#">Content Guidelines</a>
                </p>
-               <button
-                  className="wallHub__uploadPost-form_submitButton"
-                  // onClick={(e) => handleSubmit(e)}
-               >
-                  {loading ? 'Uploading...' : 'Upload'}
-               </button>
+               <button className="wallHub__uploadPost-form_submitButton">{loading ? 'Uploading...' : 'Upload'}</button>
             </div>
          </form>
       </div>
