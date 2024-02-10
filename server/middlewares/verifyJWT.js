@@ -7,7 +7,7 @@ const verifyJWT = (req, res, next) => {
 
    const token = authHeader.split(' ')[1];
    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
-      if (err) return next(returnError(401, 'invalid token'));
+      if (err) return next(returnError(403, 'invalid token'));
 
       req.userId = decoded.userInfo.userId;
       req.username = decoded.userInfo.username;
