@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { RiSearchLine } from 'react-icons/ri';
 import PhotoAlbum from 'react-photo-album';
 import './home.css';
@@ -8,7 +8,7 @@ import useScreenWidth from '../../hooks/useScreenWidth';
 import axios from '../../api/axios';
 
 function Home() {
-   const [searchData, setSearchData] = useState({ search: '' });
+   const [searchKeyword, setSearchKeyword] = useState('');
    const [transformedData, setTransformedData] = useState(null);
    const [isLoading, setIsLoading] = useState(true);
    const [abortController, setAbortController] = useState(null);
@@ -73,17 +73,16 @@ function Home() {
    }, []);
 
    // ? this function is used to handle the search data
-   const handleSearch = (e) => {
-      setSearchData((prevFormData) => {
-         return {
-            ...prevFormData,
-            [e.target.name]: e.target.value,
-         };
-      });
+   const handleChange = (e) => {
+      setSearchKeyword(e.target.value);
    };
 
    const handleSubmit = (e) => {
       e.preventDefault();
+      // ? only navigate to search page when there is a searchKeyword
+      if (searchKeyword) {
+         navigate(`search?keyword=${searchKeyword}`);
+      }
    };
 
    return (
@@ -98,15 +97,13 @@ function Home() {
                      <input
                         type="search"
                         placeholder={screenSize == 'small' ? 'Search Wallpaper' : 'Search AI-Generated Wallpapers'}
-                        onChange={handleSearch}
+                        onChange={handleChange}
                         name="search"
-                        value={searchData.search}
+                        value={searchKeyword}
                      />
-                     <Link to={`search?keyword=${searchData.search}`}>
-                        <button type="submit">
-                           <RiSearchLine color="#333333" size={27} />
-                        </button>
-                     </Link>
+                     <button type="submit">
+                        <RiSearchLine color="#333333" size={27} />
+                     </button>
                   </form>
                </div>
             </div>

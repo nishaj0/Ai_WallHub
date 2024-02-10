@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { RiSearchLine } from 'react-icons/ri';
 import './headerSearchBar.css';
 import useScreenWidth from '../../../hooks/useScreenWidth';
 
 function HeaderSearchBar() {
-   const [searchKeyword, setSearchKeyword] = useState('');
+   const [searchParams] = useSearchParams();
+   const keyword = searchParams.get('keyword');
+   const [searchKeyword, setSearchKeyword] = useState(keyword || '');
+   const navigate = useNavigate();
 
    let screenSize = useScreenWidth();
 
@@ -15,7 +18,12 @@ function HeaderSearchBar() {
 
    const handleSubmit = (e) => {
       e.preventDefault();
+      // ? only navigate to search page when there is a searchKeyword
+      if (searchKeyword) {
+         navigate(`search?keyword=${searchKeyword}`);
+      }
    };
+
    return (
       <div className="wallHub__header-search">
          <form onSubmit={handleSubmit}>
@@ -26,11 +34,9 @@ function HeaderSearchBar() {
                onChange={handleSearch}
                value={searchKeyword}
             />
-            <Link to={`search?keyword=${searchKeyword}`}>
-               <button type="submit">
-                  <RiSearchLine color="#333333" size={screenSize === 'medium' || screenSize === 'small' ? 20 : 27} />
-               </button>
-            </Link>
+            <button type="submit">
+               <RiSearchLine color="#333333" size={screenSize === 'medium' || screenSize === 'small' ? 20 : 27} />
+            </button>
          </form>
       </div>
    );
