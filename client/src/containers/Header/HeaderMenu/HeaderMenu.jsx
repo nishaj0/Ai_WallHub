@@ -2,16 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { RiQuestionLine, RiLogoutBoxLine } from 'react-icons/ri';
 import { FiUpload } from 'react-icons/fi';
-import { useSelector } from 'react-redux';
 import './headerMenu.css';
 import useLogout from '../../../hooks/useLogout';
 
-function HeaderMenu() {
-   const accessToken = useSelector((state) => state.user.token);
+function HeaderMenu({ isLogged }) {
    const logout = useLogout();
 
    const signOut = async () => {
-      if (accessToken) {
+      if (isLogged) {
          await logout();
       }
    };

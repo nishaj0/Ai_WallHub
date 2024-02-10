@@ -1,11 +1,9 @@
-import React from 'react';
-import './headerNav.css';
 import { Link } from 'react-router-dom';
 import { RiAccountCircleFill } from 'react-icons/ri';
-
+import './headerNav.css';
 import HeaderMenu from '../HeaderMenu/HeaderMenu';
 
-function HeaderNav({ isTransparent, isLogged, toggleMenu, setToggleMenu }) {
+function HeaderNav({ isTransparent, isLogged, toggleMenu, setToggleMenu, children }) {
    return (
       <nav className="wallHub__nav">
          {isLogged ? (
@@ -16,7 +14,7 @@ function HeaderNav({ isTransparent, isLogged, toggleMenu, setToggleMenu }) {
                <button onClick={() => setToggleMenu((prev) => !prev)} className="wallHub__nav-icon">
                   <RiAccountCircleFill color={toggleMenu ? '#808080' : isTransparent ? '#f8f8f8' : '#333'} size={30} />
                </button>
-               {toggleMenu && <HeaderMenu />}
+               {children}
             </>
          ) : (
             <div className="wallHub__nav-button">
