@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { RiUserFill } from 'react-icons/ri';
-import './profileLayout.css';
-import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
+import './profile.css';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 function ActivityLink({ content, to }) {
    return (

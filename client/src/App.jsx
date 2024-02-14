@@ -9,7 +9,7 @@ import {
    Signup,
    Login,
    LoginOtp,
-   ProfileLayout,
+   Profile,
    ProfilePosts,
    UploadPost,
    Wallpaper,
@@ -39,7 +39,7 @@ function App() {
                   <Route path="image/:id" element={<Wallpaper />} />
 
                   {/* protected route */}
-                  <Route path="profile" element={<ProfileLayout />}>
+                  <Route path="profile" element={<Profile />}>
                      <Route index element={<ProfilePosts />} />
                   </Route>
                </Route>

@@ -6,7 +6,7 @@ import Search from './Search/Search';
 import Signup from './Auth/Signup/Signup';
 import Login from './Auth/Login/Login';
 import LoginOtp from './Auth/LoginOtp/LoginOtp';
-import ProfileLayout from './Profile/ProfileLayout/ProfileLayout';
+import Profile from './Profile/Profile';
 import ProfilePosts from './Profile/ProfilePosts/ProfilePosts';
 import UploadPost from './UploadPost/UploadPost';
 import Wallpaper from './Wallpaper/Wallpaper';
@@ -20,7 +20,7 @@ export {
    Login,
    Signup,
    LoginOtp,
-   ProfileLayout,
+   Profile,
    ProfilePosts,
    UploadPost,
    Wallpaper,
