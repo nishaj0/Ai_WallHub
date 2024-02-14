@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { RiAccountCircleFill } from 'react-icons/ri';
 import './headerNav.css';
 import HeaderMenu from '../HeaderMenu/HeaderMenu';
+import { BlueButton } from '../../../components';
 
 function HeaderNav({ isTransparent, isLogged, toggleMenu, setToggleMenu, children }) {
    return (
@@ -22,10 +23,10 @@ function HeaderNav({ isTransparent, isLogged, toggleMenu, setToggleMenu, childre
                   <Link to="/login">login</Link>
                </div>
                <Link to="/signup" className="wallHub__nav-signup">
-                  <button>Sign up</button>
+                  <BlueButton>Sign up</BlueButton>
                </Link>
                <Link to="/login" className="wallHub__nav-login">
-                  <button>Login</button>
+                  <BlueButton>Login</BlueButton>
                </Link>
             </div>
          )}

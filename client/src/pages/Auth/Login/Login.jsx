@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './login.css';
 import axios from '../../../api/axios';
 import FormError from '../../../components/FormError/FormError';
-import { GoogleSignButton, InputBox } from '../../../components';
+import { GoogleSignButton, InputBox, BlueButton } from '../../../components';
 import { setUser } from '../../../redux/user/userSlice';
 import { togglePersist } from '../../../redux/persist/persistSlice';
 
@@ -90,9 +90,15 @@ function Login() {
                   onChange={handleChange}
                />
                {errorMessage && <FormError errorMessage={errorMessage} />}
-               <button disabled={isSubmitting} type="submit">
+               <BlueButton
+                  width={'100%'}
+                  height={'var(--login-input-y)'}
+                  marginTop={'1.75rem'}
+                  disabled={isSubmitting}
+                  type="submit"
+               >
                   {isSubmitting ? 'logging...' : 'Log in'}
-               </button>
+               </BlueButton>
                <div className="wallHub__login-checkbox">
                   <input type="checkbox" id="persist" onChange={togglePersistValue} checked={persist} />
                   <label htmlFor="persist">Trust this device</label>

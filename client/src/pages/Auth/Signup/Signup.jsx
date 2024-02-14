@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './signup.css';
 import axios from '../../../api/axios';
 import FormError from '../../../components/FormError/FormError';
-import { GoogleSignButton, InputBox } from '../../../components';
+import { BlueButton, GoogleSignButton, InputBox } from '../../../components';
 import { setUser } from '../../../redux/user/userSlice';
 import { togglePersist } from '../../../redux/persist/persistSlice';
 
@@ -117,10 +117,10 @@ function Signup() {
                />
                <InputBox
                   id="wallHub__signup-password"
-                  label='Password'
+                  label="Password"
                   name="password"
                   placeholder="Enter password"
-                  type='password'
+                  type="password"
                   pattern="^\S{8,16}$"
                   title="Password must be least 8-16 characters long and does not contain any space."
                   required
@@ -132,7 +132,7 @@ function Signup() {
                   id="wallHub__signup-confirmPassword"
                   name="tempPassword"
                   placeholder="Confirm Password"
-                  type='password'
+                  type="password"
                   pattern="^\S{8,16}$"
                   title="Password must be least 8-16 characters long and does not contain any space."
                   required
@@ -140,9 +140,15 @@ function Signup() {
                   onChange={handlePassword}
                />
                {errorMessage && <FormError errorMessage={errorMessage} />}
-               <button type="submit" disabled={isSubmitting}>
+               <BlueButton
+                  width={'100%'}
+                  height={'var(--login-input-y)'}
+                  marginTop={'1.75rem'}
+                  type="submit"
+                  disabled={isSubmitting}
+               >
                   {isSubmitting ? 'Signing...' : 'Sign up'}
-               </button>
+               </BlueButton>
                <div className="wallHub__login-checkbox">
                   <input type="checkbox" id="persist" onChange={togglePersistValue} checked={persist} />
                   <label htmlFor="persist">Trust this device</label>

@@ -4,7 +4,7 @@ import { IoIosHeartEmpty, IoMdHeart } from 'react-icons/io';
 import { saveAs } from 'file-saver';
 import './wallpaper.css';
 import axios from '../../api/axios';
-import { LoadingSvg } from '../../components';
+import { LoadingSvg, BlueButton } from '../../components';
 
 function Wallpaper() {
    const [isUserLiked, setIsUserLiked] = useState(false);
@@ -71,9 +71,9 @@ function Wallpaper() {
                         {isUserLiked ? <IoMdHeart /> : <IoIosHeartEmpty />}
                         <p>203</p>
                      </div>
-                     <button className="wallHub__wallpaper-button-download" onClick={downloadImage}>
+                     <BlueButton  onClick={downloadImage}>
                         Download
-                     </button>
+                     </BlueButton>
                   </div>
                   <h2 className="wallHub__wallpaper-title">{imageDetails.title}</h2>
                   <h4 className="wallHub__wallpaper-prompt">{imageDetails.prompt}</h4>

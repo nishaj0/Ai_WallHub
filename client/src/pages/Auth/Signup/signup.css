@@ -49,21 +49,6 @@
    flex-direction: column;
 }
 
-.wallHub__signup-container form > button {
-   border: none;
-   outline: none;
-   width: var(--login-input-x);
-   height: var(--login-input-y);
-   margin-top: 1.75rem;
-   line-height: 20px;
-   font-size: var(--small-font-size);
-   font-weight: var(--font-weight-mid);
-   color: var(--main-color-light);
-   background-color: var(--main-sky-blue);
-   border-radius: 5px;
-   cursor: pointer;
-}
-
 .wallHub__signup-agreement_p {
    max-width: var(--login-input-x);
    font-size: 0.7rem;

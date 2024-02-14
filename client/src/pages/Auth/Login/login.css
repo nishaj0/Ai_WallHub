@@ -48,21 +48,6 @@
    flex-direction: column;
 }
 
-.wallHub__login-container form > button {
-   border: none;
-   outline: none;
-   width: var(--login-input-x);
-   height: var(--login-input-y);
-   margin-top: 1.75rem;
-   line-height: 20px;
-   font-size: var(--small-font-size);
-   font-weight: var(--font-weight-mid);
-   color: var(--main-color-light);
-   background-color: var(--main-sky-blue);
-   border-radius: 5px;
-   cursor: pointer;
-}
-
 /* ------------------checkbox------------------ */
 
 .wallHub__login-checkbox {
@@ -75,7 +60,7 @@
    position: relative;
 }
 
-.wallHub__login-checkbox > label {
+.wallHub__login-checkbox>label {
    margin-left: 0.5rem;
 }
 
@@ -104,7 +89,7 @@
       padding: 1.5rem;
    }
 
-   .wallHub__login-container form > button {
+   .wallHub__login-container form>button {
       margin-top: 1.25rem;
    }
 

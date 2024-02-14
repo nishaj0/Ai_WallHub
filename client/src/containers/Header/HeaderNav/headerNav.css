@@ -57,14 +57,7 @@
 
 .wallHub__nav-signup button,
 .wallHub__nav-login button {
-   padding: 0.5rem 1rem;
-   border: none;
-   border-radius: 5px;
-   background-color: var(--main-sky-blue);
-   color: var(--main-color-light);
    font-size: var(--a-font-size);
-   font-weight: 500;
-   cursor: pointer;
 }
 
 .wallHub__nav-login {
@@ -72,6 +65,7 @@
 }
 
 @media screen and (max-width: 1050px) {
+
    .wallHub__nav-signup,
    .wallHub__nav-links {
       display: none;
