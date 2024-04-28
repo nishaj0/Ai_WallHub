@@ -1,0 +1,12 @@
+/* ----------activity component--------- */
+
+.wallHub__profile-activity_button {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 0.25rem 1rem;
+   margin-right: 1rem;
+   border: 1px solid var(--light-color-gray);
+   border-radius: 2rem;
+   cursor: pointer;
+}

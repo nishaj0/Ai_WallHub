@@ -1,27 +1,13 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { RiUserFill } from 'react-icons/ri';
+import { RiShareForwardFill } from 'react-icons/ri';
+import { SlOptionsVertical } from 'react-icons/sl';
 import './profile.css';
+import userNullProfile from '../../assets/svg/user-null-profile.svg';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-
-function ActivityLink({ content, to }) {
-   return (
-      <NavLink
-         to={to}
-         className="wallHub__profile-activity_button"
-         style={({ isActive }) => {
-            return {
-               // ? --main-sky-blue: #33a1de;
-               // ? --main-color-light: #f8f8f8;
-               backgroundColor: isActive && '#33a1de',
-               color: isActive && '#f8f8f8',
-            };
-         }}
-      >
-         {content}
-      </NavLink>
-   );
-}
+import useScreenWidth from '../../hooks/useScreenWidth';
+import { BlueButton } from '../../components';
+import ProfileActivityLink from './ProfileActivityLink/ProfileActivityLink';
 
 function Profile() {
    const [customProfile, setCustomProfile] = useState(false);
@@ -31,8 +17,18 @@ function Profile() {
    const location = useLocation();
    const navigate = useNavigate();
    const axiosPrivate = useAxiosPrivate();
+   const screenWidth = useScreenWidth();
 
    const PROFILE_URL = '/api/user/profile';
+
+   let avatarIconsSize = 150;
+   if (screenWidth === 'large') {
+      avatarIconsSize = 150;
+   } else if (screenWidth === 'medium') {
+      avatarIconsSize = 110;
+   } else {
+      avatarIconsSize = 80;
+   }
 
    useEffect(() => {
       const controller = new AbortController();
@@ -59,39 +55,86 @@ function Profile() {
    }, []);
 
    return (
-      <div className="wallHub__profile-container">
-         <div className="wallHub__profile">
-            <div className="wallHub__profile-details">
-               <div className="wallHub__profile-details_dp">
-                  <div className="wallHub__profile-details_dp-frame">
-                     {customProfile ? <img src="" alt="" /> : <RiUserFill size={50} />}
+      // <div className="wallHub__profile-container">
+      //    <div className="wallHub__profile">
+      //       <div className="wallHub__profile-details">
+      //          <div className="wallHub__profile-details_dp">
+      //             <div className="wallHub__profile-details_dp-frame">
+      //                {customProfile ? <img src="" alt="" /> : <RiUserFill size={50} />}
+      //             </div>
+      //          </div>
+      //          <div className="wallHub__profile-details_info">
+      //             <h3>{userData?.fullName}</h3>
+      //             <div className="wallHub__profile-details_info-likes">
+      //                <div>
+      //                   <h4>10</h4>
+      //                   <p>Posts</p>
+      //                </div>
+      //                <div>
+      //                   <h4>23</h4>
+      //                   <p>Likes</p>
+      //                </div>
+      //                <div>
+      //                   <h4>134</h4>
+      //                   <p>Followers</p>
+      //                </div>
+      //             </div>
+      //          </div>
+      //          <div className="wallHub__profile-details-button">
+      //             <button>Follow</button>
+      //          </div>
+      //       </div>
+      //       <div className="wallHub__profile-activity section__margin">
+      //          <ActivityLink to={'.'} content={'Post'} />
+      //          <ActivityLink to={'likes'} content={'Likes'} />
+      //       </div>
+      //       <Outlet />
+      //    </div>
+      // </div>
+
+      <div className="wallHub__profile">
+         <div className="wallHub__profile_info-container">
+            <div className="wallHub__profile-info">
+               <div className="wallHub__profile-info_col1">
+                  {screenWidth === 'small' && <h3 className="wallHub__profile-info_fullName">{userData?.fullName}</h3>}
+                  <div className="wallHub__profile-info_avatar">
+                     <img src={customProfile ? '' : userNullProfile} alt="profileIcon" />
                   </div>
+                  <div className="wallHub__profile-info_name">
+                     {screenWidth !== 'small' && (
+                        <>
+                           <h3 className="wallHub__profile-info_fullName">{userData?.fullName}</h3>
+                           <h4 className="wallHub__profile-info_username">@{userData?.username}</h4>
+                        </>
+                     )}
+                  </div>
+                  {screenWidth === 'small' && <h4 className="wallHub__profile-info_username">@{userData?.username}</h4>}
                </div>
-               <div className="wallHub__profile-details_info">
-                  <h3>{userData?.fullName}</h3>
-                  <div className="wallHub__profile-details_info-likes">
-                     <div>
-                        <h4>10</h4>
-                        <p>Posts</p>
-                     </div>
-                     <div>
+               <div className="wallHub__profile-info_col2">
+                  <div className="wallHub__profile-info_count">
+                     <div className="wallHub__profile-info_count-item">
                         <h4>23</h4>
-                        <p>Likes</p>
+                        <p>posts</p>
                      </div>
-                     <div>
-                        <h4>134</h4>
-                        <p>Followers</p>
+                     <div className="wallHub__profile-info_count-item">
+                        <h4>542</h4>
+                        <p>likes</p>
                      </div>
                   </div>
-               </div>
-               <div className="wallHub__profile-details-button">
-                  <button>Follow</button>
+                  <SlOptionsVertical size={28} color="333333" />
                </div>
             </div>
-            <div className="wallHub__profile-activity section__margin">
-               <ActivityLink to={'.'} content={'Post'} />
-               <ActivityLink to={'likes'} content={'Likes'} />
+            <div className="wallHub__profile-buttons">
+               <BlueButton>Message</BlueButton>
+               <RiShareForwardFill className="wallHub__profile-buttons_share" size={32} color="333333" />
             </div>
+
+            <div className="wallHub__profile-media_link">
+               <ProfileActivityLink to={'.'}>Post</ProfileActivityLink>
+               <ProfileActivityLink to={'.likes'}>Likes</ProfileActivityLink>
+            </div>
+         </div>
+         <div className="wallHub__profile-media_images">
             <Outlet />
          </div>
       </div>
