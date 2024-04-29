@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { RiAccountCircleFill } from 'react-icons/ri';
 import './headerNav.css';
-import HeaderMenu from '../HeaderMenu/HeaderMenu';
 import { BlueButton } from '../../../components';
 
 function HeaderNav({ isTransparent, isLogged, toggleMenu, setToggleMenu, children }) {

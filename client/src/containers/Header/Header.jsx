@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { FiUpload } from 'react-icons/fi';
+import { RiLogoutBoxLine, RiQuestionLine } from 'react-icons/ri';
 import './header.css';
+import HeaderSearchBar from './HeaderSearchBar/HeaderSearchBar';
+import HeaderNav from './HeaderNav/HeaderNav';
+import { ToggleMenu } from '../../components';
+import useScreenWidth from '../../hooks/useScreenWidth';
+import useLogout from '../../hooks/useLogout';
 import logoImgDark from '../../assets/images/logo/main-logo_dark.svg';
 import logoImgLight from '../../assets/images/logo/main-logo_light.svg';
 import miniLogo from '../../assets/images/logo/mini-logo.png';
-import HeaderSearchBar from './HeaderSearchBar/HeaderSearchBar';
-import HeaderNav from './HeaderNav/HeaderNav';
-import HeaderMenu from './HeaderMenu/HeaderMenu';
-import useScreenWidth from '../../hooks/useScreenWidth';
 
 function Header() {
    const [toggleMenu, setToggleMenu] = useState(false);
@@ -17,6 +20,7 @@ function Header() {
 
    let screenSize = useScreenWidth();
    const location = useLocation();
+   const logout = useLogout();
    const currentPath = location.pathname;
 
    // ? here "wallHub__header-transparent" class used to give transparent background to the header when it is at the top
@@ -24,6 +28,13 @@ function Header() {
    const defaultNavClass = 'wallHub__header-default';
 
    const token = useSelector((state) => state.user.token);
+
+   const handleSignOut = async () => {
+      // ? if user is logged in then logout
+      if (!!token) {
+         await logout();
+      }
+   };
 
    // ? turn off toggle menu when route is change
    useEffect(() => {
@@ -71,7 +82,19 @@ function Header() {
                   toggleMenu={toggleMenu}
                   setToggleMenu={setToggleMenu}
                >
-                  {toggleMenu && <HeaderMenu isLogged={!!token} />}
+                  {toggleMenu && (
+                     <ToggleMenu showHeader={true} className="wallHub__header-menu">
+                        <Link to={'/upload-post'}>
+                           <FiUpload color="000" /> Upload
+                        </Link>
+                        <Link to={'/help'}>
+                           <RiQuestionLine color="000" /> Help
+                        </Link>
+                        <Link onClick={() => handleSignOut()} className="wallHub__header-menu-link-hover-red">
+                           <RiLogoutBoxLine color="000" /> Logout
+                        </Link>
+                     </ToggleMenu>
+                  )}
                </HeaderNav>
             </div>
          </div>

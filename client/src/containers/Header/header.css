@@ -28,9 +28,19 @@
    height: var(--header-height);
 }
 
+.wallHub__header-menu {
+   position: absolute;
+   top: calc(var(--header-height) + 1rem);
+   right: var(--margin-x);
+}
+
 .wallHub__header__logo img {
    margin-top: 0.75rem;
    width: 140px;
+}
+
+.wallHub__header-menu-link-hover-red:hover {
+   background-color: var(--main-color-red) !important;
 }
 
 @media screen and (max-width: 768px) {
