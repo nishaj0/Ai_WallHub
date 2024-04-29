@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 import { RiShareForwardFill } from 'react-icons/ri';
 import { SlOptionsVertical } from 'react-icons/sl';
+import { FiEdit } from 'react-icons/fi';
+import { RiDeleteBin2Line } from 'react-icons/ri';
 import './profile.css';
 import userNullProfile from '../../assets/svg/user-null-profile.svg';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useScreenWidth from '../../hooks/useScreenWidth';
-import { BlueButton } from '../../components';
+import { BlueButton, ToggleMenu } from '../../components';
 import ProfileActivityLink from './ProfileActivityLink/ProfileActivityLink';
 
 function Profile() {
    const [customProfile, setCustomProfile] = useState(false);
    const [userData, setUserData] = useState();
    const [abortController, setAbortController] = useState(null);
+   const [toggleMenu, setToggleMenu] = useState(false);
 
    const location = useLocation();
    const navigate = useNavigate();
@@ -21,14 +24,9 @@ function Profile() {
 
    const PROFILE_URL = '/api/user/profile';
 
-   let avatarIconsSize = 150;
-   if (screenWidth === 'large') {
-      avatarIconsSize = 150;
-   } else if (screenWidth === 'medium') {
-      avatarIconsSize = 110;
-   } else {
-      avatarIconsSize = 80;
-   }
+   const handleMenuToggle = () => {
+      setToggleMenu(!toggleMenu);
+   };
 
    useEffect(() => {
       const controller = new AbortController();
@@ -55,43 +53,6 @@ function Profile() {
    }, []);
 
    return (
-      // <div className="wallHub__profile-container">
-      //    <div className="wallHub__profile">
-      //       <div className="wallHub__profile-details">
-      //          <div className="wallHub__profile-details_dp">
-      //             <div className="wallHub__profile-details_dp-frame">
-      //                {customProfile ? <img src="" alt="" /> : <RiUserFill size={50} />}
-      //             </div>
-      //          </div>
-      //          <div className="wallHub__profile-details_info">
-      //             <h3>{userData?.fullName}</h3>
-      //             <div className="wallHub__profile-details_info-likes">
-      //                <div>
-      //                   <h4>10</h4>
-      //                   <p>Posts</p>
-      //                </div>
-      //                <div>
-      //                   <h4>23</h4>
-      //                   <p>Likes</p>
-      //                </div>
-      //                <div>
-      //                   <h4>134</h4>
-      //                   <p>Followers</p>
-      //                </div>
-      //             </div>
-      //          </div>
-      //          <div className="wallHub__profile-details-button">
-      //             <button>Follow</button>
-      //          </div>
-      //       </div>
-      //       <div className="wallHub__profile-activity section__margin">
-      //          <ActivityLink to={'.'} content={'Post'} />
-      //          <ActivityLink to={'likes'} content={'Likes'} />
-      //       </div>
-      //       <Outlet />
-      //    </div>
-      // </div>
-
       <div className="wallHub__profile">
          <div className="wallHub__profile_info-container">
             <div className="wallHub__profile-info">
@@ -113,7 +74,7 @@ function Profile() {
                <div className="wallHub__profile-info_col2">
                   <div className="wallHub__profile-info_count">
                      <div className="wallHub__profile-info_count-item">
-                        <h4>23</h4>
+                        <h4>{userData?.posts?.length}</h4>
                         <p>posts</p>
                      </div>
                      <div className="wallHub__profile-info_count-item">
@@ -121,7 +82,20 @@ function Profile() {
                         <p>likes</p>
                      </div>
                   </div>
-                  <SlOptionsVertical size={28} color="333333" />
+                  <button onClick={handleMenuToggle} className="wallHub__profile-menu-button">
+                     <SlOptionsVertical size={28} color="333333" />
+                  </button>
+                  {toggleMenu && (
+                     <ToggleMenu className="wallHub__profile-menu">
+                        <Link to={'/edit-profile'}>
+                           <FiEdit color="000" /> Edit Profile
+                        </Link>
+                        <Link to={'/delete-account'} className="wallHub__profile-menu-link-hover-red">
+                           <RiDeleteBin2Line color="000" />
+                           Delete Account
+                        </Link>
+                     </ToggleMenu>
+                  )}
                </div>
             </div>
             <div className="wallHub__profile-buttons">

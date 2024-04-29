@@ -64,12 +64,44 @@
    width: 100px;
 }
 
+.wallHub__profile-menu-button{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: var(--main-color-light);
+   border: none;
+   border-radius: 5px;
+   padding: 5px;
+   cursor: pointer;
+}
+
+.wallHub__profile-menu-button:hover{
+   box-shadow: 0 0 2px var(--main-color-dark);
+}
+
+.wallHub__profile-menu-button:focus{
+   outline: 2px solid var(--main-color-dark);
+}
+
+.wallHub__profile-menu-link-hover-red:hover {
+   background-color: var(--main-color-red) !important;
+
+}
+
 .wallHub__profile-info_col2 {
+   position: relative;
    display: flex;
    align-items: center;
    justify-content: space-between;
    width: 100%;
 }
+
+.wallHub__profile-menu {
+   position: absolute;
+   top: 47px;
+   right: -9px;
+}
+
 
 .wallHub__profile-info_count {
    display: flex;
