@@ -1,9 +1,6 @@
 /* * --------------menu---------------- */
 
-.wallHub__header-menu {
-   position: absolute;
-   top: calc(var(--header-height) + 1rem);
-   right: var(--margin-x);
+.wallHub_menu {
    z-index: 10;
    display: flex;
    align-items: flex-start;
@@ -18,7 +15,7 @@
    /* transition: transform 200ms cubic-bezier(0.24, 0.22, 0.015, 1.56) 0s, opacity 100ms ease-in-out 0s; */
 }
 
-.wallHub__header-menu::before {
+.wallHub_menu::before {
    content: '';
    position: absolute;
    top: -10px;
@@ -30,12 +27,17 @@
    border-bottom: 20px solid var(--main-color-light);
 }
 
-.wallHub__header-menu h4 {
+.wallHub_menu h4 {
    font-size: var(--h4-font-size);
    margin: 0 0.5rem;
 }
 
-.wallHub__header-menu_links {
+.wallHub_menu hr {
+   width: 100%;
+   margin: 1rem 0;
+}
+
+.wallHub_menu-links {
    display: flex;
    align-items: first flex-start;
    justify-content: center;
@@ -43,17 +45,13 @@
    margin: 0 0.5rem;
 }
 
-.wallHub__header-menu_links a {
+.wallHub_menu-links a {
    margin-top: 0.3rem;
    font-size: var(--mid-font-size);
 }
 
-.wallHub__header-main hr {
-   width: 100%;
-   margin: 1rem 0;
-}
 
-.wallHub__header-menu_options {
+.wallHub_menu-options {
    display: flex;
    align-items: flex-start;
    justify-content: center;
@@ -61,7 +59,7 @@
    width: 100%;
 }
 
-.wallHub__header-menu_options a {
+.wallHub_menu-options a {
    width: 100%;
    padding: 0.5rem;
    display: flex;
@@ -72,11 +70,16 @@
    transition: all 0.2s ease-in-out;
 }
 
-.wallHub__header-menu_options a:hover {
+.wallHub_menu-options a:hover {
    background-color: var(--main-sky-blue);
    color: var(--main-color-light);
 }
 
-.wallHub__header-menu_options a svg {
+/* last a hover bg is red */
+/*.wallHub_menu-options a:last-child:hover {
+   background-color: var(--main-color-red);
+   /* color: var(--main-color-light); }
+*/
+.wallHub_menu-options a svg {
    margin-right: 0.5rem;
 }
