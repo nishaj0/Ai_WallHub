@@ -67,6 +67,7 @@ const handleRegister = async (req, res, next) => {
          message: `user: ${username} created`,
          accessToken,
          username: foundUser.username,
+         userId: foundUser.id,
       });
    } catch (err) {
       console.log(err);
@@ -113,7 +114,12 @@ const handleLogin = async (req, res, next) => {
          // secure:true,
          maxAge: 24 * 60 * 60 * 1000 * 7, // 7 days
       });
-      res.status(200).json({ message: 'login success', accessToken, username: foundUser.username });
+      res.status(200).json({
+         message: 'login success',
+         accessToken,
+         username: foundUser.username,
+         userId: foundUser.id,
+      });
    } catch (err) {
       console.log(err);
       next(err);
