@@ -57,7 +57,7 @@ function Signup() {
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true,
          });
-         dispatch(setUser({ user: res.data.username, token: res.data.accessToken }));
+         dispatch(setUser({ user: res.data.username, userId: res.data.userId, token: res.data.accessToken }));
          navigate(from, { replace: true });
       } catch (err) {
          if (!err?.response) {
