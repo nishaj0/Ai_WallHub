@@ -1,0 +1,44 @@
+.wallHub__wallpaper-like {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+}
+
+.wallHub__wallpaper-like button{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   background-color: transparent;
+   border: none;
+   cursor: pointer;
+   transition: var(--default-transition);
+}
+
+.wallHub__wallpaper-like button:hover {
+   transform: scale(1.1);
+}
+
+.wallHub__wallpaper-like button:focus {
+   outline: none;
+}
+
+.wallHub__wallpaper-like svg {
+   width: 2rem;
+   height: 2rem;
+   cursor: pointer;
+   transition: var(--default-transition);
+}
+
+.wallHub__wallpaper-like svg:hover {
+   fill: red;
+}
+
+.wallHub__wallpaper-like p {
+   margin-left: 0.5rem;
+   margin-bottom: 0.01rem;
+   font-size: var(--mid-font-size);
+   font-weight: var(--font-weight-mid);
+   color: var(--main-color-dark);
+}

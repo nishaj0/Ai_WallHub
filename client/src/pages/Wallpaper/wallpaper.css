@@ -37,33 +37,6 @@
    width: 100%;
 }
 
-.wallHub__wallpaper-button-like_container {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   text-align: center;
-}
-
-.wallHub__wallpaper-button-like_container > svg {
-   width: 2rem;
-   height: 2rem;
-   cursor: pointer;
-   fill: var(--main-color-dark);
-   transition: var(--default-transition);
-}
-
-.wallHub__wallpaper-button-like_container > svg:hover {
-   fill: red;
-}
-
-.wallHub__wallpaper-button-like_container > p {
-   margin-left: 0.5rem;
-   margin-bottom: 0.01rem;
-   font-size: var(--mid-font-size);
-   font-weight: var(--font-weight-mid);
-   color: var(--main-color-dark);
-}
-
 .wallHub__wallpaper-title {
    color: var(--main-color-dark);
    font-size: var(--h2-font-size);

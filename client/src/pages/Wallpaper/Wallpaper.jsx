@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { IoIosHeartEmpty, IoMdHeart } from 'react-icons/io';
 import { saveAs } from 'file-saver';
+import { useSelector } from 'react-redux';
 import './wallpaper.css';
 import axios from '../../api/axios';
 import { LoadingSvg, BlueButton } from '../../components';
+import PostLike from './PostLike/PostLike';
 
 function Wallpaper() {
    const [isUserLiked, setIsUserLiked] = useState(false);
    const [imageDetails, setImageDetails] = useState({});
    const [abortController, setAbortController] = useState(null);
    const [isLoading, setIsLoading] = useState(true);
+   const [likeTrigger, setLikeTrigger] = useState(false);
+
    const { id: imageId } = useParams();
+   const currentUserId = useSelector((state) => state.user.userId);
 
    useEffect(() => {
       const controller = new AbortController();
@@ -27,6 +31,9 @@ function Wallpaper() {
             // await delay(30000);
 
             setImageDetails(response.data);
+
+            // ? check if user already liked the image
+            setIsUserLiked(response.data.likedBy.includes(currentUserId) ? true : false);
          } catch (err) {
             console.error(err);
          } finally {
@@ -38,7 +45,7 @@ function Wallpaper() {
       return () => {
          if (abortController) controller.abort();
       };
-   }, []);
+   }, [likeTrigger]);
 
    // ? download image when user click download button
    const downloadImage = () => {
@@ -56,6 +63,7 @@ function Wallpaper() {
          return newDate;
       }
    };
+
    return (
       <div className="wallHub__wallpaper">
          {isLoading ? (
@@ -67,19 +75,19 @@ function Wallpaper() {
                </div>
                <div className="wallHub__wallpaper-info">
                   <div className="wallHub__wallpaper-button-container">
-                     <div className="wallHub__wallpaper-button-like_container">
-                        {isUserLiked ? <IoMdHeart /> : <IoIosHeartEmpty />}
-                        <p>203</p>
-                     </div>
-                     <BlueButton  onClick={downloadImage}>
-                        Download
-                     </BlueButton>
+                     <PostLike
+                        isUserLiked={isUserLiked}
+                        imageDetails={imageDetails}
+                        currentUserId={currentUserId}
+                        setLikeTrigger={setLikeTrigger}
+                     />
+                     <BlueButton onClick={downloadImage}>Download</BlueButton>
                   </div>
                   <h2 className="wallHub__wallpaper-title">{imageDetails.title}</h2>
                   <h4 className="wallHub__wallpaper-prompt">{imageDetails.prompt}</h4>
                   <div className="wallHub__wallpaper-about">
                      <p>
-                        posted by: <a href="#">{imageDetails.userEmail}</a>
+                        posted by: <a href="#">{imageDetails.username}</a>
                      </p>
                      <p>upload date: {convertDate(imageDetails.createdAt)}</p>
                      <p>
