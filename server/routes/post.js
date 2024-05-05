@@ -15,6 +15,11 @@ router
    .put(verifyJWT, postController.updatePost)
    .delete(verifyJWT, postController.deletePost);
 
+router
+   .route('/:id/like')
+   .post(verifyJWT, postController.handlePostLike)
+   .delete(verifyJWT, postController.handlePostUnlike);
+
 router.post('/upload', verifyJWT, upload.single('image'), postController.uploadImagePost);
 
 module.exports = router;

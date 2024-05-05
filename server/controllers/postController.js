@@ -102,4 +102,42 @@ const deletePost = async (req, res, next) => {
    }
 };
 
-module.exports = { getImagePost, uploadImagePost, updatePost, deletePost };
+const handlePostLike = async (req, res, next) => {
+   const postId = req.params.id;
+   const { userId } = req;
+
+   try {
+      const post = await Post.findById(postId);
+
+      if (!post) return next(returnError(404, `no post matches to ID:${postId}`));
+
+      // ? add userId to post's liked by list
+      post.likedBy.push(userId);
+      await post.save();
+
+      res.status(200).json({ message: 'post liked successfully' });
+   } catch (error) {
+      next(error);
+   }
+};
+
+const handlePostUnlike = async (req, res, next) => {
+   const postId = req.params.id;
+   const { userId } = req;
+
+   try {
+      const post = await Post.findById(postId);
+
+      if (!post) return next(returnError(404, `no post matches to ID:${postId}`));
+
+      // ? remove userId from post's liked by list
+      post.likedBy.pull(userId);
+      await post.save();
+
+      res.status(200).json({ message: 'post unliked successfully' });
+   } catch (error) {
+      next(error);
+   }
+};
+
+module.exports = { getImagePost, uploadImagePost, updatePost, deletePost, handlePostLike, handlePostUnlike };
