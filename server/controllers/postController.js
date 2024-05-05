@@ -9,9 +9,10 @@ const getImagePost = async (req, res, next) => {
 
    try {
       const image = await Post.findById(id);
+      const user = await User.findById(image.userRef);
 
       if (!image) return next(returnError(404, `no image matches to ID:${id}`));
-      res.status(200).json(image);
+      res.status(200).json({ ...image._doc, username: user.username });
    } catch (err) {
       console.log(err);
       next(err);
