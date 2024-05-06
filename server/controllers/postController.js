@@ -112,6 +112,8 @@ const handlePostLike = async (req, res, next) => {
 
       if (!post) return next(returnError(404, `no post matches to ID:${postId}`));
 
+      if (post.likedBy.includes(userId)) return next(returnError(400, 'You have already liked this post'));
+
       // ? add userId to post's liked by list
       post.likedBy.push(userId);
       await post.save();
@@ -130,6 +132,8 @@ const handlePostUnlike = async (req, res, next) => {
       const post = await Post.findById(postId);
 
       if (!post) return next(returnError(404, `no post matches to ID:${postId}`));
+
+      if (!post.likedBy.includes(userId)) return next(returnError(400, 'You have not liked this post'));
 
       // ? remove userId from post's liked by list
       post.likedBy.pull(userId);
