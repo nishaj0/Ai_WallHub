@@ -13,24 +13,21 @@ import {
    ProfilePosts,
    UploadPost,
    Wallpaper,
+   PageNotFound,
 } from './pages';
 
 import { Layout, PersistLogin } from './containers';
-import useAxiosPrivate from './hooks/useAxiosPrivate';
-import useRefreshToken from './hooks/useRefreshToken';
 
 import './App.css';
 
 function App() {
-   const axiosPrivate = useAxiosPrivate();
-   const refresh = useRefreshToken();
    const router = createBrowserRouter(
       createRoutesFromElements(
          <>
             <Route element={<PersistLogin />}>
-               <Route path="*" element={<h2>page not found</h2>} />
                <Route path="upload-post" element={<UploadPost />} />
                <Route path="/" element={<Layout />}>
+                  <Route path="*" element={<PageNotFound />} />
                   <Route index element={<Home />} />
                   <Route path="catagories" element={<Catagories />} />
                   <Route path="contact" element={<Contact />} />

@@ -10,6 +10,7 @@ import Profile from './Profile/Profile';
 import ProfilePosts from './Profile/ProfilePosts/ProfilePosts';
 import UploadPost from './UploadPost/UploadPost';
 import Wallpaper from './Wallpaper/Wallpaper';
+import PageNotFound from './PageNotFound/PageNotFound';
 
 export {
    Home,
@@ -24,4 +25,5 @@ export {
    ProfilePosts,
    UploadPost,
    Wallpaper,
+   PageNotFound,
 };

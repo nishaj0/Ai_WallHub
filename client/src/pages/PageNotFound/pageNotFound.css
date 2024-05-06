@@ -1,0 +1,49 @@
+.wallHub__pageNotFound {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+}
+
+.wallHub__pageNotFound img {
+   width: 60%;
+}
+
+.wallHub__pageNotFound h2 {
+   color: var(--main-color-dark);
+   font-size: var(--h2-font-size);
+   margin-top: 2rem;
+}
+
+.wallHub__pageNotFound button {
+   color: var(--main-color-light);
+   font-size: var(--p-font-size);
+   background-color: var(--main-sky-blue);
+   padding: .75rem 1.5rem;
+   border: none;
+   margin-top: 2rem;
+   border-radius: 5rem;
+   cursor: pointer;
+}
+
+.wallHub__pageNotFound button:hover {
+   background-color: var(--mid-sky-blue);
+   transition: var(--default-transition);
+   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.wallHub__pageNotFound button:focus {
+   outline: none;
+}
+
+@media screen and (min-width: 1050px) {
+   .wallHub__pageNotFound img {
+      width: 600px;
+   }
+}
+
+@media screen and (max-width: 768px) {
+   .wallHub__pageNotFound img {
+      width: 100%;
+   }
+}
