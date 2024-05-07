@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 import { IoIosHeartEmpty, IoMdHeart } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
-import { axiosPrivate } from '../../../api/axios';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import './postLike.css';
 
 function PostLike({ isUserLiked, imageDetails, currentUserId, setLikeTrigger }) {
    const [likeIcon, setLikeIcon] = useState();
    const [userLiked, setUserLiked] = useState(isUserLiked);
    const navigate = useNavigate();
+   const axiosPrivate = useAxiosPrivate();
 
    const POST_URL = '/api/post';
    const LIKE_URL = `${POST_URL}/${imageDetails._id}/like`;
