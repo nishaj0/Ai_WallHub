@@ -46,7 +46,6 @@ function Profile() {
             setUserData(response.data);
          } catch (err) {
             console.error(err);
-            navigate('/login', { state: { from: location }, replace: true });
          } finally {
             setIsLoading(false);
          }
