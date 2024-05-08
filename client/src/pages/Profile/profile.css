@@ -9,6 +9,15 @@
    flex-direction: column;
 }
 
+.wallHub__profile-loader {
+   display: flex;
+   align-content: center;
+   justify-content: center;
+   flex-direction: column;
+   width: 100%;
+   margin: 3rem 0;
+}
+
 .wallHub__profile_info-container {
    display: flex;
    align-items: center;
@@ -64,7 +73,7 @@
    width: 100px;
 }
 
-.wallHub__profile-menu-button{
+.wallHub__profile-menu-button {
    display: flex;
    align-items: center;
    justify-content: center;
@@ -75,11 +84,11 @@
    cursor: pointer;
 }
 
-.wallHub__profile-menu-button:hover{
+.wallHub__profile-menu-button:hover {
    box-shadow: 0 0 2px var(--main-color-dark);
 }
 
-.wallHub__profile-menu-button:focus{
+.wallHub__profile-menu-button:focus {
    outline: 2px solid var(--main-color-dark);
 }
 
