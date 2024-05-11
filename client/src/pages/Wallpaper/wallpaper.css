@@ -37,6 +37,44 @@
    width: 100%;
 }
 
+.wallHub__wallpaper-download-edit-buttons {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.wallHub__wallpaper-menu-button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: var(--main-color-light);
+   border: none;
+   border-radius: 5px;
+   padding: 5px;
+   margin-left: 1rem;
+   cursor: pointer;
+}
+
+.wallHub__wallpaper-menu-button:hover {
+   box-shadow: 0 0 2px var(--main-color-dark);
+}
+
+.wallHub__wallpaper-menu-button:focus {
+   outline: 2px solid var(--main-color-dark);
+}
+
+.wallHub__wallpaper-menu {
+   position: absolute;
+   top: 45px;
+   right: -9px;
+}
+
+.wallHub__wallpaper-menu-delete-button:hover {
+   background-color: var(--main-color-red) !important;
+
+}
+
 .wallHub__wallpaper-title {
    color: var(--main-color-dark);
    font-size: var(--h2-font-size);
@@ -56,17 +94,18 @@
    margin-top: 0.5rem;
 }
 
-.wallHub__wallpaper-about > p {
+.wallHub__wallpaper-about>p {
    font-size: var(--small-font-size);
    font-weight: var(--font-weight-low);
    color: var(--main-color-dark);
    margin-top: 0.25rem;
 }
-.wallHub__wallpaper-about > p:nth-child(1) {
+
+.wallHub__wallpaper-about>p:nth-child(1) {
    margin-top: 0;
 }
 
-.wallHub__wallpaper-about p > a {
+.wallHub__wallpaper-about p>a {
    text-decoration: underline;
 }
 
