@@ -6,7 +6,7 @@ import { RiLogoutBoxLine, RiQuestionLine } from 'react-icons/ri';
 import './header.css';
 import HeaderSearchBar from './HeaderSearchBar/HeaderSearchBar';
 import HeaderNav from './HeaderNav/HeaderNav';
-import { ToggleMenu } from '../../components';
+import { ConfirmDialogBox, ToggleMenu } from '../../components';
 import useScreenWidth from '../../hooks/useScreenWidth';
 import useLogout from '../../hooks/useLogout';
 import logoImgDark from '../../assets/images/logo/main-logo_dark.svg';
@@ -17,6 +17,7 @@ function Header() {
    const [toggleMenu, setToggleMenu] = useState(false);
    const [isNavAtTop, setIsNavAtTop] = useState(true);
    const [isTransparent, setIsTransparent] = useState(true);
+   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
    let screenSize = useScreenWidth();
    const location = useLocation();
@@ -83,18 +84,25 @@ function Header() {
                   setToggleMenu={setToggleMenu}
                >
                   {toggleMenu && (
-                     <ToggleMenu showHeader={true} className="wallHub__header-menu">
-                        <Link to={'/upload-post'}>
-                           <FiUpload color="000" /> Upload
-                        </Link>
-                        <Link to={'/help'}>
-                           <RiQuestionLine color="000" /> Help
-                        </Link>
-                        <Link onClick={() => handleSignOut()} className="wallHub__header-menu-link-hover-red">
-                           <RiLogoutBoxLine color="000" /> Logout
-                        </Link>
-                     </ToggleMenu>
+                     <>
+                        <ToggleMenu showHeader={true} className="wallHub__header-menu">
+                           <Link to={'/upload-post'}>
+                              <FiUpload color="000" /> Upload
+                           </Link>
+                           <Link to={'/help'}>
+                              <RiQuestionLine color="000" /> Help
+                           </Link>
+                           <Link onClick={() => setIsConfirmOpen(true)} className="wallHub__header-menu-link-hover-red">
+                              <RiLogoutBoxLine color="000" /> Logout
+                           </Link>
+                        </ToggleMenu>
+                     </>
                   )}
+                  {/* confirm box for logout */}
+                  <ConfirmDialogBox isOpen={isConfirmOpen} question={'Are you sure you want to logout?'}>
+                     <button onClick={handleSignOut}>Confirm</button>
+                     <button onClick={() => setIsConfirmOpen(false)}>Cancel</button>
+                  </ConfirmDialogBox>
                </HeaderNav>
             </div>
          </div>
