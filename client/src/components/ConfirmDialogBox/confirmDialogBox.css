@@ -8,6 +8,7 @@
    justify-content: center;
    flex-direction: column;
 
+   z-index: 1000;
    padding: 2.5rem 2rem;
    width: 600px;
    border-radius: 5px;
