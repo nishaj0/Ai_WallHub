@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 import { RiShareForwardFill } from 'react-icons/ri';
 import { SlOptionsVertical } from 'react-icons/sl';
 import { FiEdit } from 'react-icons/fi';
@@ -8,8 +8,9 @@ import './profile.css';
 import userNullProfile from '../../assets/svg/user-null-profile.svg';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useScreenWidth from '../../hooks/useScreenWidth';
-import { BlueButton, ToggleMenu, LoadingSvg } from '../../components';
+import { BlueButton, ToggleMenu, LoadingSvg, ConfirmDialogBox } from '../../components';
 import ProfileActivityLink from './ProfileActivityLink/ProfileActivityLink';
+import useLogout from '../../hooks/useLogout';
 
 function Profile() {
    const [customProfile, setCustomProfile] = useState(false);
@@ -17,16 +18,22 @@ function Profile() {
    const [abortController, setAbortController] = useState(null);
    const [toggleMenu, setToggleMenu] = useState(false);
    const [isLoading, setIsLoading] = useState(true);
+   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
    const location = useLocation();
    const navigate = useNavigate();
    const axiosPrivate = useAxiosPrivate();
    const screenWidth = useScreenWidth();
+   const logout = useLogout();
 
    const PROFILE_URL = '/api/user/profile';
+   const USER_URL = '/api/user';
 
    const handleMenuToggle = () => {
       setToggleMenu(!toggleMenu);
+
+      // ? close confirm dialog box if it is open
+      if (isConfirmOpen) setIsConfirmOpen(false);
    };
 
    useEffect(() => {
@@ -58,6 +65,20 @@ function Profile() {
          }
       };
    }, []);
+
+   const handleUserDelete = async () => {
+      try {
+         await axiosPrivate.delete(USER_URL);
+
+         // ? signing out user for removing the tokens that stored in cookies
+         await logout();
+
+         // ? navigate to previous route
+         navigate(-1);
+      } catch (err) {
+         console.error(err);
+      }
+   };
 
    return (
       <div className="wallHub__profile">
@@ -102,15 +123,39 @@ function Profile() {
                         <SlOptionsVertical size={28} color="333333" />
                      </button>
                      {toggleMenu && (
-                        <ToggleMenu className="wallHub__profile-menu">
-                           <Link to={'/edit-profile'}>
-                              <FiEdit color="000" /> Edit Profile
-                           </Link>
-                           <Link to={'/delete-account'} className="wallHub__profile-menu-link-hover-red">
-                              <RiDeleteBin2Line color="000" />
-                              Delete Account
-                           </Link>
-                        </ToggleMenu>
+                        <>
+                           <ToggleMenu className="wallHub__profile-menu">
+                              <Link to={'/edit-profile'}>
+                                 <FiEdit color="000" /> Edit Profile
+                              </Link>
+                              <Link
+                                 onClick={() => setIsConfirmOpen(true)}
+                                 className="wallHub__profile-menu-link-hover-red"
+                              >
+                                 <RiDeleteBin2Line color="000" />
+                                 Delete Account
+                              </Link>
+                           </ToggleMenu>
+                           {/* confirm box for account deletion */}
+                           <ConfirmDialogBox
+                              isOpen={isConfirmOpen}
+                              question={'Are you sure you want to delete your account?'}
+                              description={'This action cannot be undone.'}
+                           >
+                              <button
+                                 onClick={handleUserDelete}
+                                 className="wallHub__wallpaper-confirmBox-button-confirm"
+                              >
+                                 Confirm
+                              </button>
+                              <button
+                                 onClick={() => setIsConfirmOpen(false)}
+                                 className="wallHub__wallpaper-confirmBox-button-cancel"
+                              >
+                                 Cancel
+                              </button>
+                           </ConfirmDialogBox>
+                        </>
                      )}
                   </div>
                </div>
