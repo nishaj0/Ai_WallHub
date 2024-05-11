@@ -1,0 +1,84 @@
+.wallHub__confirmBox {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+
+   padding: 2.5rem 2rem;
+   width: 600px;
+   border-radius: 5px;
+   background-color: var(--main-color-light);
+   box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.4);
+}
+
+.wallHub__confirmBox>h4 {
+   color: var(--main-color-dark);
+   font-size: var(--h4-font-size);
+   font-weight: var(--font-weight-extreme);
+}
+
+.wallHub__confirmBox>p {
+   margin-top: 1rem;
+   color: var(--main-color-dark);
+   font-size: var(--p-font-size);
+}
+
+.wallHub__confirmBox-buttons {
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+   margin-top: 1rem;
+}
+
+.wallHub__confirmBox-buttons>button {
+   padding: 0.5rem 1rem;
+   margin-left: 1rem;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: var(--a-font-size);
+   font-weight: var(--font-weight-mid);
+   transition: var(--default-transition);
+}
+
+/* ------------- add colors for buttons ---------------- */
+
+.wallHub__confirmBox-buttons>button:first-child {
+   background-color: var(--main-color-red);
+   color: var(--main-color-light);
+}
+
+.wallHub__confirmBox-buttons>button:first-child:hover {
+   background-color: var(--main-color-light);
+   outline: 1px solid var(--main-color-red);
+   color: var(--main-color-red);
+}
+
+.wallHub__confirmBox-buttons>button:first-child:active {
+   outline: 2px solid var(--main-color-red);
+}
+
+.wallHub__confirmBox-buttons>button:last-child {
+   background-color: var(--main-color-dark);
+   color: var(--main-color-light);
+}
+
+.wallHub__confirmBox-buttons>button:last-child:hover {
+   background-color: var(--main-color-light);
+   outline: 1px solid var(--main-color-dark);
+   color: var(--main-color-dark);
+}
+
+.wallHub__confirmBox-buttons>button:last-child:active {
+   outline: 2px solid var(--main-color-dark);
+}
+
+@media screen and (max-width: 768px) {
+   .wallHub__confirmBox {
+      width: 90%;
+   }
+}
