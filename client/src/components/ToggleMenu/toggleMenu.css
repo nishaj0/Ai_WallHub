@@ -27,12 +27,12 @@
    border-bottom: 20px solid var(--main-color-light);
 }
 
-.wallHub_menu h4 {
+.wallHub_menu>h4 {
    font-size: var(--h4-font-size);
    margin: 0 0.5rem;
 }
 
-.wallHub_menu hr {
+.wallHub_menu>hr {
    width: 100%;
    margin: 1rem 0;
 }
@@ -45,7 +45,7 @@
    margin: 0 0.5rem;
 }
 
-.wallHub_menu-links a {
+.wallHub_menu-links>a {
    margin-top: 0.3rem;
    font-size: var(--mid-font-size);
 }
@@ -59,7 +59,7 @@
    width: 100%;
 }
 
-.wallHub_menu-options a {
+.wallHub_menu-options>a {
    width: 100%;
    padding: 0.5rem;
    display: flex;
@@ -70,7 +70,7 @@
    transition: all 0.2s ease-in-out;
 }
 
-.wallHub_menu-options a:hover {
+.wallHub_menu-options>a:hover {
    background-color: var(--main-sky-blue);
    color: var(--main-color-light);
 }
@@ -80,6 +80,6 @@
    background-color: var(--main-color-red);
    /* color: var(--main-color-light); }
 */
-.wallHub_menu-options a svg {
+.wallHub_menu-options>a>svg {
    margin-right: 0.5rem;
 }
