@@ -39,7 +39,7 @@ function PostLike({ isUserLiked, imageDetails, currentUserId, setLikeTrigger }) 
    return (
       <div className="wallHub__wallpaper-like">
          <button onClick={() => handlePostLike(userLiked ? 'unlike' : 'like')}>{likeIcon}</button>
-         <p>{imageDetails.likedBy.length}</p>
+         <p>{imageDetails?.likedBy?.length}</p>
       </div>
    );
 }

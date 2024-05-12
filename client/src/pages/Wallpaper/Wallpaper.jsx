@@ -46,6 +46,7 @@ function Wallpaper() {
             setIsUserLiked(response.data.likedBy.includes(currentUserId) ? true : false);
          } catch (err) {
             console.error(err);
+            navigate('/image-not-found')
          } finally {
             setIsLoading(false);
          }
