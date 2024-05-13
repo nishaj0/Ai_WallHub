@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { CiImageOff } from "react-icons/ci";
 import PhotoAlbum from 'react-photo-album';
 import './search.css';
 import { SearchTag, LoadingSvg } from '../../components';
@@ -22,6 +23,7 @@ function Search() {
       // ? and convert to the format that react-photo-album accepts
       const fetchData = async () => {
          try {
+            setIsLoading(true);
             const controller = new AbortController();
             setAbortController(controller);
 
@@ -65,10 +67,20 @@ function Search() {
                <SearchTag searchText={tag} key={index} />
             ))}
          </div>
-         {/* image gallery */}
+         {/* -------image gallery----- */}
+         {/* if the image is fetching, show "loading svg" */}
+         {/* else */}
+         {/*   if there is no image, show "no result found" */}
+         {/*   else if the image is fetched, show the images */}
          {isLoading ? (
             <div className="wallHub__search-loading">
                <LoadingSvg />
+            </div>
+         ) : !fetchedImages.length ? (
+            <div className="wallHub__search-noResult">
+               <h3>No images found!</h3>
+               <p>Try searching for something else.</p>
+               <CiImageOff size={40} color="#1b8dca" />
             </div>
          ) : (
             <div className="wallHub__search-images">
