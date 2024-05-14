@@ -16,7 +16,7 @@ function Home() {
    const navigate = useNavigate();
    const screenSize = useScreenWidth();
 
-   const RECENT_POSTS_URL = '/api/search/recent';
+   const POSTS_URL = '/api/post';
    const recentPostLimit = 20;
    const searchString = [
       'anime',
@@ -40,7 +40,7 @@ function Home() {
       setAbortController(controller);
       const fetchImages = async () => {
          try {
-            const response = await axios.get(`${RECENT_POSTS_URL}?limit=${recentPostLimit}`, {
+            const response = await axios.get(`${POSTS_URL}?size=${recentPostLimit}`, {
                signal: controller.signal,
             });
 
@@ -49,7 +49,7 @@ function Home() {
             // await delay(3000);
 
             // ? transform data to usable format
-            const transformData = response.data.map((img) => ({
+            const transformData = response.data.posts.map((img) => ({
                key: img._id,
                src: img.url,
                width: img.width,
