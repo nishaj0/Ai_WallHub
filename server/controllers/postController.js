@@ -3,6 +3,7 @@ const Post = require('../model/Post');
 const User = require('../model/User');
 const cloudinaryConn = require('../config/cloudinaryConn');
 const returnError = require('../util/returnError');
+const postFilter = require('../util/postFilter');
 
 const getImagePost = async (req, res, next) => {
    const { id } = req.params;
@@ -16,6 +17,49 @@ const getImagePost = async (req, res, next) => {
    } catch (err) {
       console.log(err);
       next(err);
+   }
+};
+
+const getImagePosts = async (req, res, next) => {
+   const { FILTERS, getPostsByFilter, paginatePosts } = postFilter;
+
+   const filter = req.query.filter || FILTERS.RECENT;
+   const postsPerPage = Math.max(1, parseInt(req.query.size) || 10);
+   let currentPage = Math.max(1, parseInt(req.query.page) || 1);
+
+   const postAttributes = {
+      id: 1,
+      url: 1,
+      width: 1,
+      height: 1,
+      likedBy: 1,
+   };
+
+   try {
+      // ? If the filter is 'all', return all posts
+      if (filter === FILTERS.ALL) {
+         const allPosts = await Post.find().select(postAttributes);
+         return res.status(200).json({ posts: allPosts });
+      }
+
+      if (!Object.values(FILTERS).includes(filter)) return next(returnError(400, 'Invalid filter'));
+
+      if (typeof postsPerPage !== 'number' || typeof currentPage !== 'number')
+         return next(returnError(400, 'Invalid page or size'));
+
+      const filteredPosts = await getPostsByFilter(filter, postAttributes);
+      const totalPageCount = Math.ceil(filteredPosts.length / postsPerPage);
+
+      // ? If the current page is greater than the total page count, set the current page to the total page count
+      if (currentPage > totalPageCount) currentPage = totalPageCount;
+
+      // ? take the posts for the current page
+      const paginatedPosts = paginatePosts(filteredPosts, currentPage, postsPerPage);
+
+      res.status(200).json({ currentPage, totalPageCount, posts: paginatedPosts });
+   } catch (error) {
+      console.log(error);
+      next(error);
    }
 };
 
@@ -145,4 +189,12 @@ const handlePostUnlike = async (req, res, next) => {
    }
 };
 
-module.exports = { getImagePost, uploadImagePost, updatePost, deletePost, handlePostLike, handlePostUnlike };
+module.exports = {
+   getImagePost,
+   getImagePosts,
+   uploadImagePost,
+   updatePost,
+   deletePost,
+   handlePostLike,
+   handlePostUnlike,
+};

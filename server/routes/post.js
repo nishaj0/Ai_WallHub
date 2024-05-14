@@ -9,6 +9,8 @@ const router = express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
+router.route('/').get(postController.getImagePosts);
+
 router
    .route('/:id')
    .get(postController.getImagePost)
