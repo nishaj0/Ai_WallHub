@@ -7,3 +7,13 @@ export const isSmallScreen = () => {
       return 'large';
    }
 };
+
+export const formatToGalleryData = (fetchedPosts) => {
+   const transformedData = fetchedPosts.map((img) => ({
+      key: img._id,
+      src: img.url,
+      width: img.width,
+      height: img.height,
+   }));
+   return transformedData;
+};
