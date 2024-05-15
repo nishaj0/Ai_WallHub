@@ -14,6 +14,7 @@ import {
    UploadPost,
    Wallpaper,
    PageNotFound,
+   WallpaperGallery,
 } from './pages';
 
 import { Layout, PersistLogin, RequireAuth } from './containers';
@@ -33,6 +34,7 @@ function App() {
                   <Route path="contact" element={<Contact />} />
                   <Route path="about" element={<About />} />
                   <Route path="search" element={<Search />} />
+                  <Route path="images" element={<WallpaperGallery />} />
                   <Route path="image/:id" element={<Wallpaper />} />
                   <Route element={<RequireAuth />}>
                      <Route path="profile" element={<Profile />}>
