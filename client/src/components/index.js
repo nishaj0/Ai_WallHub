@@ -5,5 +5,6 @@ import InputBox from './inputBox/InputBox';
 import BlueButton from './BlueButton/BlueButton';
 import ToggleMenu from './ToggleMenu/ToggleMenu';
 import ConfirmDialogBox from './ConfirmDialogBox/ConfirmDialogBox';
+import PaginationBar from './PaginationBar/PaginationBar';
 
-export { SearchTag, GoogleSignButton, LoadingSvg, InputBox, BlueButton, ToggleMenu, ConfirmDialogBox };
+export { SearchTag, GoogleSignButton, LoadingSvg, InputBox, BlueButton, ToggleMenu, ConfirmDialogBox, PaginationBar };
