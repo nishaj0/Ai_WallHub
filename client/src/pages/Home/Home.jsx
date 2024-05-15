@@ -132,7 +132,14 @@ function Home() {
                   />
                </div>
                <div className="wallHub__home-wallpapers_footer">
-                  <button onClick={() => navigate('/')}>show more</button>
+                  <button
+                     onClick={() => {
+                        navigate('/images');
+                        window.scrollTo(0, 0);
+                     }}
+                  >
+                     show more
+                  </button>
                </div>
             </div>
          )}
