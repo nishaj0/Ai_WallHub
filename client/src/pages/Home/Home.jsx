@@ -6,10 +6,11 @@ import './home.css';
 import { LoadingSvg, SearchTag } from '../../components';
 import useScreenWidth from '../../hooks/useScreenWidth';
 import axios from '../../api/axios';
+import { formatToGalleryData } from '../../utils';
 
 function Home() {
    const [searchKeyword, setSearchKeyword] = useState('');
-   const [transformedData, setTransformedData] = useState(null);
+   const [fetchData, setFetchData] = useState(null);
    const [isLoading, setIsLoading] = useState(true);
    const [abortController, setAbortController] = useState(null);
 
@@ -48,15 +49,7 @@ function Home() {
             // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
             // await delay(3000);
 
-            // ? transform data to usable format
-            const transformData = response.data.posts.map((img) => ({
-               key: img._id,
-               src: img.url,
-               width: img.width,
-               height: img.height,
-            }));
-
-            setTransformedData(transformData);
+            setFetchData(response.data.posts);
          } catch (error) {
             console.error(error);
          } finally {
@@ -123,7 +116,7 @@ function Home() {
                   <h2>Most Recent</h2>
                   <PhotoAlbum
                      layout="masonry"
-                     photos={transformedData}
+                     photos={formatToGalleryData(fetchData)}
                      columns={(containerWidth) => {
                         if (containerWidth < 550) return 1;
                         if (containerWidth < 768) return 3;

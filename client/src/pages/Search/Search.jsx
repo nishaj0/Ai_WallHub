@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { CiImageOff } from "react-icons/ci";
+import { CiImageOff } from 'react-icons/ci';
 import PhotoAlbum from 'react-photo-album';
 import './search.css';
 import { SearchTag, LoadingSvg } from '../../components';
 import axios from '../../api/axios';
+import { formatToGalleryData } from '../../utils';
 
 function Search() {
    const [fetchedImages, setFetchedImages] = useState([]);
@@ -33,14 +34,7 @@ function Search() {
             // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
             // await delay(3000);
 
-            // ? transform to usable data
-            const transformedData = response.data.map((img, index) => ({
-               key: img._id,
-               src: img.url,
-               width: img.width,
-               height: img.height,
-            }));
-            setFetchedImages(transformedData);
+            setFetchedImages(response.data);
          } catch (error) {
             console.error(error);
          } finally {
@@ -76,7 +70,7 @@ function Search() {
             <div className="wallHub__search-loading">
                <LoadingSvg />
             </div>
-         ) : !fetchedImages.length ? (
+         ) : !fetchedImages?.length ? (
             <div className="wallHub__search-noResult">
                <h3>No images found!</h3>
                <p>Try searching for something else.</p>
@@ -86,7 +80,7 @@ function Search() {
             <div className="wallHub__search-images">
                <PhotoAlbum
                   layout="masonry"
-                  photos={fetchedImages}
+                  photos={formatToGalleryData(fetchedImages)}
                   columns={(containerWidth) => {
                      if (containerWidth < 550) return 1;
                      if (containerWidth < 768) return 3;
