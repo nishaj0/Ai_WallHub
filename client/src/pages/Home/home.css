@@ -93,15 +93,11 @@
 .wallHub__home-wallpapers_img-container {
    margin: 3rem 0;
 }
+
 .wallHub__home-wallpapers_img-container h2 {
    font-size: var(--h2-font-size);
    color: var(--main-color-dark);
    margin-bottom: 1rem;
-}
-
-.wallHub__home-wallpapers_img-container img {
-   border-radius: 5px;
-   cursor: pointer;
 }
 
 .wallHub__home-wallpapers_footer {
@@ -110,7 +106,7 @@
    justify-content: center;
 }
 
-.wallHub__home-wallpapers_footer > button {
+.wallHub__home-wallpapers_footer>button {
    display: flex;
    justify-content: center;
    align-items: center;
@@ -126,11 +122,11 @@
    cursor: pointer;
 }
 
-.wallHub__home-wallpapers_footer > button:hover {
+.wallHub__home-wallpapers_footer>button:hover {
    box-shadow: 0px 1px 10px 1px var(--light-color-gray);
 }
 
-.wallHub__home-wallpapers_footer > button:active {
+.wallHub__home-wallpapers_footer>button:active {
    outline: solid 1px var(--main-color-dark);
    transition: none;
 }

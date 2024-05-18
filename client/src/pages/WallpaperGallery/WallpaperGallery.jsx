@@ -1,11 +1,8 @@
 import Select from 'react-select';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './wallpaperGallery.css';
-import { LoadingSvg, PaginationBar } from '../../components';
-import PhotoAlbum from 'react-photo-album';
+import { ImageGallery, PaginationBar } from '../../components';
 import axios from '../../api/axios';
-import { formatToGalleryData } from '../../utils';
 
 const FILTERS = {
    RECENT: 'recent',
@@ -34,7 +31,6 @@ function WallpaperGallery() {
    const [abortController, setAbortController] = useState(null);
    const [currentPage, setCurrentPage] = useState(1);
 
-   const navigate = useNavigate();
    const postPerPage = 30;
    const POSTS_URL = `/api/post?filter=${selectedFilter.value}&page=${currentPage}&size=${postPerPage}`;
 
@@ -89,32 +85,7 @@ function WallpaperGallery() {
             </div>
          </div>
          <div className="wallHub__gallery-content">
-            {isLoading ? (
-               <div className="wallHub__gallery-loading">
-                  <LoadingSvg />
-               </div>
-            ) : !fetchedData?.posts?.length ? (
-               <div className="wallHub__gallery-noResult">
-                  <h3>No images found!</h3>
-               </div>
-            ) : (
-               <div className="wallHub__gallery-images">
-                  <PhotoAlbum
-                     layout="masonry"
-                     componentsProps={{
-                        imageProps: {
-                           loading: 'lazy',
-                        },
-                     }}
-                     photos={formatToGalleryData(fetchedData.posts)}
-                     columns={(containerWidth) => {
-                        if (containerWidth < 550) return 1;
-                        if (containerWidth < 768) return 3;
-                     }}
-                     onClick={(e) => navigate(`/image/${e.photo.key}`)}
-                  />
-               </div>
-            )}
+            <ImageGallery className={'wallHub__gallery-images'} isLoading={isLoading} images={fetchedData.posts} />
          </div>
          <div className="wallHub__gallery-footer">
             <PaginationBar

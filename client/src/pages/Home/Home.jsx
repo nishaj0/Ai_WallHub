@@ -1,16 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RiSearchLine } from 'react-icons/ri';
-import PhotoAlbum from 'react-photo-album';
 import './home.css';
-import { LoadingSvg, SearchTag } from '../../components';
+import { ImageGallery, LoadingSvg, SearchTag } from '../../components';
 import useScreenWidth from '../../hooks/useScreenWidth';
 import axios from '../../api/axios';
-import { formatToGalleryData } from '../../utils';
 
 function Home() {
    const [searchKeyword, setSearchKeyword] = useState('');
-   const [fetchData, setFetchData] = useState(null);
+   const [fetchedData, setFetchedData] = useState(null);
    const [isLoading, setIsLoading] = useState(true);
    const [abortController, setAbortController] = useState(null);
 
@@ -49,7 +47,7 @@ function Home() {
             // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
             // await delay(3000);
 
-            setFetchData(response.data.posts);
+            setFetchedData(response.data.posts);
          } catch (error) {
             console.error(error);
          } finally {
@@ -114,15 +112,7 @@ function Home() {
                </div>
                <div className="wallHub__home-wallpapers_img-container">
                   <h2>Most Recent</h2>
-                  <PhotoAlbum
-                     layout="masonry"
-                     photos={formatToGalleryData(fetchData)}
-                     columns={(containerWidth) => {
-                        if (containerWidth < 550) return 1;
-                        if (containerWidth < 768) return 3;
-                     }}
-                     onClick={(e) => navigate(`/image/${e.photo.key}`)}
-                  />
+                  <ImageGallery className="wallHub__home-gallery" images={fetchedData} />
                </div>
                <div className="wallHub__home-wallpapers_footer">
                   <button

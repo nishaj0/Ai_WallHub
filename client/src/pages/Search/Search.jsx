@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
-import { CiImageOff } from 'react-icons/ci';
-import PhotoAlbum from 'react-photo-album';
+import { useSearchParams } from 'react-router-dom';
 import './search.css';
-import { SearchTag, LoadingSvg } from '../../components';
+import { SearchTag, ImageGallery } from '../../components';
 import axios from '../../api/axios';
-import { formatToGalleryData } from '../../utils';
 
 function Search() {
    const [fetchedImages, setFetchedImages] = useState([]);
@@ -14,7 +11,6 @@ function Search() {
 
    const [searchParams] = useSearchParams();
    const keyword = searchParams.get('keyword');
-   const navigate = useNavigate();
 
    const SEARCH_URL = '/api/search';
    const searchString = ['phone', 'PC', 'nature', 'landscape'];
@@ -61,34 +57,12 @@ function Search() {
                <SearchTag searchText={tag} key={index} />
             ))}
          </div>
-         {/* -------image gallery----- */}
-         {/* if the image is fetching, show "loading svg" */}
-         {/* else */}
-         {/*   if there is no image, show "no result found" */}
-         {/*   else if the image is fetched, show the images */}
-         {isLoading ? (
-            <div className="wallHub__search-loading">
-               <LoadingSvg />
-            </div>
-         ) : !fetchedImages?.length ? (
-            <div className="wallHub__search-noResult">
-               <h3>No images found!</h3>
-               <p>Try searching for something else.</p>
-               <CiImageOff size={40} color="#1b8dca" />
-            </div>
-         ) : (
-            <div className="wallHub__search-images">
-               <PhotoAlbum
-                  layout="masonry"
-                  photos={formatToGalleryData(fetchedImages)}
-                  columns={(containerWidth) => {
-                     if (containerWidth < 550) return 1;
-                     if (containerWidth < 768) return 3;
-                  }}
-                  onClick={(e) => navigate(`/image/${e.photo.key}`)}
-               />
-            </div>
-         )}
+         <ImageGallery
+            className={'wallHub__search-gallery'}
+            isLoading={isLoading}
+            images={fetchedImages}
+            noResultDescription={'Try searching for something else.'}
+         />
       </div>
    );
 }
