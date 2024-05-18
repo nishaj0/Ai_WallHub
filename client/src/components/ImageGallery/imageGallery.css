@@ -1,0 +1,38 @@
+.wallHub__imageGallery {
+   width: 100%;
+}
+
+.wallHub__imageGallery img {
+   border-radius: 5px;
+   cursor: pointer;
+}
+
+.wallHub__imageGallery img:hover {
+   filter: brightness(0.8);
+}
+
+.wallHub__imageGallery-noResult {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   width: 100%;
+   margin: 3rem 0;
+}
+
+.wallHub__imageGallery-noResult>h3 {
+   color: var(--main-color-dark);
+   font-size: var(--h3-font-size);
+   font-weight: var(--font-weight-high);
+}
+
+.wallHub__imageGallery-noResult>p {
+   margin-top: 0.5rem;
+   color: var(--medium-gray);
+   font-size: var(--a-font-size);
+   font-weight: var(--font-weight-low);
+}
+
+.wallHub__imageGallery-noResult>svg {
+   margin-top: .5rem;
+}
