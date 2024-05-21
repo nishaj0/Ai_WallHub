@@ -5,6 +5,7 @@ import './signup.css';
 import axios from '../../../api/axios';
 import FormError from '../../../components/FormError/FormError';
 import { BlueButton, GoogleSignButton, InputBox } from '../../../components';
+import { AuthPageContainer } from '../../../containers';
 import { setUser } from '../../../redux/user/userSlice';
 import { togglePersist } from '../../../redux/persist/persistSlice';
 
@@ -75,96 +76,91 @@ function Signup() {
    };
 
    return (
-      <div className="wallHub__signup">
-         <div className="wallHub__signup-head">
-            <h2>Create your account</h2>
-         </div>
-         <div className="wallHub__signup-container">
-            <form onSubmit={handleSubmit}>
-               <InputBox
-                  id="wallHub__signup-name"
-                  label={'Full Name'}
-                  name="fullName"
-                  placeholder="John Doe"
-                  type="text"
-                  required
-                  value={formData.fullName}
-                  onChange={handleChange}
-               />
-               <InputBox
-                  id="wallHub__signup-username"
-                  label={'User Name'}
-                  name="username"
-                  placeholder="john.doe"
-                  type="text"
-                  pattern="^[a-z][a-z0-9_.]{3,15}$"
-                  title="username must be 3-15 characters long and does not contain any space."
-                  marginTop={1}
-                  required
-                  value={formData.username}
-                  onChange={handleChange}
-               />
-               <InputBox
-                  id="wallHub__signup-email"
-                  label={'Email address'}
-                  name="email"
-                  placeholder={'john.doe@example.com'}
-                  type="email"
-                  marginTop={1}
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-               />
-               <InputBox
-                  id="wallHub__signup-password"
-                  label="Password"
-                  name="password"
-                  placeholder="Enter password"
-                  type="password"
-                  pattern="^\S{8,16}$"
-                  title="Password must be least 8-16 characters long and does not contain any space."
-                  required
-                  marginTop={1}
-                  value={passwordData.password}
-                  onChange={handlePassword}
-               />
-               <InputBox
-                  id="wallHub__signup-confirmPassword"
-                  name="tempPassword"
-                  placeholder="Confirm Password"
-                  type="password"
-                  pattern="^\S{8,16}$"
-                  title="Password must be least 8-16 characters long and does not contain any space."
-                  required
-                  value={passwordData.tempPassword}
-                  onChange={handlePassword}
-               />
-               {errorMessage && <FormError errorMessage={errorMessage} />}
-               <BlueButton
-                  width={'100%'}
-                  height={'var(--login-input-y)'}
-                  marginTop={'1.75rem'}
-                  type="submit"
-                  disabled={isSubmitting}
-               >
-                  {isSubmitting ? 'Signing...' : 'Sign up'}
-               </BlueButton>
-               <div className="wallHub__login-checkbox">
-                  <input type="checkbox" id="persist" onChange={togglePersistValue} checked={persist} />
-                  <label htmlFor="persist">Trust this device</label>
-               </div>
-               <p className="wallHub__signup-agreement_p">
-                  By registering, you agree to aiWallHub's <Link to={'/terms-condition'}>Terms and Condition</Link> and{' '}
-                  <Link to={'/privacy-policy'}>Privacy and Policy</Link>
-               </p>
-            </form>
-            <hr className="wallHub__signup-hr" />
-            <GoogleSignButton />
-            <Link className="wallHub__signup-link_login" to={'/login'}>
-               Already have an account?
-            </Link>
-         </div>
-      </div>
+      <AuthPageContainer title={'Create your account'}>
+         <form className="wallHub__signup-form" onSubmit={handleSubmit}>
+            <InputBox
+               id="wallHub__signup-name"
+               label={'Full Name'}
+               name="fullName"
+               placeholder="John Doe"
+               type="text"
+               required
+               value={formData.fullName}
+               onChange={handleChange}
+            />
+            <InputBox
+               id="wallHub__signup-username"
+               label={'User Name'}
+               name="username"
+               placeholder="john.doe"
+               type="text"
+               pattern="^[a-z][a-z0-9_.]{3,15}$"
+               title="username must be 3-15 characters long and does not contain any space."
+               marginTop={1}
+               required
+               value={formData.username}
+               onChange={handleChange}
+            />
+            <InputBox
+               id="wallHub__signup-email"
+               label={'Email address'}
+               name="email"
+               placeholder={'john.doe@example.com'}
+               type="email"
+               marginTop={1}
+               required
+               value={formData.email}
+               onChange={handleChange}
+            />
+            <InputBox
+               id="wallHub__signup-password"
+               label="Password"
+               name="password"
+               placeholder="Enter password"
+               type="password"
+               pattern="^\S{8,16}$"
+               title="Password must be least 8-16 characters long and does not contain any space."
+               required
+               marginTop={1}
+               value={passwordData.password}
+               onChange={handlePassword}
+            />
+            <InputBox
+               id="wallHub__signup-confirmPassword"
+               name="tempPassword"
+               placeholder="Confirm Password"
+               type="password"
+               pattern="^\S{8,16}$"
+               title="Password must be least 8-16 characters long and does not contain any space."
+               required
+               value={passwordData.tempPassword}
+               onChange={handlePassword}
+            />
+            {errorMessage && <FormError errorMessage={errorMessage} />}
+            <BlueButton
+               width={'100%'}
+               height={'var(--login-input-y)'}
+               marginTop={'1.75rem'}
+               type="submit"
+               disabled={isSubmitting}
+            >
+               {isSubmitting ? 'Signing...' : 'Sign up'}
+            </BlueButton>
+            <div className="wallHub__login-checkbox">
+               <input type="checkbox" id="persist" onChange={togglePersistValue} checked={persist} />
+               <label htmlFor="persist">Trust this device</label>
+            </div>
+            <p className="wallHub__signup-agreement_p">
+               By registering, you agree to aiWallHub's <Link to={'/terms-condition'}>Terms and Condition</Link> and{' '}
+               <Link to={'/privacy-policy'}>Privacy and Policy</Link>
+            </p>
+         </form>
+         <hr className="wallHub__signup-hr" />
+         <GoogleSignButton />
+         <Link className="wallHub__signup-link_login" to={'/login'}>
+            Already have an account?
+         </Link>
+      </AuthPageContainer>
    );
 }
 
