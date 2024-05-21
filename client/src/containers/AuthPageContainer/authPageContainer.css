@@ -1,0 +1,42 @@
+.wallHub__AuthPage {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   min-height: 100vh;
+   background-color: var(--main-color-light);
+   position: relative;
+}
+
+.wallHub__AuthPage-head {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   text-align: center;
+   margin-top: 1.5rem;
+}
+
+.wallHub__AuthPage-head h2 {
+   font-size: var(--h2-font-size);
+   font-weight: var(--font-weight-extreme);
+   color: var(--main-color-dark);
+}
+
+.wallHub__AuthPage-container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   margin-top: 2rem;
+   padding: 2.5rem;
+   border-radius: 5px;
+   background-color: #fff;
+   border: solid 1px #cfdfe7;
+}
+
+@media screen and (max-width: 550px) {
+   .wallHub__AuthPage-container {
+      padding: 1.5rem;
+   }
+}
