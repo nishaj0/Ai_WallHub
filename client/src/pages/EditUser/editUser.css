@@ -1,0 +1,64 @@
+/* ---------- image form----------- */
+
+.wallHub__editUser-imageForm {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   cursor: pointer;
+}
+
+.wallHub__editUser-imageForm img {
+   position: absolute;
+   width: 100px;
+   height: 100px;
+   border-radius: 50%;
+   margin-bottom: 10px;
+   opacity: 1;
+   visibility: visible;
+   transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+}
+
+
+.wallHub__editUser-imageForm div {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   text-align: center;
+
+   width: 100px;
+   height: 100px;
+   border-radius: 50%;
+   margin-bottom: 10px;
+   background-color: var(--main-color-dark);
+
+   opacity: 0;
+   visibility: hidden;
+   transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+}
+
+.wallHub__editUser-imageForm:hover img {
+   opacity: 0;
+   visibility: hidden;
+}
+
+.wallHub__editUser-imageForm:hover div {
+   opacity: 1;
+   visibility: visible;
+}
+
+.wallHub__editUser-imageForm div>p {
+   color: var(--main-color-light);
+   font-size: var(--p-font-size);
+   font-weight: 500;
+}
+
+/* ----------- text form------------*/
+
+.wallHub__editUser-textForm {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+}

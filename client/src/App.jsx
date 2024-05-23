@@ -15,6 +15,7 @@ import {
    Wallpaper,
    PageNotFound,
    WallpaperGallery,
+   EditUser,
 } from './pages';
 
 import { Layout, PersistLogin, RequireAuth } from './containers';
@@ -45,6 +46,7 @@ function App() {
                {/* pages without header and footer */}
                <Route element={<RequireAuth />}>
                   <Route path="upload-post" element={<UploadPost />} />
+                  <Route path="edit-profile" element={<EditUser />}></Route>
                </Route>
             </Route>
             {/* Auth pages */}
