@@ -7,6 +7,7 @@ import ToggleMenu from './ToggleMenu/ToggleMenu';
 import ConfirmDialogBox from './ConfirmDialogBox/ConfirmDialogBox';
 import PaginationBar from './PaginationBar/PaginationBar';
 import ImageGallery from './ImageGallery/ImageGallery';
+import FormError from './FormError/FormError';
 
 export {
    SearchTag,
@@ -18,4 +19,5 @@ export {
    ConfirmDialogBox,
    PaginationBar,
    ImageGallery,
+   FormError,
 };
